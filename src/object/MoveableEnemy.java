@@ -58,11 +58,16 @@ public abstract class MoveableEnemy extends MoveableCharacter implements Enemy {
 		Main.game.getChildren().add(this);
 		x = spawnLocation[0];
 		y = spawnLocation[1];
-		fallSpeedLimit = true;
+		turn(false);
 	}
 	
 	public void die() {
 		remove();
+	}
+	
+	protected void reset() {
+		turn(false);
+		super.reset();
 	}
 	
 	public void remove() {

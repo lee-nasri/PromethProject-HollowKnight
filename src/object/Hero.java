@@ -268,6 +268,25 @@ public class Hero extends MoveableCharacter {
 		super.attacked(damage, knockbackX, knockbackY);
 	}
 	
+	public void die() {
+		Main.world.setBossFight(false);
+		Main.world.setCerrentMap(MapName.Starter, 500, 1175);
+		hp = maxHp;
+	}
+	
+	protected void reset() {
+		unstable.interrupt();
+		jump.interrupt();
+		dash.interrupt();
+		immune.interrupt();
+		dashCooldown.interrupt();
+		dashCooldown = new Delay(100);
+		doubleJumped = true;
+		doubleJumpable = false;
+		dashable = false;
+		super.reset();
+	}
+	
 	public void turn(boolean turnLeft) {
 		super.turn(turnLeft);
 		getChildren().get(1).setLayoutX(turnLeft ? 0 : -120);
@@ -280,24 +299,14 @@ public class Hero extends MoveableCharacter {
 		super.changeView();
 	}
 	
-	public void die() {
-		Main.world.setBossFight(false);
-		Main.world.setCerrentMap(MapName.Starter, 500, 1175);
-		hp = maxHp;
-	}
-	
-	public void reset() {
-		dx = 0;
-		dy = 0;
-		unstable.interrupt();
-		jump.interrupt();
-		dash.interrupt();
-		immune.interrupt();
-		dashCooldown.interrupt();
-		dashCooldown = new Delay(100);
-		doubleJumped = true;
-		doubleJumpable = false;
-		dashable = false;
+	public void setLocation(double x, double y) {
+		reset();
+		this.x = x;
+		this.y = y;
+		changeView();
+		for (Updateable updateable: Main.world.getObjectList()) {
+			updateable.changeView();
+		}
 	}
 
 	public double getJumpPower() {

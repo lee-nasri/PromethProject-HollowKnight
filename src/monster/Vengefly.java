@@ -38,13 +38,15 @@ public class Vengefly extends MoveableEnemy {
 		}
 	}
 
-	public void reset() {
+	protected void reset() {
 		cerrentStage = "idle";
 		super.reset();
 	}
 	
 	public void die() {
-		Main.inventory.addItem(new GoldenSword());
+		new Thread(()->{
+			Main.inventory.addItem(new GoldenSword());
+		});
 		super.die();
 	}
 }

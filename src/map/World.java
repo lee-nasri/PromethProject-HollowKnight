@@ -43,18 +43,8 @@ public class World {
 			Main.game.getChildren().add(Main.hero.getLight());
 		}
 		Main.game.getChildren().add(Main.hero);
-		setHeroLocation(x, y);
+		Main.hero.setLocation(x, y);
 		Sound.changeBackgroundMusic(cerrentMap.getMusic());
-	}
-	
-	public void setHeroLocation(double x, double y) {
-		Main.hero.reset();
-		Main.hero.setX(x);
-		Main.hero.setY(y);
-		Main.hero.changeView();
-		for (Updateable updateable: objectList) {
-			updateable.changeView();
-		}
 	}
 	
 	public void changeBackgroundView() {

@@ -2,7 +2,6 @@ package application;
 
 import java.util.ArrayList;
 
-import item.GoldenSword;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;

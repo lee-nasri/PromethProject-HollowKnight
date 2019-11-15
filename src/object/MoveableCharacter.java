@@ -48,12 +48,6 @@ public abstract class MoveableCharacter extends MoveableObject implements Destro
 		setScaleX(turnLeft ? -1 : 1);
 	}
 	
-	public void reset() {
-		dx = 0;
-		dy = 0;
-		turn(false);
-	}
-	
 	public double getAttackDamage() {
 		return attackDamage;
 	}

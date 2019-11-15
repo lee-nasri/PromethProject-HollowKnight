@@ -66,7 +66,7 @@ public class False_Knight extends Boss {
 		}
 	}
 	
-	public void changeStage() {
+	protected void changeStage() {
 		switch (cerrentStage) {
 		case "idle":
 			inAir = true;
@@ -125,7 +125,7 @@ public class False_Knight extends Boss {
 		getChildren().get(4).setLayoutX(turnLeft ? -100 : -160);
 	}
 	
-	public void reset() {
+	protected void reset() {
 		speed = 0;
 		cerrentStage = "idle";
 		super.reset();

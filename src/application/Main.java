@@ -3,7 +3,6 @@ package application;
 import javafx.application.Application;
 import javafx.scene.*;
 import javafx.stage.Stage;
-import item.GoldenSword;
 import item.Inventory;
 import map.MapCreater;
 import map.MapName;

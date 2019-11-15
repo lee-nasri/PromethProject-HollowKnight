@@ -120,6 +120,11 @@ public abstract class MoveableObject extends GameObject {
 		}
 	}
 	
+	protected void reset() {
+		dx = 0;
+		dy = 0;
+	}
+	
 	public double getSpeed() {
 		return speed;
 	}
