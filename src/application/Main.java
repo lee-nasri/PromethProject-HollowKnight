@@ -28,7 +28,7 @@ public class Main extends Application {
 	@Override 
 	public void start(Stage primaryStage) throws Exception {
 		stage = primaryStage;
-		stage.setTitle("MyGame");
+		stage.setTitle("Hollow Knight");
 		stage.show();
 		stage.setFullScreenExitHint("");
 		newGame();

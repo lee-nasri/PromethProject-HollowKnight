@@ -44,9 +44,7 @@ public class Vengefly extends MoveableEnemy {
 	}
 	
 	public void die() {
-		new Thread(()->{
-			Main.inventory.addItem(new GoldenSword());
-		});
+		Main.inventory.addItem(new GoldenSword());
 		super.die();
 	}
 }
