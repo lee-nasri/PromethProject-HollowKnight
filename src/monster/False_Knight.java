@@ -61,8 +61,6 @@ public class False_Knight extends Boss {
 				changeStage();
 			}
 			break;
-		default:
-			break;
 		}
 	}
 	

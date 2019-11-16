@@ -55,19 +55,7 @@ public class Controller {
 				case D:
 					dash = true;
 					break;
-				case I:
-					if (pause) {
-						pause = false;
-						Main.inventory.getChildren().clear();
-						Main.root.getChildren().remove(Main.inventory);
-					} else {
-						pause = true;
-						Main.root.getChildren().add(Main.inventory);
-						Main.inventory.update();
-					}
-					break;
 				default:	   
-					break;
 				}
 			}
 		});
@@ -96,8 +84,19 @@ public class Controller {
 				case D:
 					dash = false;
 					break;
-				default:	   
+				case I:
+					if (pause) {
+						pause = false;
+						Main.root.getChildren().remove(Main.inventory);
+						Main.inventory.getChildren().clear();
+						Main.world.reloadBackground();
+					} else {
+						pause = true;
+						Main.root.getChildren().add(Main.inventory);
+						Main.inventory.update();
+					}
 					break;
+				default:
 				}
 			}
 		});

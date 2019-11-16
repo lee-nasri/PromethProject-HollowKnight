@@ -26,7 +26,6 @@ public class Hero extends MoveableCharacter {
 	private boolean doubleJumped, doubleJumpable, dashable;
 	private Delay jump = new Delay(0);
 	private Delay attackCooldown = new Delay(0);
-	private Delay dash = new Delay(0);
 	private Delay dashCooldown = new Delay(0);
 	private Delay unstable = new Delay(0);
 	protected Delay immune = new Delay(0);
@@ -54,17 +53,9 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	public void move() {
-		artCheck();
+		dashCheck();
 		Main.HpBar.update(hp);
 		super.move();
-	}
-	
-	private void artCheck() {
-		if (dashCheck()) {
-			changeArt("dash");
-		}else {
-			changeArt("normal");
-		}
 	}
 	
 	protected void moveY() {
@@ -164,7 +155,8 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	public void jump(double power) {
-		dash.interrupt();
+		stageHolder.interrupt();
+		changeStage();
 		jump = new Delay(jumpTime, -power);
 	}
 	
@@ -179,7 +171,8 @@ public class Hero extends MoveableCharacter {
 		if (dashable && !dashCooldown.isAlive()) {
 			dx = turnLeft ? -dashPower : dashPower;
 			dy = 0;
-			dash = new Delay(dashTime, turnLeft ? -dashPower : dashPower);
+			holdStage(dashTime);
+			changeArt("dash");
 			dashCooldown = new Delay(dashCooldownTime);
 			dashable = false;
 			unstable.interrupt();
@@ -188,9 +181,8 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	private boolean dashCheck() {
-		if (dash.isAlive()) {
-			dx = dash.getData();
-			turn(dash.getData() < 0);
+		if (stageHolder.isAlive()) {
+			dx = turnLeft ? -dashPower : dashPower;
 			dy = 0;
 			return true;
 		}
@@ -199,7 +191,8 @@ public class Hero extends MoveableCharacter {
 	
 	public void frontAttack() {
 		if (!attackCooldown.isAlive()) {
-			dash.interrupt();
+			stageHolder.interrupt();
+			changeStage();
 			attackCooldown = new Delay(attackSpeed);
 			Main.world.addObject(
 					new Effect(attackEffect, 30, x + dx + (turnLeft?-120:0), y + dy - 30, 
@@ -215,7 +208,8 @@ public class Hero extends MoveableCharacter {
 	
 	public void upperSlash() {
 		if (!attackCooldown.isAlive()) {
-			dash.interrupt();
+			stageHolder.interrupt();
+			changeStage();
 			attackCooldown = new Delay(attackSpeed);
 			Effect effect = new Effect(attackEffect, 20, x + dx + (turnLeft ? -50 : -70), y + dy - 75, 
 					200, 100, turnLeft, false);
@@ -233,7 +227,8 @@ public class Hero extends MoveableCharacter {
 	public void downwardSlash() {
 		if (!attackCooldown.isAlive()) {
 			if (inAir) {
-				dash.interrupt();
+				stageHolder.interrupt();
+				changeStage();
 				attackCooldown = new Delay(attackSpeed);
 				Effect effect = new Effect(attackEffect, 20, x + dx + (turnLeft ? -70 : -50), y + dy + 60, 
 						200, 100, turnLeft, false);
@@ -263,7 +258,8 @@ public class Hero extends MoveableCharacter {
 		immune = new Delay(recoverTime);
 		unstable.interrupt();
 		unstable = new Delay(recoverTime/2);
-		dash.interrupt();
+		stageHolder.interrupt();
+		changeStage();
 		dashable = true;
 		super.attacked(damage, knockbackX, knockbackY);
 	}
@@ -277,9 +273,10 @@ public class Hero extends MoveableCharacter {
 	protected void reset() {
 		unstable.interrupt();
 		jump.interrupt();
-		dash.interrupt();
 		immune.interrupt();
 		dashCooldown.interrupt();
+		stageHolder.interrupt();
+		changeStage();
 		dashCooldown = new Delay(100);
 		doubleJumped = true;
 		doubleJumpable = false;
@@ -287,9 +284,15 @@ public class Hero extends MoveableCharacter {
 		super.reset();
 	}
 	
+	protected void changeStage() {
+		changeArt("normal");
+	}
+	
 	public void turn(boolean turnLeft) {
-		super.turn(turnLeft);
-		getChildren().get(1).setLayoutX(turnLeft ? 0 : -120);
+		if (!stageHolder.isAlive()) {
+			super.turn(turnLeft);
+			getChildren().get(1).setLayoutX(turnLeft ? 0 : -120);
+		}
 	}
 	
 	public void changeView() {

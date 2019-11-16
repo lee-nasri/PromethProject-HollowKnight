@@ -5,7 +5,6 @@ import application.Main;
 public abstract class MoveableEnemy extends MoveableCharacter implements Enemy {
 	
 	private double[] spawnLocation = new double[2];
-	protected String cerrentStage;
 	
 	public MoveableEnemy(double x, double y, double width, double height) {
 		super(x, y, width, height);
@@ -45,11 +44,6 @@ public abstract class MoveableEnemy extends MoveableCharacter implements Enemy {
 			}
 		}
 		y += dy;
-	}
-	
-	protected void changeArt(String art) {
-		cerrentStage = art;
-		super.changeArt(art);
 	}
 	
 	public void spawn() {

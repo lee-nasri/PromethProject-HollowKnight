@@ -73,6 +73,11 @@ public class World {
 		Main.game.getChildren().add(object);
 		object.changeView();
 	}
+	
+	public void reloadBackground() {
+		Main.game.getChildren().removeAll(cerrentMap.getBackground());
+		Main.game.getChildren().addAll(0, cerrentMap.getBackground());
+	}
 
 	public boolean isBossFight() {
 		return bossFight;
