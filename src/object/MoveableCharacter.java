@@ -15,23 +15,21 @@ public abstract class MoveableCharacter extends MoveableObject implements Destro
 	}
 	
 	public boolean hitCheck(double x, double y, double width, double height) {
-		if (this.x <= x+width && 
-			this.x + size[0] >= x &&
-			this.y <= y+height && 
-			this.y + size[1] >= y ) {
+		if ((this.x <= (x + width)) && ((this.x + size[0]) >= x) 
+				&& (this.y <= (y + height)) && ((this.y + size[1]) >= y)) {
 			return true;
 		}
 		return false;
 	}
 	
-	public void attacked(double damage, double knockbackX, double knockbackY) {
-		if (knockbackX != 0) {
-			dx = knockbackX;
+	public void attacked(double damage, double knockBackX, double knockBackY) {
+		if (knockBackX != 0) {
+			dx = knockBackX;
 		}
-		if (knockbackY != 0) {
-			dy = -knockbackY;
+		if (knockBackY != 0) {
+			dy = -knockBackY;
 		}
-		hp = damage > hp ? 0 : hp - damage;
+		hp = ((damage > hp) ? 0 : (hp - damage));
 		if (hp == 0) {
 			die();
 		}

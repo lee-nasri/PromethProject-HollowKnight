@@ -33,6 +33,7 @@ public class World {
 		for (GamePlatform platform: cerrentMap.getPlatformList()) {
 			objectList.add(platform);
 			Main.game.getChildren().add(platform);
+			platform.setAlive(true);
 		}
 		for (Enemy enemy: cerrentMap.getEnemyList()) {
 			objectList.add(enemy);
@@ -43,6 +44,7 @@ public class World {
 			Main.game.getChildren().add(Main.hero.getLight());
 		}
 		Main.game.getChildren().add(Main.hero);
+		Main.hero.setAlive(true);
 		Main.hero.setLocation(x, y);
 		Sound.changeBackgroundMusic(cerrentMap.getMusic());
 	}
@@ -50,13 +52,15 @@ public class World {
 	public void changeBackgroundView() {
 		double x = Main.hero.getX() + Main.hero.getSize()[0]/2;
 		double y = Main.hero.getY() + Main.hero.getSize()[1]/2;
-		viewX = x < Main.getSceneWidth()/2 ? 0 : 
-			(x > width-Main.getSceneWidth()/2 ? width-Main.getSceneWidth() : x-Main.getSceneWidth()/2);
-		viewY = y < Main.getSceneHeight()/2 ? 0 : 
-			(y > height-Main.getSceneHeight()/2 ? height-Main.getSceneHeight() : y-Main.getSceneHeight()/2);
+		viewX = (x < Main.getSceneWidth()/2) 
+				? 0 : ((x > (width - Main.getSceneWidth()/2)) 
+						? (width - Main.getSceneWidth()) : (x - Main.getSceneWidth()/2));
+		viewY = (y < Main.getSceneHeight()/2)
+				? 0 : ((y > (height - Main.getSceneHeight()/2)) 
+						? (height - Main.getSceneHeight()) : (y - Main.getSceneHeight()/2));
 		for (ImageView i:cerrentMap.getBackground()) {
-			i.setLayoutX(-viewX*(i.getImage().getWidth()-Main.getSceneWidth())/(width-Main.getSceneWidth()));
-			i.setLayoutY(-viewY*(i.getImage().getHeight()-Main.getSceneHeight())/(height-Main.getSceneHeight()));
+			i.setLayoutX(-viewX*(i.getImage().getWidth() - Main.getSceneWidth())/(width-Main.getSceneWidth()));
+			i.setLayoutY(-viewY*(i.getImage().getHeight() - Main.getSceneHeight())/(height-Main.getSceneHeight()));
 		}
 	}
 	
@@ -72,6 +76,7 @@ public class World {
 		}
 		Main.game.getChildren().add(object);
 		object.changeView();
+		object.setAlive(true);
 	}
 	
 	public void reloadBackground() {

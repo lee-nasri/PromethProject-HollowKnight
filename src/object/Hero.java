@@ -17,22 +17,32 @@ public class Hero extends MoveableCharacter {
 	private double jumpPower = 16;
 	private double doubleJumpPower = 12;
 	private double dashPower = 25;
-	private double unstableFriction = 0.1;
 	private long attackSpeed = 400;
-	private long jumpTime = 180;
-	private long dashTime = 120;
 	private long dashCooldownTime = 450;
-	private long recoverTime = 1000;
 	private boolean doubleJumped, doubleJumpable, dashable;
 	private Delay jump = new Delay(0);
 	private Delay attackCooldown = new Delay(0);
 	private Delay dashCooldown = new Delay(0);
 	private Delay unstable = new Delay(0);
-	protected Delay immune = new Delay(0);
-	private String attackEffect = ClassLoader.getSystemResource("Effect/attacking.png").toString();
-	private Circle light = new Circle(0, 0, 1500, new RadialGradient(0, 0, 0, 0, 600, false, 
+	private Delay immune = new Delay(0);
+	
+	private static final String attackEffect = ClassLoader.getSystemResource("Effect/attacking.png").toString();
+	private static final Circle light = new Circle(0, 0, 1500, new RadialGradient(0, 0, 0, 0, 600, false, 
 			CycleMethod.NO_CYCLE, new Stop(0, Color.rgb(250, 250, 250, 0.3)), 
 			new Stop(0.5, Color.TRANSPARENT), new Stop(1, Color.rgb(0, 0, 0, 0.9))));
+	private static final double unstableFriction = 0.1;
+	private static final double attackRange = 200;
+	private static final double attackHeight = 100;
+	private static final double frontSlashKnockPower = 15;
+	private static final double frontSlashKnockBack = 10;
+	private static final double upperSlashKnockPower = 12;
+	private static final double upperSlashKnockBack = 8;
+	private static final double downwardSlashKnockPower = 5;
+	private static final double downwardSlashKnockBack = 15;
+	private static final long jumpTime = 180;
+	private static final long dashTime = 120;
+	private static final long recoverTime = 1000;
+	private static final long attackEffectTime = 30;
 	
 	public Hero() {
 		super(0, 0, 80, 85);
@@ -49,17 +59,17 @@ public class Hero extends MoveableCharacter {
 		maxHp = 100;
 		hp = 100;
 		attackDamage = 20;
-		Main.HpBar.setMaxHp(maxHp);
+		Main.hpBar.setMaxHp(maxHp);
 	}
 	
 	public void update() {
 		dashCheck();
-		Main.HpBar.update(hp);
+		Main.hpBar.update(hp);
 		super.update();
 	}
 	
 	protected void moveY() {
-		if (dy > maxFallSpeed && fallSpeedLimit) {
+		if ((dy > maxFallSpeed) && fallSpeedLimit) {
 			dy = maxFallSpeed;
 		}
 		if (dy < 0) {
@@ -90,7 +100,7 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	protected void leftWallCheck() throws HitWallException {
-		if (x + dx < 0 && Main.world.getCerrentMap().getLeftMap() != null
+		if (((x + dx) < 0) && (Main.world.getCerrentMap().getLeftMap() != null)
 				&& !Main.world.isBossFight()) {
 			Main.world.getCerrentMap().getLeftMap().travel();
 		}else {
@@ -99,8 +109,8 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	protected void rightWallCheck() throws HitWallException {
-		if (x + dx > Main.world.getCerrentMap().getWidth() - size[0]
-				&& Main.world.getCerrentMap().getRightMap() != null
+		if (((x + dx) > (Main.world.getCerrentMap().getWidth() - size[0]))
+				&& (Main.world.getCerrentMap().getRightMap() != null)
 				&& !Main.world.isBossFight()) {
 			Main.world.getCerrentMap().getRightMap().travel();
 		}else {
@@ -109,7 +119,7 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	protected void topCheck() throws HitWallException {
-		if (y + dy < 0 && Main.world.getCerrentMap().getUpperMap() != null
+		if (((y + dy) < 0) && (Main.world.getCerrentMap().getUpperMap() != null)
 				&& !Main.world.isBossFight()) {
 			Main.world.getCerrentMap().getUpperMap().travel();
 			dy = -28;
@@ -120,8 +130,8 @@ public class Hero extends MoveableCharacter {
 	
 	
 	protected void landingCheck() throws HitWallException {
-		if (y + dy > Main.world.getCerrentMap().getHeight() - size[1] 
-				&& Main.world.getCerrentMap().getLowerMap() != null
+		if (((y + dy) > (Main.world.getCerrentMap().getHeight() - size[1]))
+				&& (Main.world.getCerrentMap().getLowerMap() != null)
 				&& !Main.world.isBossFight()) {
 			Main.world.getCerrentMap().getLowerMap().travel();
 		}else {
@@ -188,17 +198,17 @@ public class Hero extends MoveableCharacter {
 		return false;
 	}
 	
-	public void frontAttack() {
+	public void frontSlash() {
 		if (!attackCooldown.isAlive()) {
 			stageHolder.interrupt();
 			attackCooldown = new Delay(attackSpeed);
 			Main.world.addObject(
-					new Effect(attackEffect, 30, x + dx + (turnLeft?-120:0), y + dy - 30, 
-							200, 100, turnLeft, false));
+					new Effect(attackEffect, attackEffectTime, x + dx + (turnLeft?-120:0), y + dy - 30, 
+							attackRange, attackHeight, turnLeft, false));
 			for (Destroyable destroyable: new ArrayList<Destroyable>(Main.world.getDestroyableList())) {
-				if (destroyable.hitCheck(x + dx + (turnLeft ? -120 : 0), y + dy - 30, 200, 100)) {
-					destroyable.attacked(attackDamage, turnLeft?-15:15, 0);
-					dx += turnLeft?10:-10;
+				if (destroyable.hitCheck(x + dx + (turnLeft ? -120 : 0), y + dy - 30, attackRange, attackHeight)) {
+					destroyable.attacked(attackDamage, (turnLeft ? -frontSlashKnockPower : frontSlashKnockPower), 0);
+					dx += (turnLeft ? frontSlashKnockBack : -frontSlashKnockBack);
 				}
 			}
 		}
@@ -208,14 +218,14 @@ public class Hero extends MoveableCharacter {
 		if (!attackCooldown.isAlive()) {
 			stageHolder.interrupt();
 			attackCooldown = new Delay(attackSpeed);
-			Effect effect = new Effect(attackEffect, 20, x + dx + (turnLeft ? -50 : -70), y + dy - 75, 
-					200, 100, turnLeft, false);
+			Effect effect = new Effect(attackEffect, attackEffectTime, x + dx + (turnLeft ? -50 : -70), y + dy - 75, 
+					attackRange, attackHeight, turnLeft, false);
 			effect.setRotate(turnLeft ? 90 : 270);
 			Main.world.addObject(effect);
 			for (Destroyable destroyable: new ArrayList<Destroyable>(Main.world.getDestroyableList())) {
-				if (destroyable.hitCheck(x + dx + (turnLeft ? 0 : -20), y + dy - 125, 100, 200)) {
-					destroyable.attacked(attackDamage, 0, 12);
-					dy += 8;
+				if (destroyable.hitCheck(x + dx + (turnLeft ? 0 : -20), y + dy - 125, attackHeight, attackRange)) {
+					destroyable.attacked(attackDamage, 0, upperSlashKnockPower);
+					dy += upperSlashKnockBack;
 				}
 			}
 		}
@@ -226,18 +236,18 @@ public class Hero extends MoveableCharacter {
 			if (inAir) {
 				stageHolder.interrupt();
 				attackCooldown = new Delay(attackSpeed);
-				Effect effect = new Effect(attackEffect, 20, x + dx + (turnLeft ? -70 : -50), y + dy + 60, 
-						200, 100, turnLeft, false);
+				Effect effect = new Effect(attackEffect, attackEffectTime, x + dx + (turnLeft ? -70 : -50), y + dy + 60, 
+						attackRange, attackHeight, turnLeft, false);
 				effect.setRotate(turnLeft ? 270 : 90);
 				Main.world.addObject(effect);
 				for (Destroyable destroyable: new ArrayList<Destroyable>(Main.world.getDestroyableList())) {
-					if (destroyable.hitCheck(x + dx + (turnLeft ? -20 : 0), y + dy + 10, 100, 200)) {
-						destroyable.attacked(attackDamage, 0, -5);
-						dy = -15;
+					if (destroyable.hitCheck(x + dx + (turnLeft ? -20 : 0), y + dy + 10, attackHeight, attackRange)) {
+						destroyable.attacked(attackDamage, 0, -downwardSlashKnockPower);
+						dy = -downwardSlashKnockBack;
 					}
 				}
 			}else {
-				frontAttack();
+				frontSlash();
 			}
 		}
 	}

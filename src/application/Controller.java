@@ -126,7 +126,7 @@ public class Controller {
 			} else if (up && !down){
 				Main.hero.upperSlash();
 			} else {
-				Main.hero.frontAttack();
+				Main.hero.frontSlash();
 			}
 		}
 		Main.hero.update();
@@ -137,9 +137,5 @@ public class Controller {
 			updateable.update();
 		}
 	}
-
-	public static void setPause(boolean pause) {
-		Controller.pause = pause;
-	}
-
+	
 }
