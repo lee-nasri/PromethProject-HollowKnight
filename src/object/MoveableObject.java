@@ -18,10 +18,10 @@ public abstract class MoveableObject extends GameObject {
 		super(imagePath, x, y, width, height);
 	}
 	
-	public void move() {
+	public void update() {
 		moveX();
 		moveY();
-		changeView();
+		super.update();
 	}
 	
 	protected void moveX() {

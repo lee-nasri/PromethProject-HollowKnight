@@ -21,11 +21,10 @@ public class Projectile extends MoveableObject {
 	
 	public void update() {
 		dy += gravity;
-		move();
 		if (Main.hero.hitCheck(x, y, size[0], size[1])) {
 			Main.hero.attacked(damage, Main.hero.getX()+Main.hero.getSize()[0]/2 < x+size[0]/2 ? -25 : 25, 15);
 		}
-		changeView();
+		super.update();
 	}
 	
 	protected void moveX() {

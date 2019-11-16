@@ -129,7 +129,7 @@ public class Controller {
 				Main.hero.frontAttack();
 			}
 		}
-		Main.hero.move();
+		Main.hero.update();
 	}
 	
 	private static void updateObject(){
