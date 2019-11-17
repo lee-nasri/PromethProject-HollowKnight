@@ -103,31 +103,36 @@ public class Controller {
 	}
 	
 	private static void updateHero(){
-		if (left && !right && !pause) {
-			Main.hero.walk(-1);
-			Main.hero.turn(true);
-		} else if (right && !left && !pause) {
-			Main.hero.walk(1);
-			Main.hero.turn(false);
+		if (!pause) {
+			if (left && !right) {
+				Main.hero.walk(-1);
+				Main.hero.turn(true);
+			} else if (right && !left) {
+				Main.hero.walk(1);
+				Main.hero.turn(false);
+			} else {
+				Main.hero.walk(0);
+			}
+			if (jump) {
+				Main.hero.jumping();
+			} else {
+				Main.hero.stopJump();
+			}
+			if (dash) {
+				Main.hero.dash();
+			}
+			if (attack) {
+				if (down && !up) {
+					Main.hero.downwardSlash();
+				} else if (up && !down){
+					Main.hero.upperSlash();
+				} else {
+					Main.hero.frontSlash();
+				}
+			}
 		} else {
 			Main.hero.walk(0);
-		}
-		if (jump && !pause) {
-			Main.hero.jumping();
-		} else {
 			Main.hero.stopJump();
-		}
-		if (dash && !pause) {
-			Main.hero.dash();
-		}
-		if (attack && !pause) {
-			if (down && !up) {
-				Main.hero.downwardSlash();
-			} else if (up && !down){
-				Main.hero.upperSlash();
-			} else {
-				Main.hero.frontSlash();
-			}
 		}
 		Main.hero.update();
 	}
