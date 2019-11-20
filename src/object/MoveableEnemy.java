@@ -52,7 +52,7 @@ public abstract class MoveableEnemy extends MoveableCharacter implements Enemy {
 		reset();
 		alive = true;
 		hp = maxHp;
-		Main.game.getChildren().add(this);
+		Main.world.getChildren().add(this);
 		x = spawnLocation[0];
 		y = spawnLocation[1];
 		turn(false);

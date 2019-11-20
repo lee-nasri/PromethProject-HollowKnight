@@ -38,7 +38,7 @@ public abstract class GameObject extends Group implements Updateable {
 	public void remove() {
 		alive = false;
 		Main.world.getObjectList().remove(this);
-		Main.game.getChildren().remove(this);
+		Main.world.getChildren().remove(this);
 	}
 	
 	protected void changeStage() {

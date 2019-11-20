@@ -105,6 +105,7 @@ public class MapCreater {
 		map.addPlatform(new  GamePlatform(PlatformType.FloorPlatform1, 0, 1220, 2100, 218));
 		map.addPlatform(new  GamePlatform(PlatformType.SidePlatform1, 0, 0, 200, 1330));
 		map.addPlatform(new  GamePlatform(PlatformType.SidePlatform1, 1950, 0, 200, 1020, true, false));
+		map.addEnemy(new Glimback(500, 1040));
 		map.setMusic(Music.Friend_shitai);
 		map.setDarkArea(true);
 		return map;
