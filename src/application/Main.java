@@ -13,7 +13,7 @@ public class Main extends Application {
 	private static double sceneWidth, sceneHeight;
 	public static Stage stage;
 	public static Scene gameScene;
-	public static Group gameRoot;
+	public static Group root;
 	public static HeroHpBar hpBar = new HeroHpBar();
 	public static Inventory inventory = new Inventory();
 	public static Hero hero;

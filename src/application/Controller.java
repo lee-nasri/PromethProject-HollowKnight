@@ -89,12 +89,12 @@ public class Controller {
 				case I:
 					if (pause) {
 						pause = false;
-						Main.gameRoot.getChildren().remove(Main.inventory);
+						Main.root.getChildren().remove(Main.inventory);
 						Main.inventory.getChildren().clear();
 						Main.world.reloadBackground();
 					} else {
 						pause = true;
-						Main.gameRoot.getChildren().add(Main.inventory);
+						Main.root.getChildren().add(Main.inventory);
 						Main.inventory.update();
 					}
 					break;

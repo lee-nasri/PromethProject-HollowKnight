@@ -30,9 +30,9 @@ public class MainMenu extends VBox {
 	
 	public MainMenu() {
 		setAlignment(Pos.CENTER);
-		setSpacing(20);
+		setSpacing(30);
 		this.setBackground(new Background(
-				new BackgroundImage(new Image(ClassLoader.getSystemResource("Background/Great_Grey_Wolf.jpg").toString()), 
+				new BackgroundImage(new Image(ClassLoader.getSystemResource("Background/Great_Grey_Wolf.png").toString()), 
 						BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 		Button newGameButton = new Button("New Game");
 		newGameButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -63,8 +63,8 @@ public class MainMenu extends VBox {
 				Main.hero = new Hero();
 				Main.world = MapCreater.createWorld();
 				Main.world.setCerrentMap(MapName.Starter, 500, 1175);
-				Main.gameRoot = new Group(Main.world, Main.hpBar);
-				Main.gameScene.setRoot(Main.gameRoot);
+				Main.root = new Group(Main.world, Main.hpBar);
+				Main.gameScene.setRoot(Main.root);
 				Controller.setGameKey();
 				Controller.startGameLoop();
 			}
