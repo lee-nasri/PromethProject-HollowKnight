@@ -46,14 +46,14 @@ public abstract class GameObject extends Group implements Updateable {
 	};
 	
 	protected void holdStage(long time) {
-		stageHolder = new Delay(time, this) {
+		stageHolder = new Delay(time) {
 			@Override
 			public void end() {
 				Platform.runLater(new Runnable(){
 					@Override
 					public void run() {
-						if (getObject().alive) {
-							getObject().changeStage();
+						if (alive) {
+							changeStage();
 						}
 					}
 				});

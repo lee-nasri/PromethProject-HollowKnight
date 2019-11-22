@@ -12,6 +12,11 @@ public class Controller {
 	private static AnimationTimer gameLoop;
 	private static boolean left, right, up, down, jump, attack, dash, pause;
 	
+	private static final double barHeigth = 30;
+	private static final int LEFT_DIRECTION = -1;
+	private static final int RIGHT_DIRECTION = 1;
+	private static final int NO_MOVE = 0;
+	
 	public static void startGameLoop() {
 		gameLoop = new AnimationTimer() {
 			@Override
@@ -20,7 +25,7 @@ public class Controller {
 				if (Main.stage.isFullScreen()) {
 					Main.setSceneHeight(Main.stage.getHeight());
 				} else {
-					Main.setSceneHeight(Main.stage.getHeight() - 30);
+					Main.setSceneHeight(Main.stage.getHeight() - barHeigth);
 				}
 				updateHero();
 				updateObject();
@@ -107,13 +112,13 @@ public class Controller {
 	private static void updateHero(){
 		if (!pause) {
 			if (left && !right) {
-				Main.hero.walk(-1);
+				Main.hero.walk(LEFT_DIRECTION);
 				Main.hero.turn(true);
 			} else if (right && !left) {
-				Main.hero.walk(1);
+				Main.hero.walk(RIGHT_DIRECTION);
 				Main.hero.turn(false);
 			} else {
-				Main.hero.walk(0);
+				Main.hero.walk(NO_MOVE);
 			}
 			if (jump) {
 				Main.hero.jumping();
@@ -133,7 +138,7 @@ public class Controller {
 				}
 			}
 		} else {
-			Main.hero.walk(0);
+			Main.hero.walk(NO_MOVE);
 			Main.hero.stopJump();
 		}
 		Main.hero.update();
