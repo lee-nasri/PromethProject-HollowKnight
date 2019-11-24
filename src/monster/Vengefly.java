@@ -8,7 +8,7 @@ import object.MoveableEnemy;
 
 public class Vengefly extends MoveableEnemy {
 	
-	private static final double vision = 200000;
+	private static final double vision = 500;
 	
 	public Vengefly(double x, double y) {
 		super(x, y, 130, 80);
@@ -16,24 +16,26 @@ public class Vengefly extends MoveableEnemy {
 				ClassLoader.getSystemResource("Character/Vengefly.png").toString(), 130, 80, false, true)));
 		artList.add("normal");
 		friction = 0.05;
-		speed = 5;
+		speed = 7;
 		maxHp = 40;
 		attackDamage = 20;
 	}
 	
 	public void setMovement() {
+		double distanceX = Main.hero.getCenterX() - getCenterX();
+		double distanceY = Main.hero.getCenterY() - getCenterY();
+		double distance = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
 		switch(cerrentStage) {
 		case "idle":
 			dx -= dx*friction;
 			dy -= dy*friction;
-			if (Math.pow(Main.hero.getCenterX() - getCenterX(), 2) 
-					+ Math.pow(Main.hero.getCenterY() - getCenterY(), 2) < vision) {
+			if (distance < vision) {
 				changeArt("normal");
 			}
 			break;
 		case "normal":
-			dx += ((turnLeft ? -speed : speed) - dx)*friction;
-			dy += (((Main.hero.getCenterY() < getCenterY()) ? -speed : speed) - dy)*friction;
+			dx += (speed*distanceX/distance - dx)*friction;
+			dy += (speed*distanceY/distance - dy)*friction;
 			turn(Main.hero.getCenterX() < getCenterX());
 			break;
 		}

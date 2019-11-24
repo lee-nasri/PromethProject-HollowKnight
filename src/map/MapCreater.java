@@ -36,6 +36,7 @@ public class MapCreater {
 		map.addEnemy(new Vengefly(1900, 600));
 		map.addEnemy(new Vengefly(1700, 900));
 		map.setMusic(Music.Friend_shitai);
+		map.setRightMap(new Gate(MapName.Crystal_Cave, 20, 1115));
 		return map;
 	}
 	
@@ -118,10 +119,12 @@ public class MapCreater {
 		map.setLeftMap(new Gate(MapName.Cave, 1700, 2115));
 		map.addBackground(
 				ClassLoader.getSystemResource("Background/Crystal_Cave.jpg").toString(), 1600, 900);
+		map.addPlatform(new GamePlatform(PlatformType.Platform1, 700, 600));
+		map.addPlatform(new GamePlatform(PlatformType.Platform1, 1500, 800));
 		map.addPlatform(new GamePlatform(PlatformType.FloorPlatform1, 0, 1200, 2400, 218));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 0, 0, 200, 1000));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 2200, 0, 200, 1300, true, false));
-		map.addEnemy(new Illya(1000, 800));
+		map.addEnemy(new Illya(1200, 800));
 		map.setMusic(Music.Friend_shitai);
 		return map;
 	}

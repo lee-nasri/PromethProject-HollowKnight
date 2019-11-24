@@ -18,4 +18,18 @@ public enum Music {
 			return "";
 		}
 	}
+	
+	public double getVolume() {
+		switch(this) {
+		case Friend_shitai:
+			return 0.3;
+		case Guren_no_Yumiya:
+			return 0.3;
+		case Get_Goal:
+			return 0.2;
+		default:
+			return 0;
+		}
+	}
+	
 }
