@@ -59,7 +59,7 @@ public class False_Knight extends Boss {
 			}
 			break;
 		case "normal":
-			turn((Main.hero.getX() + Main.hero.getSize()[0]/2) < (x + size[0]/2));
+			turn(Main.hero.getCenterX() < getCenterX());
 			break;
 		case "jump":
 			dx += speed;
@@ -132,6 +132,19 @@ public class False_Knight extends Boss {
 		getChildren().get(2).setLayoutX(turnLeft ? -400 : 0);
 		getChildren().get(3).setLayoutX(turnLeft ? -70 : -280);
 		getChildren().get(4).setLayoutX(turnLeft ? -100 : -160);
+	}
+	
+	public void attacked(double damage, double knockbackX, double knockbackY) {
+		if (knockbackX != 0) {
+			dx += knockbackX;
+		}
+		if (knockbackY != 0) {
+			dy += -knockbackY;
+		}
+		hp = damage > hp ? 0 : hp - damage;
+		if(hp == 0) {
+			die();
+		}
 	}
 	
 	protected void reset() {

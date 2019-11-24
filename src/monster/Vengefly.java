@@ -24,18 +24,17 @@ public class Vengefly extends MoveableEnemy {
 	public void setMovement() {
 		switch(cerrentStage) {
 		case "idle":
-			dx -= (dx)*friction;
-			dy -= (dy)*friction;
-			if (Math.pow((Main.hero.getX() + Main.hero.getSize()[0]/2) - (x + size[0]/2), 2) + 
-					Math.pow((Main.hero.getY() + Main.hero.getSize()[1]/2) - (y + size[1]/2), 2)
-					< vision) {
+			dx -= dx*friction;
+			dy -= dy*friction;
+			if (Math.pow(Main.hero.getCenterX() - getCenterX(), 2) 
+					+ Math.pow(Main.hero.getCenterY() - getCenterY(), 2) < vision) {
 				changeArt("normal");
 			}
 			break;
 		case "normal":
 			dx += ((turnLeft ? -speed : speed) - dx)*friction;
-			dy += (((Main.hero.getY()+Main.hero.getSize()[1]/2 < y+size[1]/2) ? -speed : speed) - dy)*friction;
-			turn((Main.hero.getX() + Main.hero.getSize()[0]/2) < (x + size[0]/2));
+			dy += (((Main.hero.getCenterY() < getCenterY()) ? -speed : speed) - dy)*friction;
+			turn(Main.hero.getCenterX() < getCenterX());
 			break;
 		}
 	}

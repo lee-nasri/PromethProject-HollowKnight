@@ -2,6 +2,7 @@ package menu;
 
 import application.Controller;
 import application.Main;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -64,9 +65,14 @@ public class MainMenu extends VBox {
 				Main.world = MapCreater.createWorld();
 				Main.world.setCerrentMap(MapName.Starter, 500, 1175);
 				Main.root = new Group(Main.world, Main.hpBar);
-				Main.gameScene.setRoot(Main.root);
 				Controller.setGameKey();
 				Controller.startGameLoop();
+				Platform.runLater(new Runnable(){
+					@Override
+					public void run() {
+						Main.gameScene.setRoot(Main.root);
+					}
+				});
 			}
 		};
 		createGame.start();

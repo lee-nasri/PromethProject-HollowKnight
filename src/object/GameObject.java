@@ -60,6 +60,14 @@ public abstract class GameObject extends Group implements Updateable {
 			}
 		};
 	}
+	
+	public double getCenterX() {
+		return x + size[0]/2;
+	}
+	
+	public double getCenterY() {
+		return y + size[1]/2;
+	}
 
 	public double getX() {
 		return x;
