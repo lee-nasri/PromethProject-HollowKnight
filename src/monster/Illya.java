@@ -21,7 +21,7 @@ public class Illya extends Boss {
 		artList.add("attack");
 		friction = 0.05;
 		speed = 5;
-		maxHp = 600;
+		maxHp = 500;
 		attackDamage = 25;
 		bossTheme = Music.Get_Goal;
 	}

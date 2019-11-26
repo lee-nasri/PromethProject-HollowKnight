@@ -36,7 +36,6 @@ public class MapCreater {
 		map.addEnemy(new Vengefly(1900, 600));
 		map.addEnemy(new Vengefly(1700, 900));
 		map.setMusic(Music.Friend_shitai);
-		map.setRightMap(new Gate(MapName.Crystal_Cave, 20, 1115));
 		return map;
 	}
 	

@@ -14,18 +14,9 @@ public class Projectile extends MoveableObject {
 		this.dx = dx;
 		this.dy = dy;
 		this.damage = damage;
-		gravity = 0;
-	}
-	
-	public Projectile(String imagePath, double x, double y, double width, double height, 
-			double dx, double dy, double damage, double gravity) {
-		this(imagePath, x, y, width, height, dx, dy, damage);
-		this.gravity = gravity;
 	}
 	
 	public void update() {
-		dy += gravity;
-		
 		if (Main.hero.hitCheck(x, y, size[0], size[1])) {
 			Main.hero.attacked(damage, ((Main.hero.getCenterX() < getCenterX()) ? -heroKnockBackX : heroKnockBackX), heroKnockBackY);
 		}
