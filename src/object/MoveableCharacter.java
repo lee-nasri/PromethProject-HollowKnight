@@ -67,6 +67,6 @@ public abstract class MoveableCharacter extends MoveableObject implements Destro
 	}
 
 	public void setHp(double hp) {
-		this.hp = hp;
+		this.hp = (hp < maxHp) ? hp : maxHp;
 	}
 }

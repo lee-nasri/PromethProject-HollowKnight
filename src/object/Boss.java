@@ -31,6 +31,7 @@ public abstract class Boss extends MoveableEnemy {
 	public void die() {
 		Main.world.getCerrentMap().getEnemyList().remove(this);
 		Sound.changeBackgroundMusic(Main.world.getCerrentMap().getMusic());
+		Main.hero.setHp(Main.hero.getMaxHp());
 		super.die();
 	}
 	

@@ -118,8 +118,8 @@ public class MapCreater {
 		map.setLeftMap(new Gate(MapName.Cave, 1700, 2115));
 		map.addBackground(
 				ClassLoader.getSystemResource("Background/Crystal_Cave.jpg").toString(), 1600, 900);
-		map.addPlatform(new GamePlatform(PlatformType.Platform1, 700, 600));
-		map.addPlatform(new GamePlatform(PlatformType.Platform1, 1500, 800));
+		map.addPlatform(new GamePlatform(PlatformType.Platform1, 700, 800));
+		map.addPlatform(new GamePlatform(PlatformType.Platform1, 1500, 600));
 		map.addPlatform(new GamePlatform(PlatformType.FloorPlatform1, 0, 1200, 2400, 218));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 0, 0, 200, 1000));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 2200, 0, 200, 1300, true, false));

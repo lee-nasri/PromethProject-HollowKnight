@@ -11,6 +11,7 @@ import javafx.scene.shape.Circle;
 import application.Delay;
 import application.Main;
 import map.MapName;
+import menu.HeroHpBar;
 
 public class Hero extends MoveableCharacter {
 	
@@ -19,12 +20,14 @@ public class Hero extends MoveableCharacter {
 	private double dashPower = 25;
 	private long attackSpeed = 400;
 	private long dashCooldownTime = 450;
+	private double[] spawnLocation = {500, 1175};
 	private boolean doubleJumped, doubleJumpable, dashable;
 	private Delay jump = new Delay(0);
 	private Delay attackCooldown = new Delay(0);
 	private Delay dashCooldown = new Delay(0);
 	private Delay unstable = new Delay(0);
 	private Delay immune = new Delay(0);
+	private HeroHpBar hpBar = new HeroHpBar();
 	
 	private static final String attackEffect = ClassLoader.getSystemResource("Effect/attacking.png").toString();
 	private static final Circle light = new Circle(0, 0, 1500, new RadialGradient(0, 0, 0, 0, 600, false, 
@@ -59,13 +62,13 @@ public class Hero extends MoveableCharacter {
 		maxHp = 100;
 		hp = 100;
 		attackDamage = 20;
-		Main.hpBar.setMaxHp(maxHp);
+		hpBar.setMaxHp(maxHp);
 		turn(false);
 	}
 	
 	public void update() {
 		dashCheck();
-		Main.hpBar.update(hp);
+		hpBar.update(hp);
 		super.update();
 	}
 	
@@ -272,7 +275,7 @@ public class Hero extends MoveableCharacter {
 	
 	public void die() {
 		Main.world.setBossFight(false);
-		Main.world.setCerrentMap(MapName.Starter, 500, 1175);
+		Main.world.setCerrentMap(MapName.Starter, spawnLocation[0], spawnLocation[1]);
 		hp = maxHp;
 	}
 	
@@ -316,6 +319,11 @@ public class Hero extends MoveableCharacter {
 			updateable.changeView();
 		}
 	}
+	
+	public void setMaxHp(double maxHp) {
+		super.setMaxHp(maxHp);
+		hpBar.setMaxHp(maxHp);
+	}
 
 	public double getJumpPower() {
 		return jumpPower;
@@ -357,8 +365,16 @@ public class Hero extends MoveableCharacter {
 		this.dashCooldownTime = dashCooldownTime < 0 ? 0 : dashCooldownTime;
 	}
 
+	public HeroHpBar getHpBar() {
+		return hpBar;
+	}
+
 	public Circle getLight() {
 		return light;
+	}
+
+	public double[] getSpawnlocation() {
+		return spawnLocation;
 	}
 
 }

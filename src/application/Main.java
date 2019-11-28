@@ -5,7 +5,6 @@ import javafx.scene.*;
 import javafx.stage.Stage;
 import item.ControlInventory;
 import map.World;
-import menu.HeroHpBar;
 import menu.MainMenu;
 import object.Hero;
 
@@ -14,7 +13,6 @@ public class Main extends Application {
 	public static Stage stage;
 	public static Scene gameScene;
 	public static Group root;
-	public static HeroHpBar hpBar = new HeroHpBar();
 	public static ControlInventory controlInventory = new ControlInventory();
 	public static Hero hero;
 	public static World world;
