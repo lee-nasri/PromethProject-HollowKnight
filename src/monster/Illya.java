@@ -63,13 +63,13 @@ public class Illya extends Boss {
 	protected void changeStage() {
 		switch (cerrentStage) {
 		case "idle":
-			changeArt("normal");
+			changeSprite("normal");
 			turn((Main.hero.getX() + Main.hero.getSize()[0]/2) < (x + size[0]/2));
 			setVisible(true);
 			holdStage(3000);
 			break;
 		case "normal":
-			changeArt("attack");
+			changeSprite("attack");
 			holdStage(1000);
 			break;
 		case "attack":
@@ -78,7 +78,7 @@ public class Illya extends Boss {
 					(turnLeft ? -slashSpeed : slashSpeed), 0, attackDamage);
 			slash.setScaleX(turnLeft ? -1 : 1);
 			Main.world.addObject(slash);
-			changeArt("normal");
+			changeSprite("normal");
 			holdStage(3000);
 			break;
 		}

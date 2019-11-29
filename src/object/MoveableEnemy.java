@@ -73,9 +73,9 @@ public abstract class MoveableEnemy extends MoveableCharacter implements Enemy {
 		super.remove();
 	}
 	
-	protected void changeArt(String art) {
+	protected void changeSprite(String art) {
 		cerrentStage = art;
-		super.changeArt(art);
+		super.changeSprite(art);
 	}
 	
 }

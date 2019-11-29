@@ -185,7 +185,7 @@ public class Hero extends MoveableCharacter {
 			dx = turnLeft ? -dashPower : dashPower;
 			dy = 0;
 			holdStage(dashTime);
-			changeArt("dash");
+			changeSprite("dash");
 			dashCooldown = new Delay(dashCooldownTime);
 			dashable = false;
 			unstable.interrupt();
@@ -293,7 +293,7 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	protected void changeStage() {
-		changeArt("normal");
+		changeSprite("normal");
 	}
 	
 	public void turn(boolean turnLeft) {
@@ -303,20 +303,20 @@ public class Hero extends MoveableCharacter {
 		}
 	}
 	
-	public void changeView() {
-		Main.world.changeBackgroundView();
+	public void draw() {
+		Main.world.drawBackground();
 		light.setLayoutX(x + 40 - Main.world.getViewX());
 		light.setLayoutY(y + 42 - Main.world.getViewY());
-		super.changeView();
+		super.draw();
 	}
 	
 	public void setLocation(double x, double y) {
 		reset();
 		this.x = x;
 		this.y = y;
-		changeView();
+		draw();
 		for (Updateable updateable: Main.world.getObjectList()) {
-			updateable.changeView();
+			updateable.draw();
 		}
 	}
 	

@@ -7,18 +7,7 @@ import object.PlatformType;
 
 public class MapCreater {
 	
-	public static World createWorld() {
-		World world = new World();
-		world.addMap(MapName.Starter, createStarterMap());
-		world.addMap(MapName.False_Knight_room, createFalseKnightRoom());
-		world.addMap(MapName.Town, createTown());
-		world.addMap(MapName.Cave, createCave());
-		world.addMap(MapName.Dark_Cave, createDarkCave());
-		world.addMap(MapName.Crystal_Cave, createCrystalCave());
-		return world;
-	}
-	
-	private static Map createStarterMap() {
+	public static Map createStarterMap() {
 		Map map = new Map(2560,1440);
 		map.setRightMap(new Gate(MapName.False_Knight_room, 20, 1015));
 		map.addBackground(
@@ -39,7 +28,7 @@ public class MapCreater {
 		return map;
 	}
 	
-	private static Map createFalseKnightRoom() {
+	public static Map createFalseKnightRoom() {
 		Map map = new Map(2240,1260);
 		map.setLeftMap(new Gate(MapName.Starter, 2460, 1175));
 		map.setRightMap(new Gate(MapName.Town, 20, 1175));
@@ -55,7 +44,7 @@ public class MapCreater {
 		return map;
 	}
 	
-	private static Map createTown() {
+	public static Map createTown() {
 		Map map = new Map(2560,1440);
 		map.setLeftMap(new Gate(MapName.False_Knight_room, 2140, 1015));
 		map.setLowerMap(new Gate(MapName.Cave, 250, 0));
@@ -70,7 +59,7 @@ public class MapCreater {
 		return map;
 	}
 	
-	private static Map createCave() {
+	public static Map createCave() {
 		Map map = new Map(1800,2400);
 		map.setUpperMap(new Gate(MapName.Town, 2220, 1440));
 		map.setLeftMap(new Gate(MapName.Dark_Cave, 2000, 1135));
@@ -99,7 +88,7 @@ public class MapCreater {
 		return map;
 	}
 	
-	private static Map createDarkCave() {
+	public static Map createDarkCave() {
 		Map map = new Map(2100,1400);
 		map.setRightMap(new Gate(MapName.Cave, 20, 1515));
 		map.addBackground(
@@ -113,7 +102,7 @@ public class MapCreater {
 		return map;
 	}
 	
-	private static Map createCrystalCave() {
+	public static Map createCrystalCave() {
 		Map map = new Map(2400,1350);
 		map.setLeftMap(new Gate(MapName.Cave, 1700, 2115));
 		map.addBackground(

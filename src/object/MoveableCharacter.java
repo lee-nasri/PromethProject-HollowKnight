@@ -34,7 +34,7 @@ public abstract class MoveableCharacter extends MoveableObject implements Destro
 		}
 	}
 	
-	protected void changeArt(String art) {
+	protected void changeSprite(String art) {
 		getChildren().forEach((image)->{
 			image.setVisible(false);
 		});

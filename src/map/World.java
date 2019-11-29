@@ -23,6 +23,15 @@ public class World extends Group {
 	private double width, height, viewX, viewY;
 	private boolean bossFight;
 	
+	public World() {
+		addMap(MapName.Starter, MapCreater.createStarterMap());
+		addMap(MapName.False_Knight_room, MapCreater.createFalseKnightRoom());
+		addMap(MapName.Town, MapCreater.createTown());
+		addMap(MapName.Cave, MapCreater.createCave());
+		addMap(MapName.Dark_Cave, MapCreater.createDarkCave());
+		addMap(MapName.Crystal_Cave, MapCreater.createCrystalCave());
+	}
+	
 	public void setCerrentMap(MapName name, double x, double y) {
 		getChildren().clear();
 		for (Updateable object: new ArrayList<Updateable>(Main.world.getObjectList())) {
@@ -51,7 +60,7 @@ public class World extends Group {
 		Sound.changeBackgroundMusic(cerrentMap.getMusic());
 	}
 	
-	public void changeBackgroundView() {
+	public void drawBackground() {
 		double x = Main.hero.getX() + Main.hero.getSize()[0]/2;
 		double y = Main.hero.getY() + Main.hero.getSize()[1]/2;
 		viewX = (x < Main.getSceneWidth()/2) 
@@ -77,7 +86,7 @@ public class World extends Group {
 			destroyableList.add(destroyable);
 		}
 		getChildren().add(object);
-		object.changeView();
+		object.draw();
 		object.setAlive(true);
 	}
 	
