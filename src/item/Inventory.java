@@ -51,6 +51,7 @@ public class Inventory extends GridPane {
 	public void addItem(Item newItem) {
 		if (!myInventory.contains(newItem)) {
 			myInventory.add(newItem);
+			addActivatedBlock(newItem);
 		}
 		this.myInventoryPaneAdd(newItem);
 		newItem.setOnAction(e -> activateItem(newItem));
@@ -77,7 +78,6 @@ public class Inventory extends GridPane {
 			myActivateItem.put(newItem.getTypeOfItem(), newItem);
 			newItem.applyBonuses();
 		}
-		myInventoryPaneRemove(newItem);
 		// (final) update MyActivatePane
 		activatePaneBlock(newItem); // Update myActivatePane
 	}
@@ -120,28 +120,28 @@ public class Inventory extends GridPane {
 	}
 
 
-	public void MyInventoryUpdate(Item newItem) {
-		// MyInventory update only when we add new item in myInventory List.
-		
-		int count = 0;
-		for	(int row = 0 ; row < 3 ; row++) {
-			for	(int column=0; column < 6 ; column++) {
-				// add item in myInventory to Inventory empty block.
-				if (count < myInventory.size()) {
-					this.add(myInventory.get(count), column, row);
-					count++;
-				}
-				// add empty image to Inventory another empty block.
-				else {
-					ImageView emptyBlock = new ImageView(new Image(ClassLoader.getSystemResource
-							("ItemImage/InventoryBlock.png").toString()));
-					emptyBlock.setFitHeight(63);
-					emptyBlock.setFitWidth(63);
-					this.add(emptyBlock, column, row);
-				}
-			}
-		}
-	}
+//	public void MyInventoryUpdate(Item newItem) {
+//		// MyInventory update only when we add new item in myInventory List.
+//		
+//		int count = 0;
+//		for	(int row = 0 ; row < 3 ; row++) {
+//			for	(int column=0; column < 6 ; column++) {
+//				// add item in myInventory to Inventory empty block.
+//				if (count < myInventory.size()) {
+//					this.add(myInventory.get(count), column, row);
+//					count++;
+//				}
+//				// add empty image to Inventory another empty block.
+//				else {
+//					ImageView emptyBlock = new ImageView(new Image(ClassLoader.getSystemResource
+//							("ItemImage/InventoryBlock.png").toString()));
+//					emptyBlock.setFitHeight(63);
+//					emptyBlock.setFitWidth(63);
+//					this.add(emptyBlock, column, row);
+//				}
+//			}
+//		}
+//	}
 	
 	public void myInventoryPaneAdd(Item newItem) {
 		int column = myInventory.indexOf(newItem) % maxColumn;
@@ -149,7 +149,7 @@ public class Inventory extends GridPane {
 		this.add(newItem, column, row);
 	}
 	
-	public void myInventoryPaneRemove(Item removedItem) {
+	public void addActivatedBlock(Item removedItem) {
 		ImageView activateBlock = new ImageView(new Image(ClassLoader.getSystemResource
 				("ItemImage/ActivateBlock.png").toString()));
 		int column = myInventory.indexOf(removedItem) % maxColumn;
