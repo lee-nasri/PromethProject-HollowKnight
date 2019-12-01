@@ -20,7 +20,9 @@ public class Hero extends MoveableCharacter {
 	private double dashPower = 25;
 	private long attackSpeed = 400;
 	private long dashCooldownTime = 450;
-	private double[] spawnLocation = {500, 1175};
+	private double spawnLocationX = 500;
+	private double spawnLocationY = 1175;
+	private MapName spawnMap = MapName.Starter;
 	private boolean doubleJumped, doubleJumpable, dashable;
 	private Delay jump = new Delay(0);
 	private Delay attackCooldown = new Delay(0);
@@ -29,7 +31,7 @@ public class Hero extends MoveableCharacter {
 	private Delay immune = new Delay(0);
 	private HeroHpBar hpBar = new HeroHpBar();
 	
-	private static final String attackEffect = ClassLoader.getSystemResource("Effect/attacking.png").toString();
+	private static final String attackEffect = ClassLoader.getSystemResource("Effect/slash.png").toString();
 	private static final Circle light = new Circle(0, 0, 1500, new RadialGradient(0, 0, 0, 0, 600, false, 
 			CycleMethod.NO_CYCLE, new Stop(0, Color.rgb(250, 250, 250, 0.3)), 
 			new Stop(0.5, Color.TRANSPARENT), new Stop(1, Color.rgb(0, 0, 0, 0.9))));
@@ -210,7 +212,7 @@ public class Hero extends MoveableCharacter {
 					new Effect(attackEffect, attackEffectTime, x + dx + (turnLeft?-120:0), y + dy - 30, 
 							attackRange, attackHeight, turnLeft, false));
 			for (Destroyable destroyable: new ArrayList<Destroyable>(Main.world.getDestroyableList())) {
-				if (destroyable.hitCheck(x + dx + (turnLeft ? -120 : 0), y + dy - 30, attackRange, attackHeight)) {
+				if (destroyable.intersectCheck(x + dx + (turnLeft ? -120 : 0), y + dy - 30, attackRange, attackHeight)) {
 					destroyable.attacked(attackDamage, (turnLeft ? -frontSlashKnockPower : frontSlashKnockPower), 0);
 					dx += (turnLeft ? frontSlashKnockBack : -frontSlashKnockBack);
 				}
@@ -227,7 +229,7 @@ public class Hero extends MoveableCharacter {
 			effect.setRotate(turnLeft ? 90 : 270);
 			Main.world.addObject(effect);
 			for (Destroyable destroyable: new ArrayList<Destroyable>(Main.world.getDestroyableList())) {
-				if (destroyable.hitCheck(x + dx + (turnLeft ? 0 : -20), y + dy - 125, attackHeight, attackRange)) {
+				if (destroyable.intersectCheck(x + dx + (turnLeft ? 0 : -20), y + dy - 125, attackHeight, attackRange)) {
 					destroyable.attacked(attackDamage, 0, upperSlashKnockPower);
 					dy += upperSlashKnockBack;
 				}
@@ -245,7 +247,7 @@ public class Hero extends MoveableCharacter {
 				effect.setRotate(turnLeft ? 270 : 90);
 				Main.world.addObject(effect);
 				for (Destroyable destroyable: new ArrayList<Destroyable>(Main.world.getDestroyableList())) {
-					if (destroyable.hitCheck(x + dx + (turnLeft ? -20 : 0), y + dy + 10, attackHeight, attackRange)) {
+					if (destroyable.intersectCheck(x + dx + (turnLeft ? -20 : 0), y + dy + 10, attackHeight, attackRange)) {
 						destroyable.attacked(attackDamage, 0, -downwardSlashKnockPower);
 						dy = -downwardSlashKnockBack;
 					}
@@ -256,11 +258,11 @@ public class Hero extends MoveableCharacter {
 		}
 	}
 	
-	public boolean hitCheck(double x, double y, double width, double height) {
+	public boolean intersectCheck(double x, double y, double width, double height) {
 		if (immune.isAlive()) {
 			return false;
 		}
-		return super.hitCheck(x, y, width, height);
+		return super.intersectCheck(x, y, width, height);
 	}
 	
 	public void attacked(double damage, double knockbackX, double knockbackY) {
@@ -275,7 +277,7 @@ public class Hero extends MoveableCharacter {
 	
 	public void die() {
 		Main.world.setBossFight(false);
-		Main.world.setCerrentMap(MapName.Starter, spawnLocation[0], spawnLocation[1]);
+		Main.world.setCerrentMap(spawnMap, spawnLocationX, spawnLocationY);
 		hp = maxHp;
 	}
 	
@@ -364,6 +366,30 @@ public class Hero extends MoveableCharacter {
 	public void setDashCooldownTime(long dashCooldownTime) {
 		this.dashCooldownTime = dashCooldownTime < 0 ? 0 : dashCooldownTime;
 	}
+	
+	public double getSpawnlocationX() {
+		return spawnLocationX;
+	}
+
+	public void setSpawnLocationX(double spawnLocationX) {
+		this.spawnLocationX = spawnLocationX;
+	}
+	
+	public double getSpawnlocationY() {
+		return spawnLocationY;
+	}
+	
+	public void setSpawnLocationY(double spawnLocationY) {
+		this.spawnLocationY = spawnLocationY;
+	}
+
+	public MapName getSpawnMap() {
+		return spawnMap;
+	}
+
+	public void setSpawnMap(MapName spawnMap) {
+		this.spawnMap = spawnMap;
+	}
 
 	public HeroHpBar getHpBar() {
 		return hpBar;
@@ -371,10 +397,6 @@ public class Hero extends MoveableCharacter {
 
 	public Circle getLight() {
 		return light;
-	}
-
-	public double[] getSpawnlocation() {
-		return spawnLocation;
 	}
 
 }

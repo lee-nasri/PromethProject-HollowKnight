@@ -20,7 +20,7 @@ public abstract class MoveableEnemy extends MoveableCharacter implements Enemy {
 	
 	public void update() {
 		setMovement();
-		if (Main.hero.hitCheck(x, y, size[0], size[1])) {
+		if (Main.hero.intersectCheck(x, y, size[0], size[1])) {
 			Main.hero.attacked(attackDamage, ((Main.hero.getCenterX() < getCenterX()) ? -heroKnockBackX : heroKnockBackX), heroKnockBackY);
 		}
 		super.update();

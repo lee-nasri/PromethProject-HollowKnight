@@ -102,7 +102,7 @@ public class False_Knight extends Boss {
 					(turnLeft ? -shockwaveSpeed : shockwaveSpeed), 0, attackDamage);
 			shockwave.setScaleX(turnLeft ? -1 : 1);
 			Main.world.addObject(shockwave);
-			if(Main.hero.hitCheck(x + (turnLeft ? -300 : 200), y - 100, 250, 350)) {
+			if(Main.hero.intersectCheck(x + (turnLeft ? -300 : 200), y - 100, 250, 350)) {
 				Main.hero.attacked(attackDamage, (turnLeft ? -heroKnockBackX : heroKnockBackX), heroKnockBackY);
 			}
 			changeSprite("slam");
@@ -116,7 +116,7 @@ public class False_Knight extends Boss {
 			changeSprite("leap");
 			break;
 		case "leap":
-			if(Main.hero.hitCheck(x + (turnLeft ? -300 : 200), y - 150, 250, 400)) {
+			if(Main.hero.intersectCheck(x + (turnLeft ? -300 : 200), y - 150, 250, 400)) {
 				Main.hero.attacked(attackDamage, (turnLeft ? -heroKnockBackX : heroKnockBackX), heroKnockBackY);
 			}
 			changeSprite("slam");

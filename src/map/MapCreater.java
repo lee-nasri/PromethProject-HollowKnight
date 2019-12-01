@@ -2,6 +2,7 @@ package map;
 
 import application.Music;
 import monster.*;
+import object.CheckPoint;
 import object.GamePlatform;
 import object.PlatformType;
 
@@ -9,6 +10,7 @@ public class MapCreater {
 	
 	public static Map createStarterMap() {
 		Map map = new Map(2560,1440);
+		map.setName(MapName.Starter);
 		map.setRightMap(new Gate(MapName.False_Knight_room, 20, 1015));
 		map.addBackground(
 				ClassLoader.getSystemResource("Background/Eclipse_Sky.jpg").toString(), 1920, 1080);
@@ -24,12 +26,14 @@ public class MapCreater {
 		map.addEnemy(new Vengefly(400, 200));
 		map.addEnemy(new Vengefly(1900, 600));
 		map.addEnemy(new Vengefly(1700, 900));
+		map.addCheckPoint(new CheckPoint(500 , 1075));
 		map.setMusic(Music.Friend_shitai);
 		return map;
 	}
 	
 	public static Map createFalseKnightRoom() {
 		Map map = new Map(2240,1260);
+		map.setName(MapName.False_Knight_room);
 		map.setLeftMap(new Gate(MapName.Starter, 2460, 1175));
 		map.setRightMap(new Gate(MapName.Town, 20, 1175));
 		map.addBackground(
@@ -46,6 +50,7 @@ public class MapCreater {
 	
 	public static Map createTown() {
 		Map map = new Map(2560,1440);
+		map.setName(MapName.Town);
 		map.setLeftMap(new Gate(MapName.False_Knight_room, 2140, 1015));
 		map.setLowerMap(new Gate(MapName.Cave, 250, 0));
 		map.addBackground(
@@ -55,12 +60,14 @@ public class MapCreater {
 		map.addPlatform(new GamePlatform(PlatformType.FloorPlatform1, 0, 1260, 2160, 218));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, -50, 0, 200, 1020, false, true));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 2360, 0, 200, 1440, true, false));
+		map.addCheckPoint(new CheckPoint(1000 , 1075));
 		map.setMusic(Music.Friend_shitai);
 		return map;
 	}
 	
 	public static Map createCave() {
 		Map map = new Map(1800,2400);
+		map.setName(MapName.Cave);
 		map.setUpperMap(new Gate(MapName.Town, 2220, 1440));
 		map.setLeftMap(new Gate(MapName.Dark_Cave, 2000, 1135));
 		map.setRightMap(new Gate(MapName.Crystal_Cave, 20, 1115));
@@ -90,6 +97,7 @@ public class MapCreater {
 	
 	public static Map createDarkCave() {
 		Map map = new Map(2100,1400);
+		map.setName(MapName.Dark_Cave);
 		map.setRightMap(new Gate(MapName.Cave, 20, 1515));
 		map.addBackground(
 				ClassLoader.getSystemResource("Background/Dark_Cave.jpg").toString(), 1650, 1100);
@@ -104,6 +112,7 @@ public class MapCreater {
 	
 	public static Map createCrystalCave() {
 		Map map = new Map(2400,1350);
+		map.setName(MapName.Crystal_Cave);
 		map.setLeftMap(new Gate(MapName.Cave, 1700, 2115));
 		map.addBackground(
 				ClassLoader.getSystemResource("Background/Crystal_Cave.jpg").toString(), 1600, 900);

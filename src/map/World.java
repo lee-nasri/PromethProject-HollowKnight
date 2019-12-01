@@ -8,6 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import application.Main;
 import application.Sound;
+import object.CheckPoint;
 import object.Destroyable;
 import object.Enemy;
 import object.GameObject;
@@ -44,7 +45,10 @@ public class World extends Group {
 		for (GamePlatform platform: cerrentMap.getPlatformList()) {
 			objectList.add(platform);
 			getChildren().add(platform);
-			platform.setAlive(true);
+		}
+		for (CheckPoint checkPoint: cerrentMap.getCheckPointList()) {
+			objectList.add(checkPoint);
+			getChildren().add(checkPoint);
 		}
 		for (Enemy enemy: cerrentMap.getEnemyList()) {
 			objectList.add(enemy);

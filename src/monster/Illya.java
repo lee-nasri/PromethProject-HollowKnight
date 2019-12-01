@@ -73,7 +73,7 @@ public class Illya extends Boss {
 			holdStage(1000);
 			break;
 		case "attack":
-			Projectile slash = new Projectile(ClassLoader.getSystemResource("Effect/attacking.png").toString(), 
+			Projectile slash = new Projectile(ClassLoader.getSystemResource("Effect/slash.png").toString(), 
 					x + (turnLeft ? -200 : 60), y + 50, slashWidth, slashHeight, 
 					(turnLeft ? -slashSpeed : slashSpeed), 0, attackDamage);
 			slash.setScaleX(turnLeft ? -1 : 1);

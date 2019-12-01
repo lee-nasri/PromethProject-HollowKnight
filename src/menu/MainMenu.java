@@ -23,8 +23,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import map.MapCreater;
-import map.MapName;
 import map.World;
 import object.Hero;
 
@@ -64,7 +62,7 @@ public class MainMenu extends VBox {
 			public void run() {
 				Main.hero = new Hero();
 				Main.world = new World();
-				Main.world.setCerrentMap(MapName.Starter, Main.hero.getSpawnlocation()[0], Main.hero.getSpawnlocation()[1]);
+				Main.world.setCerrentMap(Main.hero.getSpawnMap(), Main.hero.getSpawnlocationX(), Main.hero.getSpawnlocationY());
 				Main.root = new Group(Main.world, Main.hero.getHpBar());
 				Controller.setGameKey();
 				Controller.startGameLoop();
