@@ -82,6 +82,7 @@ public class False_Knight extends Boss {
 			holdStage(fallTime);
 			break;
 		case "normal":
+			// randomly choose nextMove
 			double nextMove = Math.random();
 			if (nextMove < 0.4) {
 				changeSprite("charge");
@@ -90,6 +91,7 @@ public class False_Knight extends Boss {
 			}else {
 				dy = -jumpSpeed;
 				changeSprite("jump");
+				// generate a random jump range from -1 to 3
 				double jumpRange = Math.random()*4 - 1;
 				speed = ((Main.hero.getX() + Main.hero.getSize()[0]/2) 
 						- (x + size[0]/2))*0.01 + (turnLeft ? jumpRange : -jumpRange);
@@ -97,11 +99,12 @@ public class False_Knight extends Boss {
 				break;
 			}
 		case "charge":
-			Projectile shockwave = new Projectile(ClassLoader.getSystemResource("Effect/shockwave.png").toString(), 
+			//create a shock wave attack
+			Projectile shockWave = new Projectile(ClassLoader.getSystemResource("Effect/shockwave.png").toString(), 
 					x + (turnLeft ? -100 : 200), y + 50, shockwaveWidth, shockwaveHeight, 
 					(turnLeft ? -shockwaveSpeed : shockwaveSpeed), 0, attackDamage);
-			shockwave.setScaleX(turnLeft ? -1 : 1);
-			Main.world.addObject(shockwave);
+			shockWave.setScaleX(turnLeft ? -1 : 1);
+			Main.world.addObject(shockWave);
 			if(Main.hero.intersectCheck(x + (turnLeft ? -300 : 200), y - 100, 250, 350)) {
 				Main.hero.attacked(attackDamage, (turnLeft ? -heroKnockBackX : heroKnockBackX), heroKnockBackY);
 			}
@@ -127,6 +130,7 @@ public class False_Knight extends Boss {
 	
 	public void turn(boolean turnLeft) {
 		super.turn(turnLeft);
+		// set all image to the proper location
 		getChildren().get(0).setLayoutX(turnLeft ? -125 : -225);
 		getChildren().get(1).setLayoutX(turnLeft ? -30 : -270);
 		getChildren().get(2).setLayoutX(turnLeft ? -400 : 0);
@@ -135,6 +139,7 @@ public class False_Knight extends Boss {
 	}
 	
 	public void attacked(double damage, double knockbackX, double knockbackY) {
+		//increase poise
 		if (knockbackX != 0) {
 			dx += knockbackX;
 		}

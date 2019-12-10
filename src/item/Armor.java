@@ -4,8 +4,11 @@ import application.Main;
 
 public class Armor extends Item {
 	
-	public Armor(int maxHpBonus) {
-		super( 0, 0, maxHpBonus, 0);
+	private int maxHpBonus;
+	
+	public Armor(ArmorType armor) {
+		super(armor.getImage());
+		maxHpBonus = armor.getHpBonus();
 	}
 
 	@Override

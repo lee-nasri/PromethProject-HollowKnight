@@ -45,15 +45,18 @@ public class Illya extends Boss {
 		case "normal":
 			turn(Main.hero.getCenterX() < getCenterX());
 			if (distance > range) {
+				//fly straight to the hero
 				dx += (speed*distanceX/distance - dx)*friction;
 				dy += (speed*distanceY/distance - dy)*friction;
 			} else {
+				//fly away
 				dx += ((speed*distanceY/distance)*((distanceX*distanceY) > 0 ? -1 : 1) - dx)*friction;
 				dy += ((speed*distanceX/distance)*((distanceX*distanceY) > 0 ? -1 : 1) - dy)*friction;
 			}
 			break;
 		case "attack":
 			turn(Main.hero.getCenterX() < getCenterX());
+			//fly to the same plane with the hero
 			dx += ((fullSpeed*distanceY/distance)*((distanceX*distanceY) > 0 ? -1 : 1) - dx)*friction;
 			dy += ((fullSpeed*distanceX/distance)*((distanceX*distanceY) > 0 ? 1 : -1) - dy)*friction;
 			break;
@@ -73,6 +76,7 @@ public class Illya extends Boss {
 			holdStage(1000);
 			break;
 		case "attack":
+			//slash attack
 			Projectile slash = new Projectile(ClassLoader.getSystemResource("Effect/slash.png").toString(), 
 					x + (turnLeft ? -200 : 60), y + 50, slashWidth, slashHeight, 
 					(turnLeft ? -slashSpeed : slashSpeed), 0, attackDamage);
@@ -86,6 +90,7 @@ public class Illya extends Boss {
 	
 	public void turn(boolean turnLeft) {
 		super.turn(turnLeft);
+		// set all image to the proper location
 		getChildren().get(0).setLayoutX(turnLeft ? -70 : -95);
 		getChildren().get(1).setLayoutX(turnLeft ? -30 : -90);
 	}

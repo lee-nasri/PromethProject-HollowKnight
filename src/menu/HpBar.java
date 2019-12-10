@@ -32,7 +32,7 @@ public abstract class HpBar extends StackPane {
 	
 	public void update(double hp) {
 		this.hp = hp;
-		if (yellowHp > hp) {
+		if (yellowHp > hp && yellowHp <= maxHp) {
 			yellowHp -= hpDecreaseSpeed;
 		}else {
 			yellowHp = hp;

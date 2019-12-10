@@ -17,6 +17,7 @@ public class Projectile extends MoveableObject {
 	}
 	
 	public void update() {
+		//deal damage to hero when hit
 		if (Main.hero.intersectCheck(x, y, size[0], size[1])) {
 			Main.hero.attacked(damage, ((Main.hero.getCenterX() < getCenterX()) ? -heroKnockBackX : heroKnockBackX), heroKnockBackY);
 		}
@@ -24,6 +25,7 @@ public class Projectile extends MoveableObject {
 	}
 	
 	protected void moveX() {
+		//broken when hit the wall
 		if (dx < 0) {
 			try {
 				leftWallCheck();
@@ -45,6 +47,7 @@ public class Projectile extends MoveableObject {
 		if ((dy > maxFallSpeed) && fallSpeedLimit) {
 			dy = maxFallSpeed;
 		}
+		//broken when hit the wall
 		if (dy < 0) {
 			try {
 				topCheck();

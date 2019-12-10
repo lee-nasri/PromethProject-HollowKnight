@@ -10,7 +10,7 @@ import application.Main;
 public abstract class GameObject extends Group implements Updateable {
 	
 	protected double x, y;
-	protected double[] size = new double[2];
+	protected double[] size = new double[2]; //index 0 is width, index 1 is height.
 	protected Delay stageHolder = new Delay(0);
 	protected boolean alive;
 	

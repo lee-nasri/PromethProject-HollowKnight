@@ -3,7 +3,8 @@ package monster;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import application.Main;
-import item.GoldenSword;
+import item.Sword;
+import item.SwordType;
 import object.MoveableEnemy;
 
 public class Vengefly extends MoveableEnemy {
@@ -33,6 +34,7 @@ public class Vengefly extends MoveableEnemy {
 			}
 			break;
 		case "normal":
+			//fly straight to the hero
 			dx += (speed*distanceX/distance - dx)*friction;
 			dy += (speed*distanceY/distance - dy)*friction;
 			turn(Main.hero.getCenterX() < getCenterX());
@@ -47,6 +49,6 @@ public class Vengefly extends MoveableEnemy {
 	
 	public void die() {
 		super.die();
-		Main.controlInventory.getInventory().addItem(new GoldenSword());
+		Main.controlInventory.getInventory().addItem(new Sword(SwordType.GoldenSword));
 	}
 }

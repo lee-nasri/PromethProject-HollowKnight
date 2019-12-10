@@ -20,6 +20,7 @@ public abstract class MoveableEnemy extends MoveableCharacter implements Enemy {
 	
 	public void update() {
 		setMovement();
+		//deal damage to hero when hit
 		if (Main.hero.intersectCheck(x, y, size[0], size[1])) {
 			Main.hero.attacked(attackDamage, ((Main.hero.getCenterX() < getCenterX()) ? -heroKnockBackX : heroKnockBackX), heroKnockBackY);
 		}
@@ -64,6 +65,7 @@ public abstract class MoveableEnemy extends MoveableCharacter implements Enemy {
 	}
 	
 	protected void reset() {
+		//always turn left when reset
 		turn(false);
 		super.reset();
 	}

@@ -32,9 +32,6 @@ public class Hero extends MoveableCharacter {
 	private HeroHpBar hpBar = new HeroHpBar();
 	
 	private static final String attackEffect = ClassLoader.getSystemResource("Effect/slash.png").toString();
-	private static final Circle light = new Circle(0, 0, 1500, new RadialGradient(0, 0, 0, 0, 600, false, 
-			CycleMethod.NO_CYCLE, new Stop(0, Color.rgb(250, 250, 250, 0.3)), 
-			new Stop(0.5, Color.TRANSPARENT), new Stop(1, Color.rgb(0, 0, 0, 0.9))));
 	private static final double unstableFriction = 0.1;
 	private static final double attackRange = 200;
 	private static final double attackHeight = 100;
@@ -48,6 +45,10 @@ public class Hero extends MoveableCharacter {
 	private static final long dashTime = 120;
 	private static final long recoverTime = 1000;
 	private static final long attackEffectTime = 30;
+	//light for the dark area
+	private static final Circle light = new Circle(0, 0, 1500, new RadialGradient(0, 0, 0, 0, 600, false, 
+			CycleMethod.NO_CYCLE, new Stop(0, Color.rgb(250, 250, 250, 0.3)), 
+			new Stop(0.5, Color.TRANSPARENT), new Stop(1, Color.rgb(0, 0, 0, 0.9))));
 	
 	public Hero() {
 		super(0, 0, 80, 85);
@@ -301,14 +302,15 @@ public class Hero extends MoveableCharacter {
 	public void turn(boolean turnLeft) {
 		if (!stageHolder.isAlive()) {
 			super.turn(turnLeft);
+			// set dash sprite to the proper location
 			getChildren().get(1).setLayoutX(turnLeft ? 0 : -120);
 		}
 	}
 	
 	public void draw() {
 		Main.world.drawBackground();
-		light.setLayoutX(x + 40 - Main.world.getViewX());
-		light.setLayoutY(y + 42 - Main.world.getViewY());
+		light.setLayoutX(getCenterX() - Main.world.getViewX());
+		light.setLayoutY(getCenterY() - Main.world.getViewY());
 		super.draw();
 	}
 	

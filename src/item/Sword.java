@@ -4,8 +4,11 @@ import application.Main;
 
 public class Sword extends Item {
 	
-	public Sword(int attackDamageBonus) {
-		super( attackDamageBonus , 0, 0, 0 );
+	private int attackDamageBonus;
+	
+	public Sword(SwordType sword) {
+		super(sword.getImage());
+		attackDamageBonus = sword.getAttackDamage();
 	}
 	
 	@Override
@@ -22,4 +25,5 @@ public class Sword extends Item {
 	public String getTypeOfItem() {
 		return "Sword";
 	}
+	
 }

@@ -16,7 +16,7 @@ public class Inventory extends GridPane {
 	
 	private ObservableList<Item> myInventory = FXCollections.observableArrayList();
 	private Map<String, Item> myActivateItem = new HashMap<>();
-	// myActivateItem index0 = Sword , index1 = Armor ;
+	// myActivateItem index0 = Sword , index1 = Armor;
 	private GridPane activateItemPane;
 	
 	private static final int maxColumn = 6;
@@ -35,17 +35,12 @@ public class Inventory extends GridPane {
 		this.activateItemPane.setVgap(10);
 		this.activateItemPane.setHgap(10);
 		this.myActivePaneClear();
-		//12
 		
 		// Add Item For test only. don't forget to delete after test.
-		addItem(new GoldenSword());
-		addItem(new NormalSword());
-		addItem(new NormalArmor());
-		
-		// SetOnAction for all Button in myInventory.
-		//for(Item x : myInventory) {
-		//	x.setOnAction( e -> activateItem ( x ));
-		//}
+		addItem(new Sword(SwordType.GoldenSword));
+		addItem(new Sword(SwordType.NormalSword));
+		addItem(new Armor(ArmorType.LegendArmor));
+		addItem(new Armor(ArmorType.NormalArmor));
 	} 
 	
 	public void addItem(Item newItem) {
@@ -57,29 +52,22 @@ public class Inventory extends GridPane {
 		newItem.setOnAction(e -> activateItem(newItem));
 	}
 	
-	//public void removeItem(Item item) {
-		//myInventory.remove(item);
-		//this.myInventoryPaneRemove(item);
-	//}
-	
 	public void activateItem(Item newItem) {
+		newItem.applyBonuses();
 		if (isItemtypeActivate(newItem)) {
-			// 1 remove Old item in myActivateItem (map)
+			// remove Old item in myActivateItem (map)
 			Item removedItem = deactivateItem(newItem.getTypeOfItem());
-			// 2. remove newItem from myInventory (List)
-			//removeItem(newItem);
-			// 3. add newItem to myActivateItem (map) and applyBonuses(Main.hero);
-			myActivateItem.put(newItem.getTypeOfItem(), newItem);
-			newItem.applyBonuses();
-			// 4. add removedItem to myInventory (List)
+			// add removedItem to myInventory (List)
 			addItem(removedItem);
-		}else {
-			// add newItem to myActivateItem (map) and applyBonuses(Main.hero);
-			myActivateItem.put(newItem.getTypeOfItem(), newItem);
-			newItem.applyBonuses();
 		}
-		// (final) update MyActivatePane
-		activatePaneBlock(newItem); // Update myActivatePane
+		// add newItem to myActivateItem (map)
+		myActivateItem.put(newItem.getTypeOfItem(), newItem);
+		// update MyActivatePane
+		activatePaneBlock(newItem);
+		newItem.setOnAction(e -> {
+			Item removedItem = deactivateItem(newItem.getTypeOfItem());
+			addItem(removedItem);
+		});
 	}
 	
 	public Item deactivateItem(String typeOfItem) { // item is any item that same type of item we need to deactivate
@@ -118,30 +106,6 @@ public class Inventory extends GridPane {
 	public Map<String, Item> getMyActivateItem() {
 		return myActivateItem;
 	}
-
-
-//	public void MyInventoryUpdate(Item newItem) {
-//		// MyInventory update only when we add new item in myInventory List.
-//		
-//		int count = 0;
-//		for	(int row = 0 ; row < 3 ; row++) {
-//			for	(int column=0; column < 6 ; column++) {
-//				// add item in myInventory to Inventory empty block.
-//				if (count < myInventory.size()) {
-//					this.add(myInventory.get(count), column, row);
-//					count++;
-//				}
-//				// add empty image to Inventory another empty block.
-//				else {
-//					ImageView emptyBlock = new ImageView(new Image(ClassLoader.getSystemResource
-//							("ItemImage/InventoryBlock.png").toString()));
-//					emptyBlock.setFitHeight(63);
-//					emptyBlock.setFitWidth(63);
-//					this.add(emptyBlock, column, row);
-//				}
-//			}
-//		}
-//	}
 	
 	public void myInventoryPaneAdd(Item newItem) {
 		int column = myInventory.indexOf(newItem) % maxColumn;
@@ -171,7 +135,6 @@ public class Inventory extends GridPane {
 	
 	public void myActivePaneClear() {
 		// myActivePaneClear mean replace all activate item block with empty block image.
-		
 		for	(int column=0; column < 3 ; column++) {
 			ImageView emptyBlock = new ImageView(new Image(ClassLoader.getSystemResource
 					("ItemImage/InventoryBlock.png").toString()));

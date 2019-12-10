@@ -12,6 +12,7 @@ public class GamePlatform extends GameObject {
 	public GamePlatform(PlatformType platformType, double x, double y, double width, double height) {
 		super(x, y, width, height);
 		Image image = new Image(platformType.getPath());
+		//duplicate the image
 		int duplicateX = (platformType.repeatX() ? (int)(width/image.getWidth() + 0.5) : 1);
 		int duplicateY = (platformType.repeatY() ? (int)(height/image.getHeight() + 0.5) : 1);
 		image = new Image(platformType.getPath(), (width/duplicateX + 1), (height/duplicateY + 1), false, true);
