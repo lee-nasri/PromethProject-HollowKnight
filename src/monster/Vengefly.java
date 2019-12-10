@@ -49,6 +49,6 @@ public class Vengefly extends MoveableEnemy {
 	
 	public void die() {
 		super.die();
-		Main.controlInventory.getInventory().addItem(new Sword(SwordType.GoldenSword));
+		dropItem(new Sword(SwordType.NormalSword), 0.5);
 	}
 }

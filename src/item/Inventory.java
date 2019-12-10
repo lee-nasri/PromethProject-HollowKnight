@@ -24,17 +24,17 @@ public class Inventory extends GridPane {
 	
 	public Inventory () {
 		// set property of this GridPane
-		this.setAlignment(Pos.CENTER);
-		this.setVgap(10);
-		this.setHgap(10);	
-		this.myInventoryPaneClear();
+		setAlignment(Pos.CENTER);
+		setVgap(10);
+		setHgap(10);	
+		addInventoryPane();
 		
 		// create and set property of myActivateItem GridPane.
-		this.activateItemPane = new GridPane();
-		this.activateItemPane.setAlignment(Pos.CENTER);
-		this.activateItemPane.setVgap(10);
-		this.activateItemPane.setHgap(10);
-		this.myActivePaneClear();
+		activateItemPane = new GridPane();
+		activateItemPane.setAlignment(Pos.CENTER);
+		activateItemPane.setVgap(10);
+		activateItemPane.setHgap(10);
+		addActivePane();
 		
 		// Add Item For test only. don't forget to delete after test.
 		addItem(new Sword(SwordType.GoldenSword));
@@ -48,7 +48,7 @@ public class Inventory extends GridPane {
 			myInventory.add(newItem);
 			addActivatedBlock(newItem);
 		}
-		this.myInventoryPaneAdd(newItem);
+		myInventoryPaneAdd(newItem);
 		newItem.setOnAction(e -> activateItem(newItem));
 	}
 	
@@ -75,22 +75,17 @@ public class Inventory extends GridPane {
 		if(typeOfItem != "Sword" && typeOfItem != "Armor") return null;
 		Item removedItem = myActivateItem.remove(typeOfItem);
 		removedItem.unapplyBonuses();
-		deActivatePaneBlock(removedItem);
 		return removedItem;
 	}
 	
 	public void activatePaneBlock(Item newItem) {	
 		// Update only block of new item.
-		if (newItem.getTypeOfItem() == "Sword") {activateItemPane.add(newItem, 0, 0);}
-		if (newItem.getTypeOfItem() == "Armor") {activateItemPane.add(newItem, 1, 0);}
-	}
-	
-	public void deActivatePaneBlock(Item removedItem) {
-		// call clearActivateBlock when replace old item image with emptyblock.png
-		ImageView emptyBlock = new ImageView(new Image(ClassLoader.getSystemResource
-				("ItemImage/InventoryBlock.png").toString()));
-		 if (removedItem.getTypeOfItem() == "Sword") this.activateItemPane.add(emptyBlock, 0, 0);
-		 if (removedItem.getTypeOfItem() == "Armor") this.activateItemPane.add(emptyBlock, 1, 0);
+		if (newItem.getTypeOfItem() == "Sword") {
+			activateItemPane.add(newItem, 0, 0);
+		}
+		if (newItem.getTypeOfItem() == "Armor") {
+			activateItemPane.add(newItem, 1, 0);
+		}
 	}
 
 	public boolean isItemtypeActivate(Item item) {
@@ -110,42 +105,52 @@ public class Inventory extends GridPane {
 	public void myInventoryPaneAdd(Item newItem) {
 		int column = myInventory.indexOf(newItem) % maxColumn;
 		int row = myInventory.indexOf(newItem)/maxColumn;
-		this.add(newItem, column, row);
+		add(newItem, column, row);
 	}
 	
-	public void addActivatedBlock(Item removedItem) {
+	public void addActivatedBlock(Item item) {
 		ImageView activateBlock = new ImageView(new Image(ClassLoader.getSystemResource
-				("ItemImage/ActivateBlock.png").toString()));
-		int column = myInventory.indexOf(removedItem) % maxColumn;
-		int row = myInventory.indexOf(removedItem)/maxColumn;
-		this.add(activateBlock, column, row);
+				("ItemImage/ActivateBlock.png").toString(), 60, 60, false, true));
+		int column = myInventory.indexOf(item) % maxColumn;
+		int row = myInventory.indexOf(item)/maxColumn;
+		add(activateBlock, column, row);
 	}
 	
-	public void myInventoryPaneClear() {
+	public void addInventoryPane() {
 		for	(int row = 0 ; row < maxRow ; row++) {
 			for	(int column=0; column < maxColumn ; column++) {
 				ImageView emptyBlock = new ImageView(new Image(ClassLoader.getSystemResource
 						("ItemImage/InventoryBlock.png").toString()));
 				emptyBlock.setFitHeight(63);
 				emptyBlock.setFitWidth(63);
-				this.add(emptyBlock, column, row);
+				add(emptyBlock, column, row);
 			}
 		}
 	}
 	
-	public void myActivePaneClear() {
-		// myActivePaneClear mean replace all activate item block with empty block image.
+	public void addActivePane() {
 		for	(int column=0; column < 3 ; column++) {
 			ImageView emptyBlock = new ImageView(new Image(ClassLoader.getSystemResource
 					("ItemImage/InventoryBlock.png").toString()));
 			emptyBlock.setFitHeight(63);
 			emptyBlock.setFitWidth(63);
-			this.activateItemPane.add(emptyBlock, column, 0);
+			activateItemPane.add(emptyBlock, column, 0);
 		}
-		Label tSword = new Label("Sword"); tSword.setTextFill(Color.WHITE); tSword.setAlignment(Pos.CENTER);
-		Label tArmor = new Label("Armor"); tArmor.setTextFill(Color.WHITE); tArmor.setAlignment(Pos.CENTER);
-		Label tOther = new Label("Other"); tOther.setTextFill(Color.WHITE); tOther.setAlignment(Pos.CENTER);
-		this.activateItemPane.add(tSword, 0, 1);this.activateItemPane.add(tArmor, 1, 1);this.activateItemPane.add(tOther, 2, 1);
+		Label tSword = new Label("Sword");
+		tSword.setTextFill(Color.WHITE);
+		tSword.setAlignment(Pos.CENTER);
+		
+		Label tArmor = new Label("Armor");
+		tArmor.setTextFill(Color.WHITE);
+		tArmor.setAlignment(Pos.CENTER);
+		
+		Label tOther = new Label("Other");
+		tOther.setTextFill(Color.WHITE);
+		tOther.setAlignment(Pos.CENTER);
+		
+		activateItemPane.add(tSword, 0, 1);
+		activateItemPane.add(tArmor, 1, 1);
+		activateItemPane.add(tOther, 2, 1);
 	}
 	
 }

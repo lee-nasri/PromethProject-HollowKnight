@@ -71,8 +71,5 @@ public class GamePlatform extends GameObject {
 			throw new HitWallException(y + size[1] - character.getY());
 		}
 	}
-	
-	public void remove() {
-		super.remove();
-	}
+
 }

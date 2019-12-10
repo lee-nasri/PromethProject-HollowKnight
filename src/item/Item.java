@@ -16,8 +16,6 @@ public abstract class Item extends Button{
 	public Item(String imagePath) {
 		setGraphic(new ImageView(new Image(imagePath, 50, 50, false, true)));
 		setPadding(new Insets(5));
-		setPrefHeight(1);
-		setPrefWidth(1);
 		setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 	}
 	

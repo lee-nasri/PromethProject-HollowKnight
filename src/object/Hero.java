@@ -278,6 +278,10 @@ public class Hero extends MoveableCharacter {
 	
 	public void die() {
 		Main.world.setBossFight(false);
+		spawn();
+	}
+	
+	public void spawn() {
 		Main.world.setCerrentMap(spawnMap, spawnLocationX, spawnLocationY);
 		hp = maxHp;
 	}

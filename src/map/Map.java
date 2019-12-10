@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import application.Music;
 import object.CheckPoint;
-import object.Enemy;
+import object.Destroyable;
 import object.GamePlatform;
 
 public class Map {
@@ -14,7 +14,7 @@ public class Map {
 	private MapName name;
 	private List<ImageView> background = new ArrayList<ImageView>();
 	private List<GamePlatform> platformList = new ArrayList<GamePlatform>();
-	private List<Enemy> enemyList = new ArrayList<Enemy>();
+	private List<Destroyable> enemyList = new ArrayList<Destroyable>();
 	private List<CheckPoint> checkPointList = new ArrayList<CheckPoint>();
 	private Gate leftMap, rightMap, upperMap, lowerMap;
 	private Music music;
@@ -43,11 +43,11 @@ public class Map {
 		return platformList;
 	}
 	
-	public void addEnemy(Enemy enemy) {
+	public void addEnemy(Destroyable enemy) {
 		enemyList.add(enemy);
 	}
 
-	public List<Enemy> getEnemyList() {
+	public List<Destroyable> getEnemyList() {
 		return enemyList;
 	}
 

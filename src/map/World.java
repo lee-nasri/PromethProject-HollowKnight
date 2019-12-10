@@ -8,9 +8,9 @@ import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import application.Main;
 import application.Sound;
+import object.BreakableWall;
 import object.CheckPoint;
 import object.Destroyable;
-import object.Enemy;
 import object.GameObject;
 import object.GamePlatform;
 import object.Updateable;
@@ -45,12 +45,17 @@ public class World extends Group {
 		for (GamePlatform platform: cerrentMap.getPlatformList()) {
 			objectList.add(platform);
 			getChildren().add(platform);
+			if (platform instanceof BreakableWall) {
+				BreakableWall breakableWall = (BreakableWall) platform;
+				destroyableList.add(breakableWall);
+				breakableWall.spawn();
+			}
 		}
 		for (CheckPoint checkPoint: cerrentMap.getCheckPointList()) {
 			objectList.add(checkPoint);
 			getChildren().add(checkPoint);
 		}
-		for (Enemy enemy: cerrentMap.getEnemyList()) {
+		for (Destroyable enemy: cerrentMap.getEnemyList()) {
 			objectList.add(enemy);
 			destroyableList.add(enemy);
 			enemy.spawn();

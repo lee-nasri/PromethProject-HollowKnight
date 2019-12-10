@@ -18,9 +18,9 @@ public class ControlInventory extends VBox{
 	private Inventory inventory;
 	
 	public ControlInventory() {
-		this.setAlignment(Pos.CENTER);
-		this.setPrefWidth(450);
-		this.setSpacing(15);
+		setAlignment(Pos.CENTER);
+		setPrefWidth(450);
+		setSpacing(15);
 		setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 		setLayoutX(50);
 		setLayoutY(100);
@@ -33,9 +33,10 @@ public class ControlInventory extends VBox{
 		title.setAlignment(Pos.CENTER);
 		title.setFont(Font.font(15)); 
 		title.setPrefWidth(600);
-		this.getChildren().add(title);
+		getChildren().add(title);
 		
-		this.inventory = new Inventory(); this.getChildren().add(this.inventory);
+		inventory = new Inventory();
+		getChildren().add(inventory);
 		
 		Label title2 = new Label("My Avtivate Items."); 
 		title2.setTextFill(Color.WHITE);
@@ -43,9 +44,9 @@ public class ControlInventory extends VBox{
 		title2.setAlignment(Pos.CENTER);
 		title2.setFont(Font.font(15)); 
 		title2.setPrefWidth(600);
-		this.getChildren().add(title2);
+		getChildren().add(title2);
 		
-		this.getChildren().add(this.inventory.getActivateItemPane());
+		getChildren().add(inventory.getActivateItemPane());
 		
 	}
 

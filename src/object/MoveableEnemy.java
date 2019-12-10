@@ -1,8 +1,9 @@
 package object;
 
 import application.Main;
+import item.Item;
 
-public abstract class MoveableEnemy extends MoveableCharacter implements Enemy {
+public abstract class MoveableEnemy extends MoveableCharacter {
 	
 	private double[] spawnLocation = new double[2];
 	protected String cerrentStage;
@@ -58,6 +59,13 @@ public abstract class MoveableEnemy extends MoveableCharacter implements Enemy {
 		x = spawnLocation[0];
 		y = spawnLocation[1];
 		turn(false);
+	}
+	
+	protected void dropItem(Item item, double dropRate) {
+		double rng = Math.random();
+		if (rng <= dropRate) {
+			Main.controlInventory.getInventory().addItem(item);
+		}
 	}
 	
 	public void die() {

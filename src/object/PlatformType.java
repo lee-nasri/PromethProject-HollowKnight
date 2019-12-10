@@ -4,6 +4,7 @@ public enum PlatformType {
 	
 	Platform1,
 	Platform2,
+	BreakableWall,
 	FloorPlatform1,
 	FloorPlatform2,
 	SidePlatform1,
@@ -15,6 +16,8 @@ public enum PlatformType {
 			return ClassLoader.getSystemResource("Platform/Platform1.png").toString();
 		case Platform2:
 			return ClassLoader.getSystemResource("Platform/Platform2.png").toString();
+		case BreakableWall:
+			return ClassLoader.getSystemResource("Platform/BreakableWall.png").toString();
 		case FloorPlatform1:
 			return ClassLoader.getSystemResource("Platform/FloorPlatform1.jpg").toString();
 		case FloorPlatform2:
@@ -56,6 +59,8 @@ public enum PlatformType {
 			return 174;
 		case Platform2:
 			return 79;
+		case BreakableWall:
+			return 800;
 		default:
 			return 0;
 		}
@@ -67,6 +72,8 @@ public enum PlatformType {
 			return 75;
 		case Platform2:
 			return 47;
+		case BreakableWall:
+			return 200;
 		default:
 			return 0;
 		}

@@ -2,6 +2,7 @@ package map;
 
 import application.Music;
 import monster.*;
+import object.BreakableWall;
 import object.CheckPoint;
 import object.GamePlatform;
 import object.PlatformType;
@@ -87,6 +88,7 @@ public class MapCreater {
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 0, 1600, 200, 730));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 180, 400, 250, 500));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 1600, 0, 200, 2000, true, false));
+		map.addPlatform(new BreakableWall(PlatformType.BreakableWall, 1600, 2000));
 		map.addEnemy(new Vengefly(1100, 1600));
 		map.addEnemy(new Vengefly(1300, 1000));
 		map.addEnemy(new Glimback(500, 2020));
