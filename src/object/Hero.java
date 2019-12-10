@@ -63,7 +63,6 @@ public class Hero extends MoveableCharacter {
 		artList.add("dash");
 		speed = 8;
 		maxHp = 100;
-		hp = 100;
 		attackDamage = 20;
 		hpBar.setMaxHp(maxHp);
 		turn(false);

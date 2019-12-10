@@ -62,7 +62,7 @@ public class MainMenu extends VBox {
 			public void run() {
 				Main.hero = new Hero();
 				Main.world = new World();
-				Main.world.setCerrentMap(Main.hero.getSpawnMap(), Main.hero.getSpawnlocationX(), Main.hero.getSpawnlocationY());
+				Main.hero.spawn();
 				Main.root = new Group(Main.world, Main.hero.getHpBar());
 				Controller.setGameKey();
 				Controller.startGameLoop();
