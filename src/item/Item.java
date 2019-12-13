@@ -24,14 +24,5 @@ public abstract class Item extends Button{
 	public abstract void unapplyBonuses();
 	
 	public abstract String getTypeOfItem();
-	
-//	public void highlight() {
-//		this.setBackground(new Background(new BackgroundFill(Color.AQUAMARINE, CornerRadii.EMPTY, Insets.EMPTY)));
-//
-//	}
-//	
-//	public void unhighlight() {
-//		this.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));	
-//	}	
-	
+		
 }
