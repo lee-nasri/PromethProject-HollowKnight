@@ -41,6 +41,7 @@ public class Inventory extends GridPane {
 		addItem(new Sword(SwordType.NormalSword));
 		addItem(new Armor(ArmorType.LegendArmor));
 		addItem(new Armor(ArmorType.RareArmor));
+		addItem(new Shoes(ShoesType.RareShoes));
 	} 
 	
 	public void addItem(Item newItem) {
@@ -70,9 +71,10 @@ public class Inventory extends GridPane {
 		});
 	}
 	
+	
 	public Item deactivateItem(String typeOfItem) { // item is any item that same type of item we need to deactivate
 		// Guarantee that there is items in the myActivateItem (map) before call this method.
-		if(typeOfItem != "Sword" && typeOfItem != "Armor") return null;
+		if(typeOfItem != "Sword" && typeOfItem != "Armor" && typeOfItem != "Shoes") return null;
 		Item removedItem = myActivateItem.remove(typeOfItem);
 		removedItem.unapplyBonuses();
 		return removedItem;
@@ -85,6 +87,10 @@ public class Inventory extends GridPane {
 		}
 		if (newItem.getTypeOfItem() == "Armor") {
 			activateItemPane.add(newItem, 1, 0);
+		}
+		
+		if (newItem.getTypeOfItem() == "Shoes") {
+			activateItemPane.add(newItem, 2, 0);
 		}
 	}
 
@@ -144,7 +150,7 @@ public class Inventory extends GridPane {
 		tArmor.setTextFill(Color.WHITE);
 		tArmor.setAlignment(Pos.CENTER);
 		
-		Label tOther = new Label("Other");
+		Label tOther = new Label("Shoes");
 		tOther.setTextFill(Color.WHITE);
 		tOther.setAlignment(Pos.CENTER);
 		
