@@ -40,7 +40,7 @@ public class Inventory extends GridPane {
 		addItem(new Sword(SwordType.GoldenSword));
 		addItem(new Sword(SwordType.NormalSword));
 		addItem(new Armor(ArmorType.LegendArmor));
-		addItem(new Armor(ArmorType.NormalArmor));
+		addItem(new Armor(ArmorType.RareArmor));
 	} 
 	
 	public void addItem(Item newItem) {
