@@ -44,7 +44,17 @@ public enum ShoesType {
 		}
 	}
 	
-	
-	
-	
+	public String getName() {
+		switch(this) {
+		case NormalShoes :
+			return "Normal Shoes" ;
+		case RareShoes :
+			return "Rare Shoes" ;
+		case GoldenShoes :
+			return "Golden Shoes" ;
+		default:
+			return "unknow Item";
+		}
+	}
+		
 }

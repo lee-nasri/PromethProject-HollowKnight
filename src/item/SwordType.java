@@ -31,4 +31,17 @@ public enum SwordType {
 		}
 	}
 	
+	public String getName() {
+		switch(this) {
+		case NormalSword :
+			return "Normal Sword" ;
+		case RareSword :
+			return "Rare Sword" ;
+		case GoldenSword :
+			return "Golden Sword" ;
+		default:
+			return "unknow Item";
+		}
+	}
+	
 }

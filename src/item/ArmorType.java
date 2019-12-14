@@ -32,4 +32,16 @@ public enum ArmorType {
 		}
 	}
 
+	public String getName() {
+		switch(this) {
+		case NormalArmor :
+			return "Normal Armor" ;
+		case RareArmor :
+			return "Rare Armor" ;
+		case LegendArmor :
+			return "Legend Armor" ;
+		default:
+			return "unknow Item";
+		}
+	}
 }
