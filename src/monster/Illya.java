@@ -7,12 +7,17 @@ import item.ShoesType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import object.Boss;
+import object.HitWallException;
 import object.Projectile;
 
 public class Illya extends Boss {
 	
+	private double distance;
+	private double distanceX;
+	private double distanceY;
+	
 	private static final double range = 500;
-	private static final double fullSpeed = 10;
+	private static final double highSpeed = 15;
 	private static final double slashSpeed = 25;
 	private static final double slashWidth = 200;
 	private static final double slashHeight = 100;
@@ -26,54 +31,75 @@ public class Illya extends Boss {
 				ClassLoader.getSystemResource("Character/Illya_Attack.png").toString(), 180, 180, false, true)));
 		getChildren().get(1).setLayoutY(10);
 		artList.add("attack");
-		friction = 0.05;
-		speed = 5;
+		friction = 0.03;
+		speed = 10;
 		maxHp = 500;
 		attackDamage = 25;
 		bossTheme = Music.Get_Goal;
 	}
 	
 	public void setMovement() {
-		double distanceX = Main.hero.getCenterX() - getCenterX();
-		double distanceY = Main.hero.getCenterY() - getCenterY();
-		double distance = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
-		switch(cerrentStage) {
+		distanceX = Main.hero.getCenterX() - getCenterX();
+		distanceY = Main.hero.getCenterY() - getCenterY();
+		distance = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
+		switch(cerrentState) {
 		case "idle":
 			if (distance < range) {
 				startBossFight();
-				changeStage();
+				changeState();
 			}
 			break;
 		case "normal":
 			turn(Main.hero.getCenterX() < getCenterX());
 			if (distance > range) {
-				//fly straight to the hero
-				dx += (speed*distanceX/distance - dx)*friction;
-				dy += (speed*distanceY/distance - dy)*friction;
+				flyToHero();
 			} else {
 				//fly away
-				dx += ((speed*distanceY/distance)*((distanceX*distanceY) > 0 ? -1 : 1) - dx)*friction;
-				dy += ((speed*distanceX/distance)*((distanceX*distanceY) > 0 ? -1 : 1) - dy)*friction;
+				dx += ((speed*distanceY/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dx)*friction;
+				dy += ((speed*distanceX/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dy)*friction;
+			}
+			break;
+		case "moveToLeft":
+			turn(Main.hero.getCenterX() < getCenterX());
+			if (distance > range) {
+				flyToHero();
+			} else {
+				//fly to left side of the hero
+				dx += ((highSpeed*distanceY/distance)*((distanceY > 0) ? -1 : 1) - dx)*friction;
+				dy += ((speed*distanceX/distance)*((distanceY > 0) ? 1 : -1) - dy)*friction;
+			}
+			break;
+		case "moveToRight":
+			turn(Main.hero.getCenterX() < getCenterX());
+			if (distance > range) {
+				flyToHero();
+			} else {
+				//fly to right side of the hero
+				dx += ((highSpeed*distanceY/distance)*((distanceY > 0) ? 1 : -1) - dx)*friction;
+				dy += ((speed*distanceX/distance)*((distanceY > 0) ? -1 : 1) - dy)*friction;
 			}
 			break;
 		case "attack":
 			turn(Main.hero.getCenterX() < getCenterX());
 			//fly to the same plane with the hero
-			dx += ((fullSpeed*distanceY/distance)*((distanceX*distanceY) > 0 ? -1 : 1) - dx)*friction;
-			dy += ((fullSpeed*distanceX/distance)*((distanceX*distanceY) > 0 ? 1 : -1) - dy)*friction;
+			dx += ((speed*distanceY/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dx)*friction;
+			dy += ((highSpeed*distanceX/distance)*((distanceX*distanceY > 0) ? 1 : -1) - dy)*friction;
 			break;
 		}
 	}
 	
-	protected void changeStage() {
-		switch (cerrentStage) {
+	protected void changeState() {
+		switch (cerrentState) {
 		case "idle":
 			changeSprite("normal");
 			turn((Main.hero.getX() + Main.hero.getSize()[0]/2) < (x + size[0]/2));
 			setVisible(true);
 			holdStage(3000);
 			break;
+		//case normal or moveToLeft or moveToRight
 		case "normal":
+		case "moveToLeft":
+		case "moveToRight":
 			changeSprite("attack");
 			holdStage(1000);
 			break;
@@ -90,6 +116,46 @@ public class Illya extends Boss {
 		}
 	}
 	
+	protected void moveX() {
+		//broken when hit the wall
+		if (dx < 0) {
+			try {
+				leftWallCheck();
+				x +=dx;
+			} catch(HitWallException exception) {
+				switch (cerrentState) {
+				case "normal":
+					cerrentState = "moveToRight";
+					break;
+				default:
+					dy += (((dy > 0) ? speed : -speed) - dy)*friction;
+					x += exception.distance;
+					dx = 0;
+				}
+			}
+		}else if (dx > 0) {
+			try {
+				rightWallCheck();
+				x +=dx;
+			} catch(HitWallException exception) {
+				switch (cerrentState) {
+				case "normal":
+					cerrentState = "moveToLeft";
+					break;
+				default:
+					dy += (((dy > 0) ? speed : -speed) - dy)*friction;
+					x += exception.distance;
+					dx = 0;
+				}
+			}
+		}
+	}
+	
+	private void flyToHero(){
+		dx += (speed*distanceX/distance - dx)*friction;
+		dy += (speed*distanceY/distance - dy)*friction;
+	}
+	
 	public void turn(boolean turnLeft) {
 		super.turn(turnLeft);
 		// set all image to the proper location
@@ -100,7 +166,7 @@ public class Illya extends Boss {
 	protected void reset() {
 		super.reset();
 		setVisible(false);
-		cerrentStage = "idle";
+		cerrentState = "idle";
 	}
 	
 	public void die() {

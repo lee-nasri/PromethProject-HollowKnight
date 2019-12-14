@@ -36,7 +36,7 @@ public enum Music {
 		case Guren_no_Yumiya:
 			return 0.3;
 		case Get_Goal:
-			return 0.2;
+			return 0.15;
 		default:
 			return 0;
 		}

@@ -171,7 +171,7 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	public void jump(double power) {
-		stageHolder.interrupt();
+		stateHolder.interrupt();
 		jump = new Delay(jumpTime, -power);
 	}
 	
@@ -196,7 +196,7 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	private boolean dashCheck() {
-		if (stageHolder.isAlive()) {
+		if (stateHolder.isAlive()) {
 			dx = turnLeft ? -dashPower : dashPower;
 			dy = 0;
 			return true;
@@ -206,7 +206,7 @@ public class Hero extends MoveableCharacter {
 	
 	public void frontSlash() {
 		if (!attackCooldown.isAlive()) {
-			stageHolder.interrupt();
+			stateHolder.interrupt();
 			attackCooldown = new Delay(attackSpeed);
 			Main.world.addObject(
 					new Effect(attackEffect, attackEffectTime, x + dx + (turnLeft?-120:0), y + dy - 30, 
@@ -222,7 +222,7 @@ public class Hero extends MoveableCharacter {
 	
 	public void upperSlash() {
 		if (!attackCooldown.isAlive()) {
-			stageHolder.interrupt();
+			stateHolder.interrupt();
 			attackCooldown = new Delay(attackSpeed);
 			Effect effect = new Effect(attackEffect, attackEffectTime, x + dx + (turnLeft ? -50 : -70), y + dy - 75, 
 					attackRange, attackHeight, turnLeft, false);
@@ -240,7 +240,7 @@ public class Hero extends MoveableCharacter {
 	public void downwardSlash() {
 		if (!attackCooldown.isAlive()) {
 			if (inAir) {
-				stageHolder.interrupt();
+				stateHolder.interrupt();
 				attackCooldown = new Delay(attackSpeed);
 				Effect effect = new Effect(attackEffect, attackEffectTime, x + dx + (turnLeft ? -70 : -50), y + dy + 60, 
 						attackRange, attackHeight, turnLeft, false);
@@ -270,7 +270,7 @@ public class Hero extends MoveableCharacter {
 		immune = new Delay(recoverTime);
 		unstable.interrupt();
 		unstable = new Delay(recoverTime/2);
-		stageHolder.interrupt();
+		stateHolder.interrupt();
 		dashable = true;
 		super.attacked(damage, knockbackX, knockbackY);
 	}
@@ -290,7 +290,7 @@ public class Hero extends MoveableCharacter {
 		jump.interrupt();
 		immune.interrupt();
 		dashCooldown.interrupt();
-		stageHolder.interrupt();
+		stateHolder.interrupt();
 		dashCooldown = new Delay(100);
 		doubleJumped = true;
 		doubleJumpable = false;
@@ -298,12 +298,12 @@ public class Hero extends MoveableCharacter {
 		super.reset();
 	}
 	
-	protected void changeStage() {
+	protected void changeState() {
 		changeSprite("normal");
 	}
 	
 	public void turn(boolean turnLeft) {
-		if (!stageHolder.isAlive()) {
+		if (!stateHolder.isAlive()) {
 			super.turn(turnLeft);
 			// set dash sprite to the proper location
 			getChildren().get(1).setLayoutX(turnLeft ? 0 : -120);

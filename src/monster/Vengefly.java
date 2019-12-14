@@ -13,6 +13,10 @@ import object.MoveableEnemy;
 
 public class Vengefly extends MoveableEnemy {
 	
+	private double distance;
+	private double distanceX;
+	private double distanceY;
+	
 	private static final double vision = 500;
 	
 	public Vengefly(double x, double y) {
@@ -26,15 +30,15 @@ public class Vengefly extends MoveableEnemy {
 	}
 	
 	public void setMovement() {
-		double distanceX = Main.hero.getCenterX() - getCenterX();
-		double distanceY = Main.hero.getCenterY() - getCenterY();
-		double distance = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
-		switch(cerrentStage) {
+		distanceX = Main.hero.getCenterX() - getCenterX();
+		distanceY = Main.hero.getCenterY() - getCenterY();
+		distance = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
+		switch(cerrentState) {
 		case "idle":
 			dx -= dx*friction;
 			dy -= dy*friction;
 			if (distance < vision) {
-				cerrentStage = "normal";
+				cerrentState = "normal";
 			}
 			break;
 		case "normal":
@@ -48,7 +52,7 @@ public class Vengefly extends MoveableEnemy {
 
 	protected void reset() {
 		super.reset();
-		cerrentStage = "idle";
+		cerrentState = "idle";
 	}
 	
 	public void die() {

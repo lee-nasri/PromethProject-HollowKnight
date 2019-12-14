@@ -6,7 +6,7 @@ import item.Item;
 public abstract class MoveableEnemy extends MoveableCharacter {
 	
 	private double[] spawnLocation = new double[2];
-	protected String cerrentStage;
+	protected String cerrentState;
 	
 	protected static final double heroKnockBackX = 25;
 	protected static final double heroKnockBackY = 15;
@@ -72,7 +72,7 @@ public abstract class MoveableEnemy extends MoveableCharacter {
 	}
 	
 	protected void reset() {
-		//always turn left when reset
+		//always turn right when reset
 		turn(false);
 		super.reset();
 	}
@@ -83,7 +83,7 @@ public abstract class MoveableEnemy extends MoveableCharacter {
 	}
 	
 	protected void changeSprite(String art) {
-		cerrentStage = art;
+		cerrentState = art;
 		super.changeSprite(art);
 	}
 	

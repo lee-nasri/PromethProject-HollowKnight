@@ -17,7 +17,7 @@ public class Effect extends GameObject {
 		}
 	}
 	
-	protected void changeStage() {
+	protected void changeState() {
 		remove();
 	}
 

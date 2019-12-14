@@ -11,7 +11,7 @@ public abstract class GameObject extends Group implements Updateable {
 	
 	protected double x, y;
 	protected double[] size = new double[2]; //index 0 is width, index 1 is height.
-	protected Delay stageHolder = new Delay(0);
+	protected Delay stateHolder = new Delay(0);
 	protected boolean alive;
 	
 	public GameObject(double x, double y, double width, double height) {
@@ -41,19 +41,19 @@ public abstract class GameObject extends Group implements Updateable {
 		Main.world.getChildren().remove(this);
 	}
 	
-	protected void changeStage() {
+	protected void changeState() {
 		
 	};
 	
 	protected void holdStage(long time) {
-		stageHolder = new Delay(time) {
+		stateHolder = new Delay(time) {
 			@Override
 			public void end() {
 				Platform.runLater(new Runnable(){
 					@Override
 					public void run() {
 						if (alive) {
-							changeStage();
+							changeState();
 						}
 					}
 				});
