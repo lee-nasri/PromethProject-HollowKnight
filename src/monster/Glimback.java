@@ -1,5 +1,11 @@
 package monster;
 
+import item.Armor;
+import item.ArmorType;
+import item.Shoes;
+import item.ShoesType;
+import item.Sword;
+import item.SwordType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import object.HitWallException;
@@ -38,6 +44,13 @@ public class Glimback extends MoveableEnemy {
 				turn(true);
 			}
 		}
+	}
+	
+	public void die() {
+		super.die();
+		dropItem(new Sword(SwordType.RareSword), 0.3);
+		dropItem(new Armor(ArmorType.RareArmor), 0.3);
+		dropItem(new Shoes(ShoesType.RareShoes), 0.3);
 	}
 
 }

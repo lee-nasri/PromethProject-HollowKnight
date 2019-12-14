@@ -12,7 +12,7 @@ public enum SwordType {
 		case RareSword:
 			return 10;
 		case GoldenSword:
-			return 200;
+			return 20;
 		default:
 			return 0;
 		}

@@ -2,6 +2,8 @@ package monster;
 
 import application.Main;
 import application.Music;
+import item.Shoes;
+import item.ShoesType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import object.Boss;
@@ -11,7 +13,7 @@ public class Illya extends Boss {
 	
 	private static final double range = 500;
 	private static final double fullSpeed = 10;
-	private static final double slashSpeed = 20;
+	private static final double slashSpeed = 25;
 	private static final double slashWidth = 200;
 	private static final double slashHeight = 100;
 	
@@ -99,6 +101,11 @@ public class Illya extends Boss {
 		super.reset();
 		setVisible(false);
 		cerrentStage = "idle";
+	}
+	
+	public void die() {
+		super.die();
+		dropItem(new Shoes(ShoesType.GoldenShoes), 1);
 	}
 
 }

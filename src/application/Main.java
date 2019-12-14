@@ -33,7 +33,7 @@ public class Main extends Application {
 		stage.setTitle("Hollow Knight");
 		stage.show();
 		stage.setFullScreenExitHint("");
-		Sound.changeBackgroundMusic(Music.Friend_shitai);
+		Sound.changeBackgroundMusic(Music.Proof_of_a_Hero);
 	}
 	
 	public static void updateSceneSize() {

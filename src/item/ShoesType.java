@@ -8,14 +8,26 @@ public enum ShoesType {
 	public int getSpeedBonus() {
 		switch(this) {
 		case NormalShoes: 
-			return 5 ;
+			return 2 ;
 		case RareShoes:
-			return 10 ;
+			return 4 ;
 		case GoldenShoes :
-			return 30 ;
+			return 6 ;
 		default:
 			return 0;
-			
+		}	
+	}
+	
+	public int getDashBonus() {
+		switch(this) {
+		case NormalShoes: 
+			return 5 ;
+		case RareShoes:
+			return 8 ;
+		case GoldenShoes :
+			return 15 ;
+		default:
+			return 0;
 		}	
 	}
 	

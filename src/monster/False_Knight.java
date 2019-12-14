@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import application.Main;
 import application.Music;
+import item.Sword;
+import item.SwordType;
 import object.Boss;
 import object.Projectile;
 
@@ -82,9 +84,8 @@ public class False_Knight extends Boss {
 			holdStage(fallTime);
 			break;
 		case "normal":
-			// randomly choose nextMove
-			double nextMove = Math.random();
-			if (nextMove < 0.4) {
+			// randomly choose next move
+			if (Math.random() < 0.4) {
 				changeSprite("charge");
 				holdStage(chargeTime);
 				break;
@@ -157,4 +158,10 @@ public class False_Knight extends Boss {
 		speed = 0;
 		cerrentStage = "idle";
 	}
+	
+	public void die() {
+		super.die();
+		dropItem(new Sword(SwordType.GoldenSword), 1);
+	}
+	
 }

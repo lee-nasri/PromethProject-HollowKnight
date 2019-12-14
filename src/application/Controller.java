@@ -46,6 +46,7 @@ public class Controller {
 				case DOWN:  
 					down = true;
 					break;
+				//press A or SPACE to jump
 				case A:
 				case SPACE:
 					jump = true;
@@ -79,6 +80,7 @@ public class Controller {
 				case DOWN:
 					down = false; 
 					break;
+				//press A or SPACE to jump
 				case A:
 				case SPACE:
 					jump = false;

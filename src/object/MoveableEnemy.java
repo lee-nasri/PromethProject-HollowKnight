@@ -62,8 +62,7 @@ public abstract class MoveableEnemy extends MoveableCharacter {
 	}
 	
 	protected void dropItem(Item item, double dropRate) {
-		double rng = Math.random();
-		if (rng <= dropRate) {
+		if (Math.random() <= dropRate) {
 			Main.controlInventory.getInventory().addItem(item);
 		}
 	}

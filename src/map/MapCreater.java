@@ -62,7 +62,7 @@ public class MapCreater {
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, -50, 0, 200, 1020, false, true));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 2360, 0, 200, 1440, true, false));
 		map.addCheckPoint(new CheckPoint(1000 , 1075));
-		map.setMusic(Music.Friend_shitai);
+		map.setMusic(Music.City_of_Tears);
 		return map;
 	}
 	
@@ -92,7 +92,7 @@ public class MapCreater {
 		map.addEnemy(new Vengefly(1100, 1600));
 		map.addEnemy(new Vengefly(1300, 1000));
 		map.addEnemy(new Glimback(500, 2020));
-		map.setMusic(Music.Friend_shitai);
+		map.setMusic(Music.City_of_Tears);
 		map.setDarkArea(true);
 		return map;
 	}
@@ -107,7 +107,7 @@ public class MapCreater {
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 0, 0, 200, 1330));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 1950, 0, 200, 1020, true, false));
 		map.addEnemy(new Glimback(500, 1040));
-		map.setMusic(Music.Friend_shitai);
+		map.setMusic(Music.City_of_Tears);
 		map.setDarkArea(true);
 		return map;
 	}
@@ -124,7 +124,7 @@ public class MapCreater {
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 0, 0, 200, 1020));
 		map.addPlatform(new GamePlatform(PlatformType.SidePlatform1, 2200, 0, 200, 1300, true, false));
 		map.addEnemy(new Illya(1200, 800));
-		map.setMusic(Music.Friend_shitai);
+		map.setMusic(Music.City_of_Tears);
 		return map;
 	}
 	

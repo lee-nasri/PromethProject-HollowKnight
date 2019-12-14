@@ -2,6 +2,8 @@ package menu;
 
 import application.Controller;
 import application.Main;
+import application.Music;
+import application.Sound;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,7 +33,7 @@ public class MainMenu extends VBox {
 	public MainMenu() {
 		setAlignment(Pos.CENTER);
 		setSpacing(30);
-		this.setBackground(new Background(
+		setBackground(new Background(
 				new BackgroundImage(new Image(ClassLoader.getSystemResource("Background/Great_Grey_Wolf.png").toString()), 
 						BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 		Button newGameButton = new Button("New Game");
@@ -53,9 +55,10 @@ public class MainMenu extends VBox {
 		exitButton.setPrefSize(100, 30);
 		exitButton.setFocusTraversable(false);
 		getChildren().addAll(newGameButton, exitButton);
+		Sound.changeBackgroundMusic(Music.Proof_of_a_Hero);
 	}
 	
-	private static void createNewGame() {
+	private void createNewGame() {
 		startLoadingScene();
 		Thread createGame = new Thread() {
 			@Override
@@ -77,7 +80,7 @@ public class MainMenu extends VBox {
 		createGame.start();
 	}
 	
-	private static void startLoadingScene() {
+	private void startLoadingScene() {
 		Label text = new Label("now loading...");
 		text.setFont(Font.font(30));
 		StackPane loading = new StackPane(text);

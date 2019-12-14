@@ -3,6 +3,10 @@ package monster;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import application.Main;
+import item.Armor;
+import item.ArmorType;
+import item.Shoes;
+import item.ShoesType;
 import item.Sword;
 import item.SwordType;
 import object.MoveableEnemy;
@@ -49,6 +53,8 @@ public class Vengefly extends MoveableEnemy {
 	
 	public void die() {
 		super.die();
-		dropItem(new Sword(SwordType.NormalSword), 0.5);
+		dropItem(new Sword(SwordType.NormalSword), 0.2);
+		dropItem(new Armor(ArmorType.NormalArmor), 0.2);
+		dropItem(new Shoes(ShoesType.NormalShoes), 0.2);
 	}
 }
