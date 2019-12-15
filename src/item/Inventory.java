@@ -50,7 +50,7 @@ public class Inventory extends GridPane {
 	} 
 	
 	public void addItem(Item newItem) throws FullInventoryException {
-		if (myInventory.size() >= 10) {
+		if (myInventory.size() >= maxSize) {
 			throw new FullInventoryException();
 		}
 		if (!myInventory.contains(newItem)) {
