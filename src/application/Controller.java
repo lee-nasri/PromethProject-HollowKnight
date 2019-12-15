@@ -24,6 +24,7 @@ public class Controller {
 				updateKey();
 				Main.hero.update();
 				updateObject();
+				Main.eventLog.update();
 			}
 		};
 		gameLoop.start();

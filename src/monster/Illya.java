@@ -36,6 +36,7 @@ public class Illya extends Boss {
 		maxHp = 500;
 		attackDamage = 25;
 		bossTheme = Music.Get_Goal;
+		name = "Illyasviel von Einzbern";
 	}
 	
 	public void setMovement() {
@@ -101,7 +102,7 @@ public class Illya extends Boss {
 		case "moveToLeft":
 		case "moveToRight":
 			changeSprite("attack");
-			holdStage(1000);
+			holdStage(1500);
 			break;
 		case "attack":
 			//slash attack
@@ -123,30 +124,22 @@ public class Illya extends Boss {
 				leftWallCheck();
 				x +=dx;
 			} catch(HitWallException exception) {
-				switch (cerrentState) {
-				case "normal":
+				if (cerrentState == "normal") {
 					cerrentState = "moveToRight";
-					break;
-				default:
-					dy += (((dy > 0) ? speed : -speed) - dy)*friction;
-					x += exception.distance;
-					dx = 0;
 				}
+				x += exception.distance;
+				dx = 0;
 			}
 		}else if (dx > 0) {
 			try {
 				rightWallCheck();
 				x +=dx;
 			} catch(HitWallException exception) {
-				switch (cerrentState) {
-				case "normal":
+				if (cerrentState == "normal") {
 					cerrentState = "moveToLeft";
-					break;
-				default:
-					dy += (((dy > 0) ? speed : -speed) - dy)*friction;
-					x += exception.distance;
-					dx = 0;
 				}
+				x += exception.distance;
+				dx = 0;
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 package object;
 
 import application.Main;
+import item.FullInventoryException;
 import item.Item;
 
 public abstract class MoveableEnemy extends MoveableCharacter {
@@ -63,7 +64,12 @@ public abstract class MoveableEnemy extends MoveableCharacter {
 	
 	protected void dropItem(Item item, double dropRate) {
 		if (Math.random() <= dropRate) {
-			Main.controlInventory.getInventory().addItem(item);
+			try {
+				Main.controlInventory.getInventory().addItem(item);
+				Main.eventLog.addText("You have received a " + item.getTypeOfItem());
+			} catch (FullInventoryException e) {
+				Main.eventLog.addText("Your inventory is full");
+			}
 		}
 	}
 	

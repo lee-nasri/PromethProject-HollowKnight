@@ -9,6 +9,7 @@ public abstract class Boss extends MoveableEnemy {
 	
 	protected Music bossTheme;
 	protected BossHpBar hpBar;
+	protected String name;
 	
 	public Boss(double x, double y, double width, double height) {
 		super(x, y, width, height);
@@ -24,13 +25,14 @@ public abstract class Boss extends MoveableEnemy {
 	protected void startBossFight() {
 		Sound.changeBackgroundMusic(bossTheme);
 		Main.world.setBossFight(true);
-		hpBar = new BossHpBar(maxHp);
+		hpBar = new BossHpBar(maxHp, name);
 		Main.root.getChildren().add(hpBar);
 	}
 	
 	public void die() {
 		Main.world.getCerrentMap().getEnemyList().remove(this);
 		Sound.changeBackgroundMusic(Main.world.getCerrentMap().getMusic());
+		Main.eventLog.addText(name + " has been slayed");
 		super.die();
 	}
 	

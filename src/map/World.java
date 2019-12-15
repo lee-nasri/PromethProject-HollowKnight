@@ -3,7 +3,6 @@ package map;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import application.Main;

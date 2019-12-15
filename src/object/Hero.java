@@ -278,6 +278,7 @@ public class Hero extends MoveableCharacter {
 	public void die() {
 		Main.world.setBossFight(false);
 		spawn();
+		Main.eventLog.addText("YOU DIED");
 	}
 	
 	public void spawn() {

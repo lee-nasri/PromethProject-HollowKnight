@@ -19,6 +19,7 @@ public class Inventory extends GridPane {
 	// myActivateItem index0 = Sword , index1 = Armor;
 	private GridPane activateItemPane;
 	
+	private static final int maxSize = 18;
 	private static final int maxColumn = 6;
 	private static final int maxRow = 3;
 	
@@ -37,14 +38,21 @@ public class Inventory extends GridPane {
 		addActivePane();
 		
 		// Add Item For test only. don't forget to delete after test.
-		addItem(new Sword(SwordType.GoldenSword));
-		addItem(new Sword(SwordType.NormalSword));
-		addItem(new Armor(ArmorType.LegendArmor));
-		addItem(new Armor(ArmorType.RareArmor));
-		addItem(new Shoes(ShoesType.RareShoes));
+		try {
+			addItem(new Sword(SwordType.GoldenSword));
+			addItem(new Sword(SwordType.NormalSword));
+			addItem(new Armor(ArmorType.LegendArmor));
+			addItem(new Armor(ArmorType.RareArmor));
+			addItem(new Shoes(ShoesType.RareShoes));
+		} catch (FullInventoryException e) {
+			
+		}
 	} 
 	
-	public void addItem(Item newItem) {
+	public void addItem(Item newItem) throws FullInventoryException {
+		if (myInventory.size() >= 10) {
+			throw new FullInventoryException();
+		}
 		if (!myInventory.contains(newItem)) {
 			myInventory.add(newItem);
 			addActivatedBlock(newItem);
@@ -59,15 +67,23 @@ public class Inventory extends GridPane {
 			// remove Old item in myActivateItem (map)
 			Item removedItem = deactivateItem(newItem.getTypeOfItem());
 			// add removedItem to myInventory (List)
-			addItem(removedItem);
+			try {
+				addItem(removedItem);
+			} catch (FullInventoryException e) {
+				
+			}
 		}
 		// add newItem to myActivateItem (map)
 		myActivateItem.put(newItem.getTypeOfItem(), newItem);
 		// update MyActivatePane
 		activatePaneBlock(newItem);
-		newItem.setOnAction(e -> {
+		newItem.setOnAction(event -> {
 			Item removedItem = deactivateItem(newItem.getTypeOfItem());
-			addItem(removedItem);
+			try {
+				addItem(removedItem);
+			} catch (FullInventoryException e) {
+				
+			}
 		});
 	}
 	

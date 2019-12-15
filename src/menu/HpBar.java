@@ -16,7 +16,7 @@ public abstract class HpBar extends StackPane {
 		border = new Rectangle(0, size, Color.DARKGRAY);
 		yellowBar = new Rectangle(0, size, Color.LIGHTYELLOW);
 		bar = new Rectangle(0, size, Color.RED);
-		this.getChildren().addAll(border, yellowBar, bar);
+		getChildren().addAll(border, yellowBar, bar);
 		setAlignment(Pos.CENTER_LEFT);
 	}
 	

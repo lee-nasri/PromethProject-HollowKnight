@@ -5,6 +5,7 @@ import javafx.scene.*;
 import javafx.stage.Stage;
 import item.ControlInventory;
 import map.World;
+import menu.EventLog;
 import menu.MainMenu;
 import object.Hero;
 
@@ -16,6 +17,7 @@ public class Main extends Application {
 	public static ControlInventory controlInventory = new ControlInventory();
 	public static Hero hero;
 	public static World world;
+	public static EventLog eventLog;
 	
 	public static final double defaultWidth = 1000;
 	public static final double defaultHeight = 600;
@@ -31,8 +33,10 @@ public class Main extends Application {
 		stage = primaryStage;
 		stage.setScene(mainMenuScene);
 		stage.setTitle("Hollow Knight");
-		stage.show();
+		stage.setMinHeight(400);
+		stage.setMinWidth(600);
 		stage.setFullScreenExitHint("");
+		stage.show();
 		Sound.changeBackgroundMusic(Music.Proof_of_a_Hero);
 	}
 	

@@ -46,6 +46,7 @@ public class False_Knight extends Boss {
 		maxHp = 600;
 		attackDamage = 25;
 		bossTheme = Music.Guren_no_Yumiya;
+		name = "False Knight";
 	}
 	
 	public void setMovement() {	
