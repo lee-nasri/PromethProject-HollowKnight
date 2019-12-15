@@ -56,8 +56,8 @@ public class Illya extends Boss {
 				flyToHero();
 			} else {
 				//fly away
-				dx += ((speed*distanceY/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dx)*friction;
-				dy += ((speed*distanceX/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dy)*friction;
+				dx += (speed*(distanceY/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dx)*friction;
+				dy += (speed*(distanceX/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dy)*friction;
 			}
 			break;
 		case "moveToLeft":
@@ -66,8 +66,8 @@ public class Illya extends Boss {
 				flyToHero();
 			} else {
 				//fly to left side of the hero
-				dx += ((highSpeed*distanceY/distance)*((distanceY > 0) ? -1 : 1) - dx)*friction;
-				dy += ((speed*distanceX/distance)*((distanceY > 0) ? 1 : -1) - dy)*friction;
+				dx += (highSpeed*(distanceY/distance)*((distanceY > 0) ? -1 : 1) - dx)*friction;
+				dy += (speed*(distanceX/distance)*((distanceY > 0) ? 1 : -1) - dy)*friction;
 			}
 			break;
 		case "moveToRight":
@@ -76,15 +76,15 @@ public class Illya extends Boss {
 				flyToHero();
 			} else {
 				//fly to right side of the hero
-				dx += ((highSpeed*distanceY/distance)*((distanceY > 0) ? 1 : -1) - dx)*friction;
-				dy += ((speed*distanceX/distance)*((distanceY > 0) ? -1 : 1) - dy)*friction;
+				dx += (highSpeed*(distanceY/distance)*((distanceY > 0) ? 1 : -1) - dx)*friction;
+				dy += (speed*(distanceX/distance)*((distanceY > 0) ? -1 : 1) - dy)*friction;
 			}
 			break;
 		case "attack":
 			turn(Main.hero.getCenterX() < getCenterX());
 			//fly to the same plane with the hero
-			dx += ((speed*distanceY/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dx)*friction;
-			dy += ((highSpeed*distanceX/distance)*((distanceX*distanceY > 0) ? 1 : -1) - dy)*friction;
+			dx += (speed*(distanceY/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dx)*friction;
+			dy += (highSpeed*((distanceY > 0) ? 1 : -1) - dy)*friction;
 			break;
 		}
 	}
@@ -145,8 +145,8 @@ public class Illya extends Boss {
 	}
 	
 	private void flyToHero(){
-		dx += (speed*distanceX/distance - dx)*friction;
-		dy += (speed*distanceY/distance - dy)*friction;
+		dx += (speed*(distanceX/distance) - dx)*friction;
+		dy += (speed*(distanceY/distance) - dy)*friction;
 	}
 	
 	public void turn(boolean turnLeft) {

@@ -43,8 +43,8 @@ public class Vengefly extends MoveableEnemy {
 			break;
 		case "normal":
 			//fly straight to the hero
-			dx += (speed*distanceX/distance - dx)*friction;
-			dy += (speed*distanceY/distance - dy)*friction;
+			dx += (speed*(distanceX/distance) - dx)*friction;
+			dy += (speed*(distanceY/distance) - dy)*friction;
 			turn(Main.hero.getCenterX() < getCenterX());
 			break;
 		}
