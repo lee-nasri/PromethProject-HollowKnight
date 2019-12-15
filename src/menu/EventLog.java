@@ -14,6 +14,7 @@ public class EventLog extends VBox {
 	private List<Label> textList = new ArrayList<Label>();
 	
 	private static final int maxText = 4;
+	private static final double opacityDecreaseSpeed = 0.01;
 	
 	public EventLog() {
 		setLayoutX(50);
@@ -23,7 +24,7 @@ public class EventLog extends VBox {
 	public void update() {
 		setLayoutY(Main.getSceneHeight() - 250);
 		for (Label label: new ArrayList<Label>(textList)) {
-			label.setOpacity(label.getOpacity() - 0.01);
+			label.setOpacity(label.getOpacity() - opacityDecreaseSpeed);
 			if (label.getOpacity() == 0) {
 				textList.remove(label);
 			}

@@ -51,6 +51,7 @@ public class Glimback extends MoveableEnemy {
 		dropItem(new Sword(SwordType.RareSword), 0.3);
 		dropItem(new Armor(ArmorType.RareArmor), 0.3);
 		dropItem(new Shoes(ShoesType.RareShoes), 0.3);
+		dropItem(new Armor(ArmorType.LegendArmor), 0.05);
 	}
 
 }
