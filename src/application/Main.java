@@ -17,7 +17,7 @@ public class Main extends Application {
 	public static ControlInventory controlInventory = new ControlInventory();
 	public static Hero hero;
 	public static World world;
-	public static EventLog eventLog;
+	public static EventLog eventLog = new EventLog();
 	
 	public static final double defaultWidth = 1000;
 	public static final double defaultHeight = 600;

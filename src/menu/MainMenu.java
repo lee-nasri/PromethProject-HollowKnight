@@ -64,7 +64,6 @@ public class MainMenu extends VBox {
 			@Override
 			public void run() {
 				Main.hero = new Hero();
-				Main.eventLog = new EventLog();
 				Main.world = new World();
 				Main.hero.spawn();
 				Main.gameRoot = new Group(Main.world, Main.hero.getHpBar(), Main.eventLog);
