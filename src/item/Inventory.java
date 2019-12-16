@@ -40,13 +40,11 @@ public class Inventory extends GridPane {
 		// create  InformationField.
 		informationField = new InformationField();
 		
-		// Add Item For test only. don't forget to delete after test.
+		// Starting Item.
 		try {
-			addItem(new Sword(SwordType.GoldenSword));
 			addItem(new Sword(SwordType.NormalSword));
-			addItem(new Armor(ArmorType.LegendArmor));
-			addItem(new Armor(ArmorType.RareArmor));
-			addItem(new Shoes(ShoesType.RareShoes));
+			addItem(new Armor(ArmorType.NormalArmor));
+			addItem(new Shoes(ShoesType.NormalShoes));
 		} catch (FullInventoryException e) {
 			
 		}
