@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
@@ -55,8 +56,10 @@ public class Inventory extends GridPane {
 			throw new FullInventoryException();
 		}
 		myInventory.add(newItem);
-		addActivatedBlock(newItem);
+		addActivatedBlock(myInventory.indexOf(newItem));
 		myInventoryPaneAdd(newItem);
+		newItem.setOnMouseEntered(e -> informationField.newItem(newItem));
+		newItem.setOnMouseExited(e -> informationField.clearItem());
 	}
 	
 	public void activateItem(Item newItem) {
@@ -98,13 +101,12 @@ public class Inventory extends GridPane {
 			Item removedItem = deactivateItem(newItem.getTypeOfItem());
 			myInventoryPaneAdd(removedItem);
 		});
+		newItem.setOnMouseReleased(e -> {});
 	}
 
 	public boolean isItemtypeActivate(Item item) {
 		return myActivateItem.containsKey(item.getTypeOfItem());
 	}
-	
-	
 	
 	public GridPane getActivateItemPane() {
 		return this.activateItemPane;
@@ -123,15 +125,45 @@ public class Inventory extends GridPane {
 		int row = myInventory.indexOf(newItem)/maxColumn;
 		add(newItem, column, row);
 		newItem.setOnAction(e -> activateItem(newItem));
-		newItem.setOnMouseEntered(e -> informationField.newItem(newItem));
-		newItem.setOnMouseExited(e -> informationField.clearItem());
+		newItem.setOnMouseReleased(e -> {
+			if (e.getButton() == MouseButton.SECONDARY){
+				myInventory.remove(newItem);
+				MyInventoryUpdate();
+			}
+		});
 	}
 	
-	public void addActivatedBlock(Item item) {
+	private void MyInventoryUpdate() {
+		// MyInventory update only when we remove an item in inventory.
+		getChildren().clear();
+		int count = 0;
+		for	(int row = 0 ; row < maxRow ; row++) {
+			for	(int column=0; column < maxColumn ; column++) {
+				// add item in myInventory to Inventory empty block.
+				if (count < myInventory.size()) {
+					addActivatedBlock(count);
+					if (!activateItemPane.getChildren().contains(myInventory.get(count))) {
+						add(myInventory.get(count), column, row);
+					}
+					count++;
+				}
+				// add empty image to Inventory another empty block.
+				else {
+					ImageView emptyBlock = new ImageView(new Image(ClassLoader.getSystemResource
+							("ItemImage/InventoryBlock.png").toString()));
+					emptyBlock.setFitHeight(63);
+					emptyBlock.setFitWidth(63);
+					add(emptyBlock, column, row);
+				}
+			}
+		}
+	}
+	
+	public void addActivatedBlock(int index) {
 		ImageView activateBlock = new ImageView(new Image(ClassLoader.getSystemResource
 				("ItemImage/ActivateBlock.png").toString(), 60, 60, false, true));
-		int column = myInventory.indexOf(item) % maxColumn;
-		int row = myInventory.indexOf(item)/maxColumn;
+		int column = index % maxColumn;
+		int row = index/maxColumn;
 		add(activateBlock, column, row);
 	}
 	

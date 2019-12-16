@@ -34,7 +34,7 @@ public class Illya extends Boss {
 		friction = 0.03;
 		speed = 10;
 		maxHp = 500;
-		attackDamage = 25;
+		attackDamage = 20;
 		bossTheme = Music.Get_Goal;
 		name = "Illyasviel von Einzbern";
 	}
@@ -55,7 +55,7 @@ public class Illya extends Boss {
 			if (distance > range) {
 				flyToHero();
 			} else {
-				//fly away
+				//fly up and away from the hero
 				dx += (speed*(distanceY/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dx)*friction;
 				dy += (speed*(distanceX/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dy)*friction;
 			}
@@ -65,9 +65,9 @@ public class Illya extends Boss {
 			if (distance > range) {
 				flyToHero();
 			} else {
-				//fly to left side of the hero
-				dx += (highSpeed*(distanceY/distance)*((distanceY > 0) ? -1 : 1) - dx)*friction;
-				dy += (speed*(distanceX/distance)*((distanceY > 0) ? 1 : -1) - dy)*friction;
+				//fly anti-clockwise  to the left side of the hero
+				dx += (-highSpeed*(distanceY/distance) - dx)*friction;
+				dy += (speed*(distanceX/distance) - dy)*friction;
 			}
 			break;
 		case "moveToRight":
@@ -75,9 +75,9 @@ public class Illya extends Boss {
 			if (distance > range) {
 				flyToHero();
 			} else {
-				//fly to right side of the hero
-				dx += (highSpeed*(distanceY/distance)*((distanceY > 0) ? 1 : -1) - dx)*friction;
-				dy += (speed*(distanceX/distance)*((distanceY > 0) ? -1 : 1) - dy)*friction;
+				//fly clockwise to the right side of the hero
+				dx += (highSpeed*(distanceY/distance) - dx)*friction;
+				dy += (-speed*(distanceX/distance) - dy)*friction;
 			}
 			break;
 		case "attack":

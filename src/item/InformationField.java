@@ -39,20 +39,20 @@ public class InformationField extends VBox{
 		textTitle.setPrefWidth(600);
 		
 		
-		textName = new Label("Name : Unknow Item");
+		textName = new Label(" Name : Unknow Item");
 		textName.setTextFill(Color.WHITE);
 		textName.setAlignment(Pos.CENTER_LEFT);
 		textName.setFont(Font.font(15)); 
 		textName.setPrefWidth(600);
-		textBonus = new Label("Bonus : Unknow Item");
+		textBonus = new Label(" Bonus : +No Bonus");
 		textBonus.setTextFill(Color.WHITE);
 		textBonus.setAlignment(Pos.CENTER_LEFT);
 		textBonus.setFont(Font.font(15)); 
 		textBonus.setPrefWidth(600);
 		itemImage = new ImageView(new Image(ClassLoader.getSystemResource
 				("ItemImage/InventoryBlock.png").toString()));
-		
-		this.getChildren().addAll(textTitle, itemImage, textName , textBonus);
+		itemImage.setVisible(false);
+		getChildren().addAll(textTitle, itemImage, textName , textBonus);
 	}
 	
 	public void newItem(Item item) {
@@ -64,19 +64,19 @@ public class InformationField extends VBox{
 		else if (item.getTypeOfItem() == "Armor") itemTypeBonus = "Hp";
 		else if (item.getTypeOfItem() == "Shoes") itemTypeBonus = "Speed";
 		// 2. set Label
-		textName.setText("Name : " + itemName);
-		textBonus.setText("Bonus : +" + itemBonus + " " + itemTypeBonus);
+		textName.setText(" Name : " + itemName);
+		textBonus.setText(" Bonus : +" + itemBonus + " " + itemTypeBonus);
+		itemImage.setVisible(true);
 	}
 	
 	public void clearItem() {
 		// 1. clear String
 		itemName = "Unknow Item";
-		itemBonus = "Unknow Item";
+		itemBonus = "No Bonus";
 		itemTypeBonus = "";
-		itemImage.setImage(new Image(ClassLoader.getSystemResource
-				("ItemImage/InventoryBlock.png").toString()));
+		itemImage.setVisible(false);
 		// 2. clear Label
-		textName.setText("Name : " + itemName);
-		textBonus.setText("Bonus : +" + itemBonus + " " + itemTypeBonus);
+		textName.setText(" Name : " + itemName);
+		textBonus.setText(" Bonus : +" + itemBonus + " " + itemTypeBonus);
 	}
 }
