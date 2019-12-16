@@ -56,14 +56,7 @@ public class Inventory extends GridPane {
 		}
 		myInventory.add(newItem);
 		addActivatedBlock(newItem);
-		addToInventoryPane(newItem);
-	}
-	
-	private void addToInventoryPane(Item item) {
-		myInventoryPaneAdd(item);
-		item.setOnAction(e -> activateItem(item));
-		item.setOnMouseEntered(e -> informationField.newItem(item));
-		item.setOnMouseExited(e -> informationField.clearItem());
+		myInventoryPaneAdd(newItem);
 	}
 	
 	public void activateItem(Item newItem) {
@@ -72,16 +65,12 @@ public class Inventory extends GridPane {
 			// remove Old item in myActivateItem (map)
 			Item removedItem = deactivateItem(newItem.getTypeOfItem());
 			// add removedItem to myInventoryPane
-			addToInventoryPane(removedItem);
+			myInventoryPaneAdd(removedItem);
 		}
 		// add newItem to myActivateItem (map)
 		myActivateItem.put(newItem.getTypeOfItem(), newItem);
 		// update MyActivatePane
 		activatePaneBlock(newItem);
-		newItem.setOnAction(event -> {
-			Item removedItem = deactivateItem(newItem.getTypeOfItem());
-			addToInventoryPane(removedItem);
-		});
 	}
 	
 	
@@ -105,6 +94,10 @@ public class Inventory extends GridPane {
 		if (newItem.getTypeOfItem() == "Shoes") {
 			activateItemPane.add(newItem, 2, 0);
 		}
+		newItem.setOnAction(event -> {
+			Item removedItem = deactivateItem(newItem.getTypeOfItem());
+			myInventoryPaneAdd(removedItem);
+		});
 	}
 
 	public boolean isItemtypeActivate(Item item) {
@@ -129,6 +122,9 @@ public class Inventory extends GridPane {
 		int column = myInventory.indexOf(newItem) % maxColumn;
 		int row = myInventory.indexOf(newItem)/maxColumn;
 		add(newItem, column, row);
+		newItem.setOnAction(e -> activateItem(newItem));
+		newItem.setOnMouseEntered(e -> informationField.newItem(newItem));
+		newItem.setOnMouseExited(e -> informationField.clearItem());
 	}
 	
 	public void addActivatedBlock(Item item) {
