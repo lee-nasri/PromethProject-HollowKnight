@@ -66,7 +66,7 @@ public abstract class MoveableEnemy extends MoveableCharacter {
 		if (Math.random() <= dropRate) {
 			try {
 				Main.controlInventory.getInventory().addItem(item);
-				Main.eventLog.addText("You have received a " + item.getTypeOfItem());
+				Main.eventLog.addText("You have received a " + item.getName());
 			} catch (FullInventoryException e) {
 				Main.eventLog.addText("Your inventory is full");
 			}

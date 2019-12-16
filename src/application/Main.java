@@ -14,10 +14,10 @@ public class Main extends Application {
 	public static Stage stage;
 	public static Scene gameScene;
 	public static Group gameRoot;
-	public static ControlInventory controlInventory = new ControlInventory();
+	public static ControlInventory controlInventory;
+	public static EventLog eventLog;
 	public static Hero hero;
 	public static World world;
-	public static EventLog eventLog = new EventLog();
 	
 	public static final double defaultWidth = 1000;
 	public static final double defaultHeight = 600;

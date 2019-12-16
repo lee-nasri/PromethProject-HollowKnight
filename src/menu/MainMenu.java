@@ -4,6 +4,7 @@ import application.Controller;
 import application.Main;
 import application.Music;
 import application.Sound;
+import item.ControlInventory;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -63,6 +64,8 @@ public class MainMenu extends VBox {
 		Thread createGame = new Thread() {
 			@Override
 			public void run() {
+				Main.controlInventory = new ControlInventory();
+				Main.eventLog = new EventLog();
 				Main.hero = new Hero();
 				Main.world = new World();
 				Main.hero.spawn();

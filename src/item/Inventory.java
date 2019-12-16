@@ -48,20 +48,22 @@ public class Inventory extends GridPane {
 		} catch (FullInventoryException e) {
 			
 		}
-	} 
+	}
 	
 	public void addItem(Item newItem) throws FullInventoryException {
 		if (myInventory.size() >= maxSize) {
 			throw new FullInventoryException();
 		}
-		if (!myInventory.contains(newItem)) {
-			myInventory.add(newItem);
-			addActivatedBlock(newItem);
-		}
-		myInventoryPaneAdd(newItem);
-		newItem.setOnAction(e -> activateItem(newItem));
-		newItem.setOnMouseEntered(e -> informationField.newItem(newItem));
-		newItem.setOnMouseExited(e -> informationField.clearItem());
+		myInventory.add(newItem);
+		addActivatedBlock(newItem);
+		addToInventoryPane(newItem);
+	}
+	
+	private void addToInventoryPane(Item item) {
+		myInventoryPaneAdd(item);
+		item.setOnAction(e -> activateItem(item));
+		item.setOnMouseEntered(e -> informationField.newItem(item));
+		item.setOnMouseExited(e -> informationField.clearItem());
 	}
 	
 	public void activateItem(Item newItem) {
@@ -69,12 +71,8 @@ public class Inventory extends GridPane {
 		if (isItemtypeActivate(newItem)) {
 			// remove Old item in myActivateItem (map)
 			Item removedItem = deactivateItem(newItem.getTypeOfItem());
-			// add removedItem to myInventory (List)
-			try {
-				addItem(removedItem);
-			} catch (FullInventoryException e) {
-				
-			}
+			// add removedItem to myInventoryPane
+			addToInventoryPane(removedItem);
 		}
 		// add newItem to myActivateItem (map)
 		myActivateItem.put(newItem.getTypeOfItem(), newItem);
@@ -82,11 +80,7 @@ public class Inventory extends GridPane {
 		activatePaneBlock(newItem);
 		newItem.setOnAction(event -> {
 			Item removedItem = deactivateItem(newItem.getTypeOfItem());
-			try {
-				addItem(removedItem);
-			} catch (FullInventoryException e) {
-				
-			}
+			addToInventoryPane(removedItem);
 		});
 	}
 	
