@@ -27,9 +27,7 @@ public class Delay extends Thread {
 		}
 	}
 	
-	public void end() {
-		
-	}
+	public void end() {}
 
 	public double getData() {
 		return data;

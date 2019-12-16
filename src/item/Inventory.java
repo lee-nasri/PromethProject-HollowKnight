@@ -125,8 +125,9 @@ public class Inventory extends GridPane {
 		int row = myInventory.indexOf(newItem)/maxColumn;
 		add(newItem, column, row);
 		newItem.setOnAction(e -> activateItem(newItem));
-		newItem.setOnMouseReleased(e -> {
-			if (e.getButton() == MouseButton.SECONDARY){
+		//right click to remove an item from inventory
+		newItem.setOnMouseReleased(event -> {
+			if (event.getButton() == MouseButton.SECONDARY){
 				myInventory.remove(newItem);
 				MyInventoryUpdate();
 			}
