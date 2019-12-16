@@ -16,8 +16,8 @@ public class Inventory extends GridPane {
 	
 	private ObservableList<Item> myInventory = FXCollections.observableArrayList();
 	private Map<String, Item> myActivateItem = new HashMap<>();
-	// myActivateItem index0 = Sword , index1 = Armor;
 	private GridPane activateItemPane;
+	private InformationField informationField;
 	
 	private static final int maxSize = 18;
 	private static final int maxColumn = 6;
@@ -36,6 +36,9 @@ public class Inventory extends GridPane {
 		activateItemPane.setVgap(10);
 		activateItemPane.setHgap(10);
 		addActivePane();
+		
+		// create  InformationField.
+		informationField = new InformationField();
 		
 		// Add Item For test only. don't forget to delete after test.
 		try {
@@ -59,6 +62,8 @@ public class Inventory extends GridPane {
 		}
 		myInventoryPaneAdd(newItem);
 		newItem.setOnAction(e -> activateItem(newItem));
+		newItem.setOnMouseEntered(e -> informationField.newItem(newItem));
+		newItem.setOnMouseExited(e -> informationField.clearItem());
 	}
 	
 	public void activateItem(Item newItem) {
@@ -118,6 +123,10 @@ public class Inventory extends GridPane {
 	
 	public GridPane getActivateItemPane() {
 		return this.activateItemPane;
+	}
+	
+	public InformationField getInformationField() {
+		return informationField;
 	}
 	
 	public Map<String, Item> getMyActivateItem() {

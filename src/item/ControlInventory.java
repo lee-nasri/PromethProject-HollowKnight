@@ -47,6 +47,7 @@ public class ControlInventory extends VBox{
 		getChildren().add(title2);
 		
 		getChildren().add(inventory.getActivateItemPane());
+		getChildren().add(inventory.getInformationField());
 		
 	}
 

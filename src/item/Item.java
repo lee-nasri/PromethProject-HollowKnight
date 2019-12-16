@@ -24,5 +24,11 @@ public abstract class Item extends Button{
 	public abstract void unapplyBonuses();
 	
 	public abstract String getTypeOfItem();
+	
+	public abstract String getName();
+	
+	public abstract int getBonus();
+	
+	public abstract Image getImage();
 		
 }
