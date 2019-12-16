@@ -9,7 +9,6 @@ import object.Updateable;
 
 public class Controller {
 	
-	private static AnimationTimer gameLoop;
 	private static boolean left, right, up, down, jump, attack, dash, openInventory, pause;
 	
 	private static final int LEFT_DIRECTION = -1;
@@ -17,7 +16,7 @@ public class Controller {
 	private static final int NO_MOVE = 0;
 	
 	public static void startGameLoop() {
-		gameLoop = new AnimationTimer() {
+		AnimationTimer gameLoop = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
 				Main.updateSceneSize();
@@ -98,7 +97,7 @@ public class Controller {
 		});
 	}
 	
-	private static void updateKey(){
+	private static void updateKey() {
 		if (openInventory) {
 			openInventory = false;
 			if (pause) {
@@ -143,7 +142,7 @@ public class Controller {
 		}
 	}
 	
-	private static void updateObject(){
+	private static void updateObject() {
 		for (Updateable updateable: new ArrayList<Updateable>(Main.world.getObjectList())) {
 			updateable.update();
 		}
