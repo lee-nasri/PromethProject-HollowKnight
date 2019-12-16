@@ -26,7 +26,7 @@ public abstract class Boss extends MoveableEnemy {
 		Sound.changeBackgroundMusic(bossTheme);
 		Main.world.setBossFight(true);
 		hpBar = new BossHpBar(maxHp, name);
-		Main.root.getChildren().add(hpBar);
+		Main.gameRoot.getChildren().add(hpBar);
 	}
 	
 	public void die() {
@@ -37,7 +37,7 @@ public abstract class Boss extends MoveableEnemy {
 	}
 	
 	public void remove() {
-		Main.root.getChildren().remove(hpBar);
+		Main.gameRoot.getChildren().remove(hpBar);
 		Main.world.setBossFight(false);
 		super.remove();
 	}

@@ -67,13 +67,13 @@ public class MainMenu extends VBox {
 				Main.eventLog = new EventLog();
 				Main.world = new World();
 				Main.hero.spawn();
-				Main.root = new Group(Main.world, Main.hero.getHpBar(), Main.eventLog);
+				Main.gameRoot = new Group(Main.world, Main.hero.getHpBar(), Main.eventLog);
 				Controller.setGameKey();
 				Controller.startGameLoop();
 				Platform.runLater(new Runnable(){
 					@Override
 					public void run() {
-						Main.gameScene.setRoot(Main.root);
+						Main.gameScene.setRoot(Main.gameRoot);
 					}
 				});
 			}

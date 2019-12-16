@@ -103,11 +103,11 @@ public class Controller {
 			openInventory = false;
 			if (pause) {
 				pause = false;
-				Main.root.getChildren().remove(Main.controlInventory);
+				Main.gameRoot.getChildren().remove(Main.controlInventory);
 				Main.world.reloadBackground();
 			} else {
 				pause = true;
-				Main.root.getChildren().add(Main.controlInventory);
+				Main.gameRoot.getChildren().add(Main.controlInventory);
 			}
 		}
 		if (!pause) {
