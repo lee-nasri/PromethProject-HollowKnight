@@ -170,7 +170,7 @@ public class Hero extends MoveableCharacter {
 		}
 	}
 	
-	public void jump(double power) {
+	private void jump(double power) {
 		stateHolder.interrupt();
 		jump = new Delay(jumpTime, -power);
 	}
@@ -266,9 +266,7 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	public void attacked(double damage, double knockbackX, double knockbackY) {
-		immune.interrupt();
 		immune = new Delay(recoverTime);
-		unstable.interrupt();
 		unstable = new Delay(recoverTime/2);
 		stateHolder.interrupt();
 		dashable = true;
