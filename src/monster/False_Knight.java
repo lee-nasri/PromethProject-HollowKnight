@@ -52,7 +52,7 @@ public class False_Knight extends Boss {
 	public void setMovement() {	
 		dx -= dx*friction;
 		dy += gravity;
-		switch(cerrentState) {
+		switch(currentState) {
 		case "idle":
 			if ( Main.hero.getX() > x+size[0]) {
 				startBossFight();
@@ -78,7 +78,7 @@ public class False_Knight extends Boss {
 	}
 	
 	protected void changeState() {
-		switch (cerrentState) {
+		switch (currentState) {
 		case "idle":
 			inAir = true;
 			changeSprite("jump");
@@ -157,7 +157,7 @@ public class False_Knight extends Boss {
 	protected void reset() {
 		super.reset();
 		speed = 0;
-		cerrentState = "idle";
+		currentState = "idle";
 	}
 	
 	public void die() {

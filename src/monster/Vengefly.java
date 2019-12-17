@@ -33,12 +33,12 @@ public class Vengefly extends MoveableEnemy {
 		distanceX = Main.hero.getCenterX() - getCenterX();
 		distanceY = Main.hero.getCenterY() - getCenterY();
 		distance = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
-		switch(cerrentState) {
+		switch(currentState) {
 		case "idle":
 			dx -= dx*friction;
 			dy -= dy*friction;
 			if (distance < vision) {
-				cerrentState = "normal";
+				currentState = "normal";
 			}
 			break;
 		case "normal":
@@ -52,7 +52,7 @@ public class Vengefly extends MoveableEnemy {
 
 	protected void reset() {
 		super.reset();
-		cerrentState = "idle";
+		currentState = "idle";
 	}
 	
 	public void die() {

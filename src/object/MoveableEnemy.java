@@ -6,8 +6,8 @@ import item.Item;
 
 public abstract class MoveableEnemy extends MoveableCharacter {
 	
-	private double[] spawnLocation = new double[2];
-	protected String cerrentState;
+	private double[] spawnLocation = new double[2]; //index 0 is X-axis, index 1 is Y-axis
+	protected String currentState;
 	
 	protected static final double heroKnockBackX = 25;
 	protected static final double heroKnockBackY = 15;
@@ -89,7 +89,7 @@ public abstract class MoveableEnemy extends MoveableCharacter {
 	}
 	
 	protected void changeSprite(String art) {
-		cerrentState = art;
+		currentState = art;
 		super.changeSprite(art);
 	}
 	

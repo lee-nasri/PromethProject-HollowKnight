@@ -43,7 +43,7 @@ public class Illya extends Boss {
 		distanceX = Main.hero.getCenterX() - getCenterX();
 		distanceY = Main.hero.getCenterY() - getCenterY();
 		distance = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
-		switch(cerrentState) {
+		switch(currentState) {
 		case "idle":
 			if (distance < range) {
 				startBossFight();
@@ -90,7 +90,7 @@ public class Illya extends Boss {
 	}
 	
 	protected void changeState() {
-		switch (cerrentState) {
+		switch (currentState) {
 		case "idle":
 			changeSprite("normal");
 			turn((Main.hero.getX() + Main.hero.getSize()[0]/2) < (x + size[0]/2));
@@ -124,8 +124,8 @@ public class Illya extends Boss {
 				leftWallCheck();
 				x +=dx;
 			} catch(HitWallException exception) {
-				if (cerrentState == "normal") {
-					cerrentState = "moveToRight";
+				if (currentState == "normal") {
+					currentState = "moveToRight";
 				}
 				x += exception.distance;
 				dx = 0;
@@ -135,8 +135,8 @@ public class Illya extends Boss {
 				rightWallCheck();
 				x +=dx;
 			} catch(HitWallException exception) {
-				if (cerrentState == "normal") {
-					cerrentState = "moveToLeft";
+				if (currentState == "normal") {
+					currentState = "moveToLeft";
 				}
 				x += exception.distance;
 				dx = 0;
@@ -159,7 +159,7 @@ public class Illya extends Boss {
 	protected void reset() {
 		super.reset();
 		setVisible(false);
-		cerrentState = "idle";
+		currentState = "idle";
 	}
 	
 	public void die() {
