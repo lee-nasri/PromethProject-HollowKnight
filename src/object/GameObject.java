@@ -41,9 +41,7 @@ public abstract class GameObject extends Group implements Updateable {
 		Main.world.getChildren().remove(this);
 	}
 	
-	protected void changeState() {
-		
-	};
+	protected void changeState() {}
 	
 	protected void holdStage(long time) {
 		stateHolder = new Delay(time) {
