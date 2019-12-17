@@ -20,7 +20,7 @@ public class World extends Group {
 	private Map cerrentMap;
 	private List<Updateable> objectList = new ArrayList<Updateable>();
 	private List<Destroyable> destroyableList = new ArrayList<Destroyable>();
-	private double width, height, viewX, viewY;
+	private double viewX, viewY;
 	private boolean bossFight;
 	
 	public World() {
@@ -38,8 +38,6 @@ public class World extends Group {
 			object.remove();
 		}
 		cerrentMap = mapList.get(name);
-		width = cerrentMap.getWidth();
-		height = cerrentMap.getHeight();
 		getChildren().addAll(cerrentMap.getBackground());
 		for (GamePlatform platform: cerrentMap.getPlatformList()) {
 			objectList.add(platform);
@@ -72,14 +70,14 @@ public class World extends Group {
 		double x = Main.hero.getX() + Main.hero.getSize()[0]/2;
 		double y = Main.hero.getY() + Main.hero.getSize()[1]/2;
 		viewX = (x < Main.getSceneWidth()/2) 
-				? 0 : ((x > (width - Main.getSceneWidth()/2)) 
-						? (width - Main.getSceneWidth()) : (x - Main.getSceneWidth()/2));
+				? 0 : ((x > (cerrentMap.getWidth() - Main.getSceneWidth()/2)) 
+						? (cerrentMap.getWidth() - Main.getSceneWidth()) : (x - Main.getSceneWidth()/2));
 		viewY = (y < Main.getSceneHeight()/2)
-				? 0 : ((y > (height - Main.getSceneHeight()/2)) 
-						? (height - Main.getSceneHeight()) : (y - Main.getSceneHeight()/2));
+				? 0 : ((y > (cerrentMap.getHeight() - Main.getSceneHeight()/2)) 
+						? (cerrentMap.getHeight() - Main.getSceneHeight()) : (y - Main.getSceneHeight()/2));
 		for (ImageView i:cerrentMap.getBackground()) {
-			i.setLayoutX(-viewX*(i.getImage().getWidth() - Main.getSceneWidth())/(width-Main.getSceneWidth()));
-			i.setLayoutY(-viewY*(i.getImage().getHeight() - Main.getSceneHeight())/(height-Main.getSceneHeight()));
+			i.setLayoutX(-viewX*(i.getImage().getWidth() - Main.getSceneWidth())/(cerrentMap.getWidth() - Main.getSceneWidth()));
+			i.setLayoutY(-viewY*(i.getImage().getHeight() - Main.getSceneHeight())/(cerrentMap.getHeight() - Main.getSceneHeight()));
 		}
 	}
 	
@@ -125,14 +123,6 @@ public class World extends Group {
 
 	public List<Destroyable> getDestroyableList() {
 		return destroyableList;
-	}
-
-	public double getWidth() {
-		return width;
-	}
-
-	public double getHeight() {
-		return height;
 	}
 
 	public double getViewX() {
