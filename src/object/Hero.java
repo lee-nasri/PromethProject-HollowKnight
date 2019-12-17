@@ -106,28 +106,28 @@ public class Hero extends MoveableCharacter {
 	}
 	
 	protected void leftWallCheck() throws HitWallException {
-		if (((x + dx) < 0) && (Main.world.getCerrentMap().getLeftMap() != null)
+		if (((x + dx) < 0) && (Main.world.getCurrentMap().getLeftMap() != null)
 				&& !Main.world.isBossFight()) {
-			Main.world.getCerrentMap().getLeftMap().travel();
+			Main.world.getCurrentMap().getLeftMap().travel();
 		}else {
 			super.leftWallCheck();
 		}
 	}
 	
 	protected void rightWallCheck() throws HitWallException {
-		if (((x + dx) > (Main.world.getCerrentMap().getWidth() - size[0]))
-				&& (Main.world.getCerrentMap().getRightMap() != null)
+		if (((x + dx) > (Main.world.getCurrentMap().getWidth() - size[0]))
+				&& (Main.world.getCurrentMap().getRightMap() != null)
 				&& !Main.world.isBossFight()) {
-			Main.world.getCerrentMap().getRightMap().travel();
+			Main.world.getCurrentMap().getRightMap().travel();
 		}else {
 			super.rightWallCheck();
 		}
 	}
 	
 	protected void topCheck() throws HitWallException {
-		if (((y + dy) < 0) && (Main.world.getCerrentMap().getUpperMap() != null)
+		if (((y + dy) < 0) && (Main.world.getCurrentMap().getUpperMap() != null)
 				&& !Main.world.isBossFight()) {
-			Main.world.getCerrentMap().getUpperMap().travel();
+			Main.world.getCurrentMap().getUpperMap().travel();
 			dy = -28;
 		}else {
 			super.topCheck();
@@ -136,10 +136,10 @@ public class Hero extends MoveableCharacter {
 	
 	
 	protected void landingCheck() throws HitWallException {
-		if (((y + dy) > (Main.world.getCerrentMap().getHeight() - size[1]))
-				&& (Main.world.getCerrentMap().getLowerMap() != null)
+		if (((y + dy) > (Main.world.getCurrentMap().getHeight() - size[1]))
+				&& (Main.world.getCurrentMap().getLowerMap() != null)
 				&& !Main.world.isBossFight()) {
-			Main.world.getCerrentMap().getLowerMap().travel();
+			Main.world.getCurrentMap().getLowerMap().travel();
 		}else {
 			super.landingCheck();
 		}

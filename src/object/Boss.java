@@ -30,8 +30,8 @@ public abstract class Boss extends MoveableEnemy {
 	}
 	
 	public void die() {
-		Main.world.getCerrentMap().getEnemyList().remove(this);
-		Sound.changeBackgroundMusic(Main.world.getCerrentMap().getMusic());
+		Main.world.getCurrentMap().getEnemyList().remove(this);
+		Sound.changeBackgroundMusic(Main.world.getCurrentMap().getMusic());
 		Main.eventLog.addText(name + " has been slayed");
 		super.die();
 	}

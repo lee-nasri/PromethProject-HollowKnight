@@ -68,7 +68,7 @@ public abstract class MoveableObject extends GameObject {
 	}
 	
 	protected void leftWallCheck() throws HitWallException {
-		for (GamePlatform platform:Main.world.getCerrentMap().getPlatformList()) {
+		for (GamePlatform platform:Main.world.getCurrentMap().getPlatformList()) {
 			try {
 				platform.checkRight(this);
 			} catch(HitWallException exception) {
@@ -81,20 +81,20 @@ public abstract class MoveableObject extends GameObject {
 	}
 	
 	protected void rightWallCheck() throws HitWallException {
-		for (GamePlatform platform:Main.world.getCerrentMap().getPlatformList()) {
+		for (GamePlatform platform:Main.world.getCurrentMap().getPlatformList()) {
 			try {
 				platform.checkLeft(this);
 			} catch(HitWallException exception) {
 				throw exception;
 			}
 		}
-		if ((x + dx) > (Main.world.getCerrentMap().getWidth() - size[0])) {
-			throw new HitWallException(Main.world.getCerrentMap().getWidth() - size[0] - x);
+		if ((x + dx) > (Main.world.getCurrentMap().getWidth() - size[0])) {
+			throw new HitWallException(Main.world.getCurrentMap().getWidth() - size[0] - x);
 		}
 	}
 	
 	protected void topCheck() throws HitWallException {
-		for (GamePlatform platform:Main.world.getCerrentMap().getPlatformList()) {
+		for (GamePlatform platform:Main.world.getCurrentMap().getPlatformList()) {
 			try {
 				platform.checkBottom(this);
 			} catch(HitWallException exception) {
@@ -108,15 +108,15 @@ public abstract class MoveableObject extends GameObject {
 	
 	
 	protected void landingCheck() throws HitWallException {
-		for (GamePlatform platform:Main.world.getCerrentMap().getPlatformList()) {
+		for (GamePlatform platform:Main.world.getCurrentMap().getPlatformList()) {
 			try {
 				platform.checkTop(this);
 			} catch(HitWallException exception) {
 				throw exception;
 			}
 		}
-		if ((y + dy) > (Main.world.getCerrentMap().getHeight() - size[1])) {
-			throw new HitWallException(Main.world.getCerrentMap().getHeight() - size[1] - y);
+		if ((y + dy) > (Main.world.getCurrentMap().getHeight() - size[1])) {
+			throw new HitWallException(Main.world.getCurrentMap().getHeight() - size[1] - y);
 		}
 	}
 	

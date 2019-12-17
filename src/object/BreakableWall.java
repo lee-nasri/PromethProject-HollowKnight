@@ -19,7 +19,7 @@ public class BreakableWall extends GamePlatform implements Destroyable {
 	}
 	
 	public void die() {
-		Main.world.getCerrentMap().getPlatformList().remove(this);
+		Main.world.getCurrentMap().getPlatformList().remove(this);
 		remove();
 	}
 	

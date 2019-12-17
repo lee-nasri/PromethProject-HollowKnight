@@ -14,11 +14,11 @@ public class CheckPoint extends GameObject {
 	public void update() {
 		if (Main.hero.intersectCheck(x, y, width, height)) {
 			Main.hero.setHp(Main.hero.getMaxHp());
-			if (Main.hero.getSpawnMap() != Main.world.getCerrentMap().getName()) {
+			if (Main.hero.getSpawnMap() != Main.world.getCurrentMap().getName()) {
 				Main.eventLog.addText("Game saved");
 				Main.hero.setSpawnLocationX(x);
 				Main.hero.setSpawnLocationY(y + 100);
-				Main.hero.setSpawnMap(Main.world.getCerrentMap().getName());
+				Main.hero.setSpawnMap(Main.world.getCurrentMap().getName());
 			}
 		}
 		super.update();

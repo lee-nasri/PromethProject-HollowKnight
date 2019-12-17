@@ -17,7 +17,7 @@ import object.Updateable;
 public class World extends Group {
 	
 	private HashMap<MapName, Map> mapList = new HashMap<MapName, Map>();
-	private Map cerrentMap;
+	private Map currentMap;
 	private List<Updateable> objectList = new ArrayList<Updateable>();
 	private List<Destroyable> destroyableList = new ArrayList<Destroyable>();
 	private double viewX, viewY;
@@ -37,9 +37,9 @@ public class World extends Group {
 		for (Updateable object: new ArrayList<Updateable>(Main.world.getObjectList())) {
 			object.remove();
 		}
-		cerrentMap = mapList.get(name);
-		getChildren().addAll(cerrentMap.getBackground());
-		for (GamePlatform platform: cerrentMap.getPlatformList()) {
+		currentMap = mapList.get(name);
+		getChildren().addAll(currentMap.getBackground());
+		for (GamePlatform platform: currentMap.getPlatformList()) {
 			objectList.add(platform);
 			getChildren().add(platform);
 			if (platform instanceof BreakableWall) {
@@ -48,36 +48,36 @@ public class World extends Group {
 				breakableWall.spawn();
 			}
 		}
-		for (CheckPoint checkPoint: cerrentMap.getCheckPointList()) {
+		for (CheckPoint checkPoint: currentMap.getCheckPointList()) {
 			objectList.add(checkPoint);
 			getChildren().add(checkPoint);
 		}
-		for (Destroyable enemy: cerrentMap.getEnemyList()) {
+		for (Destroyable enemy: currentMap.getEnemyList()) {
 			objectList.add(enemy);
 			destroyableList.add(enemy);
 			enemy.spawn();
 		}
-		if (cerrentMap.isDarkArea()) {
+		if (currentMap.isDarkArea()) {
 			getChildren().add(Main.hero.getLight());
 		}
 		getChildren().add(Main.hero);
 		Main.hero.setAlive(true);
 		Main.hero.setLocation(x, y);
-		Sound.changeBackgroundMusic(cerrentMap.getMusic());
+		Sound.changeBackgroundMusic(currentMap.getMusic());
 	}
 	
 	public void drawBackground() {
 		double x = Main.hero.getX() + Main.hero.getSize()[0]/2;
 		double y = Main.hero.getY() + Main.hero.getSize()[1]/2;
 		viewX = (x < Main.getSceneWidth()/2) 
-				? 0 : ((x > (cerrentMap.getWidth() - Main.getSceneWidth()/2)) 
-						? (cerrentMap.getWidth() - Main.getSceneWidth()) : (x - Main.getSceneWidth()/2));
+				? 0 : ((x > (currentMap.getWidth() - Main.getSceneWidth()/2)) 
+						? (currentMap.getWidth() - Main.getSceneWidth()) : (x - Main.getSceneWidth()/2));
 		viewY = (y < Main.getSceneHeight()/2)
-				? 0 : ((y > (cerrentMap.getHeight() - Main.getSceneHeight()/2)) 
-						? (cerrentMap.getHeight() - Main.getSceneHeight()) : (y - Main.getSceneHeight()/2));
-		for (ImageView i:cerrentMap.getBackground()) {
-			i.setLayoutX(-viewX*(i.getImage().getWidth() - Main.getSceneWidth())/(cerrentMap.getWidth() - Main.getSceneWidth()));
-			i.setLayoutY(-viewY*(i.getImage().getHeight() - Main.getSceneHeight())/(cerrentMap.getHeight() - Main.getSceneHeight()));
+				? 0 : ((y > (currentMap.getHeight() - Main.getSceneHeight()/2)) 
+						? (currentMap.getHeight() - Main.getSceneHeight()) : (y - Main.getSceneHeight()/2));
+		for (ImageView i:currentMap.getBackground()) {
+			i.setLayoutX(-viewX*(i.getImage().getWidth() - Main.getSceneWidth())/(currentMap.getWidth() - Main.getSceneWidth()));
+			i.setLayoutY(-viewY*(i.getImage().getHeight() - Main.getSceneHeight())/(currentMap.getHeight() - Main.getSceneHeight()));
 		}
 	}
 	
@@ -97,8 +97,8 @@ public class World extends Group {
 	}
 	
 	public void reloadBackground() {
-		getChildren().removeAll(cerrentMap.getBackground());
-		getChildren().addAll(0, cerrentMap.getBackground());
+		getChildren().removeAll(currentMap.getBackground());
+		getChildren().addAll(0, currentMap.getBackground());
 	}
 
 	public boolean isBossFight() {
@@ -108,13 +108,9 @@ public class World extends Group {
 	public void setBossFight(Boolean bossFight) {
 		this.bossFight = bossFight;
 	}
-	
-	public HashMap<MapName, Map> getMapList() {
-		return mapList;
-	}
 
-	public Map getCerrentMap() {
-		return cerrentMap;
+	public Map getCurrentMap() {
+		return currentMap;
 	}
 	
 	public List<Updateable> getObjectList() {
