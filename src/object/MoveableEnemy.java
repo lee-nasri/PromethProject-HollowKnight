@@ -30,7 +30,7 @@ public abstract class MoveableEnemy extends MoveableCharacter {
 	}
 	
 	protected void moveY() {
-		if (dy > maxFallSpeed && fallSpeedLimit) {
+		if (dy > maxFallSpeed) {
 			dy = maxFallSpeed;
 		}
 		if (dy < 0) {

@@ -44,7 +44,7 @@ public class Projectile extends MoveableObject {
 	}
 	
 	protected void moveY() {
-		if ((dy > maxFallSpeed) && fallSpeedLimit) {
+		if ((dy > maxFallSpeed)) {
 			dy = maxFallSpeed;
 		}
 		//broken when hit the wall

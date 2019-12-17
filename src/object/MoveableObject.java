@@ -8,7 +8,6 @@ public abstract class MoveableObject extends GameObject {
 	protected double gravity = 1;
 	protected double maxFallSpeed = 25;
 	protected double speed, dx, dy;
-	protected boolean fallSpeedLimit = true;
 	
 	public MoveableObject(double x, double y, double width, double height) {
 		super(x, y, width, height);
@@ -45,7 +44,7 @@ public abstract class MoveableObject extends GameObject {
 	}
 	
 	protected void moveY() {
-		if ((dy > maxFallSpeed) && fallSpeedLimit) {
+		if ((dy > maxFallSpeed)) {
 			dy = maxFallSpeed;
 		}
 		if (dy < 0) {
@@ -131,18 +130,6 @@ public abstract class MoveableObject extends GameObject {
 
 	public void setSpeed(double speed) {
 		this.speed = speed < 0 ? 0 : speed;
-	}
-	
-	public double getGravity() {
-		return gravity;
-	}
-
-	public void setGravity(double gravity) {
-		this.gravity = gravity;
-	}
-	
-	public void setFallSpeedLimit(boolean fallSpeedLimit) {
-		this.fallSpeedLimit = fallSpeedLimit;
 	}
 
 	public double getDx() {
