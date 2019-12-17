@@ -36,39 +36,39 @@ public class GamePlatform extends GameObject {
 		}
 	}
 	
-	public void checkLeft(MoveableObject character) throws HitWallException {
-		if (((character.getY() + character.getSize()[1]) > y)
-				&& (character.getY() < (y + size[1]))
-				&& ((character.getX() + character.getSize()[0]) <= x)
-				&& ((character.getX() + character.getSize()[0] + character.getDx()) > x)) {
-			throw new HitWallException(x - character.getX() - character.getSize()[0]);
+	public void checkLeft(MoveableObject object) throws HitWallException {
+		if (((object.getY() + object.getSize()[1]) > y)
+				&& (object.getY() < (y + size[1]))
+				&& ((object.getX() + object.getSize()[0]) <= x)
+				&& ((object.getX() + object.getSize()[0] + object.getDx()) > x)) {
+			throw new HitWallException(x - object.getX() - object.getSize()[0]);
 		}
 	}
 	
-	public void checkRight(MoveableObject character) throws HitWallException {
-		if (((character.getY() + character.getSize()[1]) > y)
-				&& (character.getY() < (y + size[1]))
-				&& (character.getX() >= (x + size[0]))
-				&& ((character.getX() + character.getDx()) < (x + size[0]))) {
-			throw new HitWallException(x + size[0] - character.getX());
+	public void checkRight(MoveableObject object) throws HitWallException {
+		if (((object.getY() + object.getSize()[1]) > y)
+				&& (object.getY() < (y + size[1]))
+				&& (object.getX() >= (x + size[0]))
+				&& ((object.getX() + object.getDx()) < (x + size[0]))) {
+			throw new HitWallException(x + size[0] - object.getX());
 		}
 	}
 	
-	public void checkTop(MoveableObject character) throws HitWallException {
-		if (((character.getX() + character.getSize()[0]) > x)
-				&& (character.getX() < (x + size[0]))
-				&& ((character.getY() + character.getSize()[1]) <= y)
-				&& ((character.getY() + character.getSize()[1] + character.getDy()) >= y)) {
-			throw new HitWallException(y - character.getY() - character.getSize()[1]);
+	public void checkTop(MoveableObject object) throws HitWallException {
+		if (((object.getX() + object.getSize()[0]) > x)
+				&& (object.getX() < (x + size[0]))
+				&& ((object.getY() + object.getSize()[1]) <= y)
+				&& ((object.getY() + object.getSize()[1] + object.getDy()) >= y)) {
+			throw new HitWallException(y - object.getY() - object.getSize()[1]);
 		}
 	}
 	
-	public void checkBottom(MoveableObject character) throws HitWallException {
-		if (((character.getX() + character.getSize()[0]) > x)
-				&& (character.getX() < (x + size[0]))
-				&& (character.getY() >= (y + size[1]))
-				&& ((character.getY() + character.getDy()) < (y + size[1]))) {
-			throw new HitWallException(y + size[1] - character.getY());
+	public void checkBottom(MoveableObject object) throws HitWallException {
+		if (((object.getX() + object.getSize()[0]) > x)
+				&& (object.getX() < (x + size[0]))
+				&& (object.getY() >= (y + size[1]))
+				&& ((object.getY() + object.getDy()) < (y + size[1]))) {
+			throw new HitWallException(y + size[1] - object.getY());
 		}
 	}
 

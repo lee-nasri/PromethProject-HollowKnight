@@ -76,8 +76,10 @@ public class World extends Group {
 				? 0 : ((y > (currentMap.getHeight() - Main.getSceneHeight()/2)) 
 						? (currentMap.getHeight() - Main.getSceneHeight()) : (y - Main.getSceneHeight()/2));
 		for (ImageView i:currentMap.getBackground()) {
-			i.setLayoutX(-viewX*(i.getImage().getWidth() - Main.getSceneWidth())/(currentMap.getWidth() - Main.getSceneWidth()));
-			i.setLayoutY(-viewY*(i.getImage().getHeight() - Main.getSceneHeight())/(currentMap.getHeight() - Main.getSceneHeight()));
+			i.setLayoutX(-viewX*(i.getImage().getWidth() - Main.getSceneWidth())
+					/(currentMap.getWidth() - Main.getSceneWidth()));
+			i.setLayoutY(-viewY*(i.getImage().getHeight() - Main.getSceneHeight())
+					/(currentMap.getHeight() - Main.getSceneHeight()));
 		}
 	}
 	
