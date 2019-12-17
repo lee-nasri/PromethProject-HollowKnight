@@ -4,8 +4,8 @@ import application.Main;
 
 public class BreakableWall extends GamePlatform implements Destroyable {
 	
-	protected double maxHp = 50;
-	protected double hp;
+	private double maxHp = 50;
+	private double hp;
 	
 	public BreakableWall(PlatformType platformType, double x, double y) {
 		super(platformType, x, y);
