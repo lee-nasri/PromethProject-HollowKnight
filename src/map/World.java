@@ -24,12 +24,12 @@ public class World extends Group {
 	private boolean bossFight;
 	
 	public World() {
-		addMap(MapName.Starter, MapCreater.createStarterMap());
-		addMap(MapName.False_Knight_room, MapCreater.createFalseKnightRoom());
-		addMap(MapName.Town, MapCreater.createTown());
-		addMap(MapName.Cave, MapCreater.createCave());
-		addMap(MapName.Dark_Cave, MapCreater.createDarkCave());
-		addMap(MapName.Crystal_Cave, MapCreater.createCrystalCave());
+		addMap(MapCreater.createStarterMap());
+		addMap(MapCreater.createFalseKnightRoom());
+		addMap(MapCreater.createTown());
+		addMap(MapCreater.createCave());
+		addMap(MapCreater.createDarkCave());
+		addMap(MapCreater.createCrystalCave());
 	}
 	
 	public void setCerrentMap(MapName name, double x, double y) {
@@ -83,8 +83,8 @@ public class World extends Group {
 		}
 	}
 	
-	public void addMap(MapName name, Map map) {
-		mapList.put(name, map);
+	public void addMap(Map map) {
+		mapList.put(map.getName(), map);
 	}
 	
 	public void addObject(GameObject object) {
