@@ -8,6 +8,6 @@ public interface Destroyable extends Updateable {
 	
 	public void spawn();
 	
-	public boolean intersectCheck(double x0, double x1, double y0, double y1);
+	public boolean intersectCheck(double x, double y, double width, double height);
 
 }
