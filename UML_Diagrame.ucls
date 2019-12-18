@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.3" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
-  realizations="true" associations="false" dependencies="false" nesting-relationships="false" router="FAN">  
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="false" dependencies="false" nesting-relationships="false" router="FAN">  
   <class id="1" language="java" name="application.Controller" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/application/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="85" y="200"/>    
@@ -246,7 +246,7 @@
   </class>  
   <class id="28" language="java" name="monster.Glimback" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/monster/Glimback.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="137" width="187" x="2198" y="596"/>    
+    <position height="137" width="187" x="2228" y="1177"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -264,7 +264,7 @@
   </class>  
   <class id="30" language="java" name="monster.Vengefly" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/monster/Vengefly.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="209" width="217" x="1968" y="966"/>    
+    <position height="209" width="217" x="1957" y="1061"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -273,7 +273,7 @@
   </class>  
   <class id="31" language="java" name="object.Boss" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/object/Boss.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2912" y="769"/>    
+    <position height="-1" width="-1" x="2494" y="766"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -282,7 +282,7 @@
   </class>  
   <class id="32" language="java" name="object.BreakableWall" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/object/BreakableWall.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2688" y="129"/>    
+    <position height="-1" width="-1" x="3574" y="57"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -309,7 +309,7 @@
   </class>  
   <interface id="35" language="java" name="object.Destroyable" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/object/Destroyable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3207" y="196"/>    
+    <position height="-1" width="-1" x="2909" y="72"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -327,7 +327,7 @@
   </class>  
   <class id="37" language="java" name="object.Enemy" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/object/Enemy.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2642" y="1133"/>    
+    <position height="-1" width="-1" x="2564" y="1145"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -345,7 +345,7 @@
   </class>  
   <class id="39" language="java" name="object.GamePlatform" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/object/GamePlatform.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3482" y="-5"/>    
+    <position height="-1" width="-1" x="3586" y="351"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -363,7 +363,7 @@
   </class>  
   <class id="41" language="java" name="object.HitWallException" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/object/HitWallException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3668" y="1216"/>    
+    <position height="-1" width="-1" x="3766" y="728"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -372,7 +372,7 @@
   </class>  
   <class id="42" language="java" name="object.MoveableObject" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/object/MoveableObject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="129" width="310" x="2979" y="314"/>    
+    <position height="129" width="310" x="2740" y="656"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -381,7 +381,7 @@
   </class>  
   <enumeration id="43" language="java" name="object.PlatformType" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/object/PlatformType.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2884" y="1122"/>    
+    <position height="-1" width="-1" x="3540" y="770"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -390,7 +390,7 @@
   </enumeration>  
   <class id="44" language="java" name="object.Projectile" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/object/Projectile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3662" y="286"/>    
+    <position height="-1" width="-1" x="2913" y="982"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -399,7 +399,7 @@
   </class>  
   <interface id="45" language="java" name="object.Updateable" project="project-2019-1-hollow_knight" 
     file="/project-2019-1-hollow_knight/src/object/Updateable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3612" y="706"/>    
+    <position height="-1" width="-1" x="3162" y="271"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -407,95 +407,95 @@
     </display>  
   </interface>  
   <generalization id="46">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="45"/>  
+  </generalization>  
+  <generalization id="47">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <generalization id="48">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="37"/>  
+  </generalization>  
+  <generalization id="49">    
     <end type="SOURCE" refId="30"/>    
     <end type="TARGET" refId="37"/>  
   </generalization>  
-  <generalization id="47">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="31"/>  
-  </generalization>  
-  <generalization id="48">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="42"/>  
-  </generalization>  
-  <realization id="49">    
-    <end type="SOURCE" refId="32"/>    
-    <end type="TARGET" refId="35"/>  
-  </realization>  
   <generalization id="50">    
-    <end type="SOURCE" refId="34"/>    
+    <end type="SOURCE" refId="39"/>    
     <end type="TARGET" refId="38"/>  
   </generalization>  
   <generalization id="51">    
-    <end type="SOURCE" refId="36"/>    
-    <end type="TARGET" refId="38"/>  
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="6"/>  
   </generalization>  
-  <realization id="52">    
-    <end type="SOURCE" refId="38"/>    
-    <end type="TARGET" refId="45"/>  
-  </realization>  
-  <generalization id="53">    
-    <end type="SOURCE" refId="40"/>    
-    <end type="TARGET" refId="33"/>  
-  </generalization>  
-  <generalization id="54">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="31"/>  
-  </generalization>  
-  <generalization id="55">    
+  <generalization id="52">    
     <end type="SOURCE" refId="42"/>    
     <end type="TARGET" refId="38"/>  
   </generalization>  
-  <generalization id="56">    
+  <generalization id="53">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="55">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <realization id="56">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="45"/>  
+  </realization>  
+  <realization id="57">    
     <end type="SOURCE" refId="32"/>    
-    <end type="TARGET" refId="39"/>  
-  </generalization>  
-  <generalization id="57">    
-    <end type="SOURCE" refId="44"/>    
-    <end type="TARGET" refId="42"/>  
-  </generalization>  
+    <end type="TARGET" refId="35"/>  
+  </realization>  
   <generalization id="58">    
     <end type="SOURCE" refId="22"/>    
     <end type="TARGET" refId="25"/>  
   </generalization>  
   <generalization id="59">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="6"/>  
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="39"/>  
   </generalization>  
   <generalization id="60">    
     <end type="SOURCE" refId="24"/>    
     <end type="TARGET" refId="25"/>  
   </generalization>  
   <generalization id="61">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="37"/>  
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="42"/>  
   </generalization>  
-  <generalization id="62">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="37"/>  
-  </generalization>  
-  <generalization id="63">    
-    <end type="SOURCE" refId="35"/>    
-    <end type="TARGET" refId="45"/>  
-  </generalization>  
-  <generalization id="64">    
-    <end type="SOURCE" refId="37"/>    
-    <end type="TARGET" refId="33"/>  
-  </generalization>  
-  <generalization id="65">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <realization id="66">    
+  <realization id="62">    
     <end type="SOURCE" refId="33"/>    
     <end type="TARGET" refId="35"/>  
   </realization>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="42"/>  
+  </generalization>  
+  <generalization id="64">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="31"/>  
+  </generalization>  
+  <generalization id="65">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <generalization id="66">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
   <generalization id="67">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="6"/>  
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="37"/>  
   </generalization>  
   <generalization id="68">    
-    <end type="SOURCE" refId="39"/>    
+    <end type="SOURCE" refId="36"/>    
     <end type="TARGET" refId="38"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
