@@ -76,7 +76,7 @@ public class Inventory extends GridPane {
 		// add newItem to myActivateItem (map)
 		myActivateItem.put(newItem.getTypeOfItem(), newItem);
 		// update MyActivatePane
-		activatePaneBlock(newItem);
+		addItemImage(newItem);
 	}
 	
 	
@@ -89,7 +89,7 @@ public class Inventory extends GridPane {
 		return removedItem;
 	}
 	
-	public void activatePaneBlock(Item newItem) {	
+	public void addItemImage(Item newItem) {	
 		// Update only block of new item.
 		if (newItem.getTypeOfItem() == "Sword") {
 			activateItemPane.add(newItem, 0, 0);
