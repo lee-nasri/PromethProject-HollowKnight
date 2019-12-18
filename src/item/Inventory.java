@@ -57,7 +57,7 @@ public class Inventory extends GridPane {
 			throw new FullInventoryException();
 		}
 		myInventory.add(newItem);
-		addActivatedBlock(myInventory.indexOf(newItem));
+		addEmptyImage(myInventory.indexOf(newItem));
 		myInventoryPaneAdd(newItem);
 		newItem.setOnMouseEntered(e -> informationField.newItem(newItem));
 		newItem.setOnMouseExited(e -> informationField.clearItem());
@@ -146,7 +146,7 @@ public class Inventory extends GridPane {
 			for	(int column=0; column < maxColumn ; column++) {
 				// add item in myInventory to Inventory empty block.
 				if (count < myInventory.size()) {
-					addActivatedBlock(count);
+					addEmptyImage(count);
 					if (!activateItemPane.getChildren().contains(myInventory.get(count))) {
 						add(myInventory.get(count), column, row);
 					}
@@ -164,7 +164,7 @@ public class Inventory extends GridPane {
 		}
 	}
 	
-	public void addActivatedBlock(int index) {
+	public void addEmptyImage(int index) {
 		ImageView activateBlock = new ImageView(new Image(ClassLoader.getSystemResource
 				("ItemImage/ActivateBlock.png").toString(), 60, 60, false, true));
 		int column = index % maxColumn;
