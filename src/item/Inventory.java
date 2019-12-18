@@ -52,6 +52,7 @@ public class Inventory extends GridPane {
 	}
 	
 	public void addItem(Item newItem) throws FullInventoryException {
+	/* Add Item to my inventory. */
 		if (myInventory.size() >= maxSize) {
 			throw new FullInventoryException();
 		}
@@ -63,6 +64,8 @@ public class Inventory extends GridPane {
 	}
 
 	public void activateItem(Item newItem) {
+	/* add Item to my Activate Item (This method will remove item(parameter) in my inventory and add item to my Activate item). */
+		
 		newItem.applyBonuses();
 		if (isItemtypeActivate(newItem)) {
 			// remove Old item in myActivateItem (map)
@@ -77,7 +80,8 @@ public class Inventory extends GridPane {
 	}
 	
 	
-	public Item deactivateItem(String typeOfItem) { // item is any item that same type of item we need to deactivate
+	public Item deactivateItem(String typeOfItem) {
+	/* disable item (remove item ) */
 		// Guarantee that there is items in the myActivateItem (map) before call this method.
 		if(typeOfItem != "Sword" && typeOfItem != "Armor" && typeOfItem != "Shoes") return null;
 		Item removedItem = myActivateItem.remove(typeOfItem);
