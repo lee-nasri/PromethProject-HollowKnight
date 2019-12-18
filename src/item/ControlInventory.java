@@ -38,7 +38,7 @@ public class ControlInventory extends VBox{
 		inventory = new Inventory();
 		getChildren().add(inventory);
 		
-		Label title2 = new Label("My Avtivate Items."); 
+		Label title2 = new Label("My Activated Items"); 
 		title2.setTextFill(Color.WHITE);
 		title2.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 		title2.setAlignment(Pos.CENTER);
