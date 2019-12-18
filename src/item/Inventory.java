@@ -29,14 +29,14 @@ public class Inventory extends GridPane {
 		setAlignment(Pos.CENTER);
 		setVgap(10);
 		setHgap(10);	
-		addInventoryPane();
+		clearMyInventoryPane();
 		
 		// create and set property of myActivateItem GridPane.
 		activateItemPane = new GridPane();
 		activateItemPane.setAlignment(Pos.CENTER);
 		activateItemPane.setVgap(10);
 		activateItemPane.setHgap(10);
-		addActivePane();
+		clearMyActivatePane();
 		
 		// create  InformationField.
 		informationField = new InformationField();
@@ -61,7 +61,7 @@ public class Inventory extends GridPane {
 		newItem.setOnMouseEntered(e -> informationField.newItem(newItem));
 		newItem.setOnMouseExited(e -> informationField.clearItem());
 	}
-	
+
 	public void activateItem(Item newItem) {
 		newItem.applyBonuses();
 		if (isItemtypeActivate(newItem)) {
@@ -168,7 +168,7 @@ public class Inventory extends GridPane {
 		add(activateBlock, column, row);
 	}
 	
-	public void addInventoryPane() {
+	public void clearMyInventoryPane() {
 		for	(int row = 0 ; row < maxRow ; row++) {
 			for	(int column=0; column < maxColumn ; column++) {
 				ImageView emptyBlock = new ImageView(new Image(ClassLoader.getSystemResource
@@ -180,7 +180,7 @@ public class Inventory extends GridPane {
 		}
 	}
 	
-	public void addActivePane() {
+	public void clearMyActivatePane() {
 		for	(int column=0; column < 3 ; column++) {
 			ImageView emptyBlock = new ImageView(new Image(ClassLoader.getSystemResource
 					("ItemImage/InventoryBlock.png").toString()));
