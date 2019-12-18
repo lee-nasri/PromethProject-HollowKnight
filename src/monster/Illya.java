@@ -57,7 +57,7 @@ public class Illya extends Boss {
 			} else {
 				//fly up and away from the hero
 				dx += (speed*(distanceY/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dx)*friction;
-				dy += (speed*(distanceX/distance)*((distanceX*distanceY > 0) ? -1 : 1) - dy)*friction;
+				dy += (speed*(distanceX/distance)*((distanceX > 0) ? -1 : 1) - dy)*friction;
 			}
 			break;
 		case "moveToLeft":

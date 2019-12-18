@@ -9,9 +9,9 @@ import item.Shoes;
 import item.ShoesType;
 import item.Sword;
 import item.SwordType;
-import object.MoveableEnemy;
+import object.Enemy;
 
-public class Vengefly extends MoveableEnemy {
+public class Vengefly extends Enemy {
 	
 	private double distance;
 	private double distanceX;

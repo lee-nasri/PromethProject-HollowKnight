@@ -4,7 +4,7 @@ import application.Main;
 import item.FullInventoryException;
 import item.Item;
 
-public abstract class MoveableEnemy extends MoveableCharacter {
+public abstract class Enemy extends Character {
 	
 	private double[] spawnLocation = new double[2]; //index 0 is X-axis, index 1 is Y-axis
 	protected String currentState;
@@ -12,7 +12,7 @@ public abstract class MoveableEnemy extends MoveableCharacter {
 	protected static final double heroKnockBackX = 25;
 	protected static final double heroKnockBackY = 15;
 	
-	public MoveableEnemy(double x, double y, double width, double height) {
+	public Enemy(double x, double y, double width, double height) {
 		super(x, y, width, height);
 		spawnLocation[0] = x;
 		spawnLocation[1] = y;

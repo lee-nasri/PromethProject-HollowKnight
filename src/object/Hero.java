@@ -13,7 +13,7 @@ import application.Main;
 import map.MapName;
 import menu.HeroHpBar;
 
-public class Hero extends MoveableCharacter {
+public class Hero extends Character {
 	
 	private double jumpPower = 16;
 	private double doubleJumpPower = 12;

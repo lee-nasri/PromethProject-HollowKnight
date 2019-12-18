@@ -5,7 +5,7 @@ import application.Music;
 import application.Sound;
 import menu.BossHpBar;
 
-public abstract class Boss extends MoveableEnemy {
+public abstract class Boss extends Enemy {
 	
 	protected Music bossTheme;
 	protected BossHpBar hpBar;

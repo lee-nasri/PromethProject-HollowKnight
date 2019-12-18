@@ -9,9 +9,9 @@ import item.SwordType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import object.HitWallException;
-import object.MoveableEnemy;
+import object.Enemy;
 
-public class Glimback extends MoveableEnemy {
+public class Glimback extends Enemy {
 	
 	public Glimback(double x, double y) {
 		super(x, y, 200, 180);

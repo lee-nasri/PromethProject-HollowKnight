@@ -3,13 +3,13 @@ package object;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MoveableCharacter extends MoveableObject implements Destroyable {
+public abstract class Character extends MoveableObject implements Destroyable {
 	
 	protected double attackDamage, maxHp, hp;
 	protected boolean turnLeft, inAir;
 	protected List<String> artList = new ArrayList<String>();
 	
-	public MoveableCharacter(double x, double y, double width, double height) {
+	public Character(double x, double y, double width, double height) {
 		super(x, y, width, height);
 	}
 	
