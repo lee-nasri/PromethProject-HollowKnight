@@ -20,7 +20,7 @@ public class Main extends Application {
 	public static World world;
 	
 	public static final double defaultWidth = 1000;
-	public static final double defaultHeight = 600;
+	public static final double defaultHeight = 650;
 	private static final double barHeigth = 30;
 
 	public static void main(String[] args) { 

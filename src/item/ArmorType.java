@@ -9,9 +9,9 @@ public enum ArmorType {
 	public int getHpBonus() {
 		switch(this) {
 		case NormalArmor:
-			return 25;
-		case RareArmor:
 			return 50;
+		case RareArmor:
+			return 75;
 		case LegendArmor:
 			return 100;
 		default:

@@ -144,7 +144,7 @@ public class Illya extends Boss {
 		}
 	}
 	
-	private void flyToHero(){
+	private void flyToHero() {
 		dx += (speed*(distanceX/distance) - dx)*friction;
 		dy += (speed*(distanceY/distance) - dy)*friction;
 	}

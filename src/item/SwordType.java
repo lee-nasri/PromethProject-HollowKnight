@@ -8,9 +8,9 @@ public enum SwordType {
 	public int getAttackDamage() {
 		switch(this) {
 		case NormalSword:
-			return 5;
-		case RareSword:
 			return 10;
+		case RareSword:
+			return 15;
 		case GoldenSword:
 			return 20;
 		default:
